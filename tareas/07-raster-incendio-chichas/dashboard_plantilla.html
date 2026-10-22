@@ -73,20 +73,21 @@ footer{color:var(--muted);font-size:.8rem;margin-top:40px;border-top:1px solid v
 <header><div class="bar">
   <strong>🔥 Incendio en Chichas</strong>
   <nav>
-    <a href="#resumen">Resumen</a><a href="#mapa-s">Mapa</a><a href="#parches">Parches</a>
+    <a href="#resumen">Resumen</a><a href="#mapa-s">Mapa</a><a href="#focos">Focos FIRMS</a><a href="#parches">Parches</a>
     <a href="#tiempo">Línea de tiempo</a><a href="#decisiones">Decisiones</a>
-    <a href="#cobertura">¿Qué se quemó?</a><a href="#escenas">Escenas</a><a href="#metodo">Fuentes y método</a>
+    <a href="#cobertura">¿Qué se quemó?</a><a href="#historia">Historia</a><a href="#escenas">Escenas</a><a href="#metodo">Fuentes y método</a>
   </nav>
 </div></header>
 <main>
 <div class="estado" id="estado"></div>
 <h1 id="resumen">¿Cuánto se quemó en Chichas (Condesuyos, Arequipa)?</h1>
-<p class="lead">Área quemada medida desde el espacio con Sentinel-2 (20 m), cruzada con cobertura del suelo y relieve. El número depende de las fechas, las nubes y el umbral elegidos: aquí se muestran todas esas decisiones.</p>
+<p class="lead">Área quemada medida desde el espacio con Sentinel-2 (20 m), validada con los focos de calor VIIRS y MODIS de NASA FIRMS y con MODIS y Landsat de Microsoft Planetary Computer, y cruzada con cobertura del suelo y relieve. El número depende de las fechas, las nubes y el umbral elegidos: aquí se muestran todas esas decisiones.</p>
 
 <div class="grid g3">
   <div class="card"><h3>NBR y dNBR</h3><p>NBR = (NIR − SWIR) / (NIR + SWIR) con las bandas B8A y B12. La vegetación sana da NBR alto; lo quemado, bajo. dNBR = NBR antes − NBR después.</p></div>
   <div class="card"><h3>Severidad (USGS)</h3><p>Baja 0,10–0,27 · moderada-baja 0,27–0,44 · moderada-alta 0,44–0,66 · alta ≥ 0,66. Aquí “quemado” es dNBR ≥ 0,27.</p></div>
   <div class="card"><h3>Quemado robusto</h3><p>Quemado a más de 60 m de nieve, agua o nubes enmascaradas, porque el deshielo y las orillas también bajan el NBR. Se usa para no inflar el área.</p></div>
+  <div class="card"><h3>Foco de calor</h3><p>Píxel VIIRS (375 m) o MODIS (1 km) más caliente que su entorno en el instante en que pasa el satélite. Dice <i>cuándo</i> y <i>dónde</i> hubo fuego, no cuánto se quemó.</p></div>
 </div>
 
 <h2>Resumen</h2>
@@ -107,19 +108,32 @@ footer{color:var(--muted);font-size:.8rem;margin-top:40px;border-top:1px solid v
     <label><input type="radio" name="capa" value="fecha"> Fecha de caída del NBR</label>
     <label><input type="radio" name="capa" value="worldcover"> Cobertura WorldCover 2021</label>
     <label><input type="radio" name="capa" value="ninguna"> Ninguna</label>
+    <label><input type="radio" name="capa" value="mcd64"> Años con quemado MCD64A1 (2001–2026)</label>
+    <label><input type="checkbox" id="chkFocos" checked> Focos de calor FIRMS</label>
     <label><input type="checkbox" id="chkParches" checked> Parches robustos ≥ 1 ha</label>
     <label><input type="checkbox" id="chkLimite" checked> Límite distrital</label>
     <h4>Opacidad de la capa</h4>
     <input type="range" id="opac" min="0" max="100" value="85">
     <div id="leyenda"></div>
+    <div id="leyFocos"></div>
     <div class="btns"><button id="verDist">Ver todo el distrito</button><button id="verP1">Ir al parche 1</button></div>
   </div>
 </div>
 
-<h2 id="parches">2 · Parches quemados <small>componentes conectados del quemado robusto · clic para ubicar en el mapa · clic en encabezado para ordenar</small></h2>
+<h2 id="focos">2 · Focos de calor (NASA FIRMS) <small>VIIRS S-NPP, NOAA-20, NOAA-21 y MODIS · hora de Perú (UTC−5)</small></h2>
+<p class="nota" id="notaFocos"></p>
+<div class="grid g6" id="kpisFocos"></div>
+<div class="grid g2" style="margin-top:12px">
+  <div class="card"><h3>Focos dentro del distrito, cada 3 horas</h3><p>Las líneas punteadas marcan cada paso de Sentinel-2. Lo que arde después de una imagen no puede salir en ella.</p><div class="chart"><canvas id="cFocos"></canvas></div></div>
+  <div class="card"><h3>¿Los focos caen sobre el área quemada?</h3><p>Un foco “coincide” si su huella (medio píxel: 187 m VIIRS, 500 m MODIS) toca quemado robusto (dNBR corregido ≥ 0,27) en la imagen indicada.</p><div class="tabla" style="margin-top:8px"><table id="tFocos"></table></div></div>
+</div>
+<div class="card" style="margin-top:12px"><h3>1 set – 21 oct: ¿cuándo hubo fuego?</h3><p>Píxeles de fuego MODIS (MOD14A1 Terra + MYD14A1 Aqua, 1 km, vía Planetary Computer) hasta el último día publicado, y focos FIRMS NRT en su ventana. La línea gris es el % de nubes MODIS en el distrito: con cielo despejado y cero píxeles, no hubo fuego detectable.</p><div class="chart" style="height:260px"><canvas id="cDiario"></canvas></div></div>
+
+<h2 id="parches">3 · Parches quemados <small>componentes conectados del quemado robusto · clic para ubicar en el mapa · clic en encabezado para ordenar</small></h2>
+<div class="alerta" id="notaParches"></div>
 <div class="tabla" style="max-height:420px"><table id="tParches"></table></div>
 
-<h2 id="tiempo">3 · Línea de tiempo del parche 1</h2>
+<h2 id="tiempo">4 · Línea de tiempo del parche 1</h2>
 <p class="nota" id="notaTiempo"></p>
 <div class="tl">
   <div>
@@ -136,32 +150,45 @@ footer{color:var(--muted);font-size:.8rem;margin-top:40px;border-top:1px solid v
   <div class="card"><h3>Hectáreas cuya caída de NBR aparece por primera vez en cada escena</h3><p>Caída ≥ 0,2 frente a la mediana del 3 al 15 de setiembre, solo en píxeles del quemado robusto.</p><div class="chart" style="height:240px"><canvas id="cAcum"></canvas></div></div>
   <div class="card"><h3>¿La huella persiste?</h3><p>dNBR corregido por el cambio regional (offset = mediana del distrito), siempre frente al 15 de setiembre.</p><div class="tabla" style="margin-top:8px"><table id="tPersist"></table></div></div>
 </div>
+<div class="card" style="margin-top:12px"><h3>Segundo sensor: Landsat 8/9 (30 m, Planetary Computer)</h3><p id="notaLandsat"></p><div class="chart" style="height:240px"><canvas id="cLandsat"></canvas></div></div>
 
-<h2 id="decisiones">4 · Las decisiones cambian el número</h2>
+<h2 id="decisiones">5 · Las decisiones cambian el número</h2>
 <p class="nota">Lección de Curahuasi: la computadora siempre da un número. Estas dos vistas muestran cuánto cambia el área según el umbral y el par de fechas.</p>
 <div class="grid g2">
   <div class="card"><h3>Hectáreas según el umbral de dNBR</h3><p>Par 15 set → 17 oct. La línea vertical es el umbral usado (0,27).</p><div class="chart"><canvas id="cUmbral"></canvas></div></div>
   <div class="card"><h3>Hectáreas robustas según el par de fechas</h3><p>Filas: imagen antes · columnas: imagen después (escenas con &lt; 1 % de nubes). Umbral 0,27.</p><div class="tabla heat" style="margin-top:8px"><table id="tPares"></table></div></div>
 </div>
 
-<h2 id="cobertura">5 · ¿Qué se quemó y dónde?</h2>
+<h2 id="cobertura">6 · ¿Qué se quemó y dónde?</h2>
 <div class="grid g2">
   <div class="card"><h3>Hectáreas por severidad y cobertura</h3><p>ESA WorldCover 2021 (10 m, remuestreado a 20 m por moda). Sin “Baja”, que suele ser ruido o sequía.</p><div class="chart"><canvas id="cCob"></canvas></div></div>
   <div class="card"><h3>Altitud: distrito frente a quemado robusto</h3><p>Copernicus DEM GLO-30, franjas de 100 m. Cada serie en % de su propio total.</p><div class="chart"><canvas id="cAlt"></canvas></div></div>
 </div>
 <div class="tabla" style="margin-top:12px"><table id="tCob"></table></div>
 
-<h2 id="escenas">6 · Las 30 escenas revisadas</h2>
+<h2 id="historia">7 · Historia: ¿es normal que arda Chichas?</h2>
+<p class="nota" id="notaHist"></p>
+<div class="grid g2">
+  <div class="card"><h3>Focos por año dentro del distrito</h3><p>Archivo FIRMS por país (Perú), solo presuntos incendios de vegetación. 2026 = focos NRT de octubre (el archivo anual aún no se publica).</p><div class="chart"><canvas id="cHistAnio"></canvas></div></div>
+  <div class="card"><h3>¿En qué meses arde?</h3><p>Focos por mes, todos los años juntos (MODIS 2001–2025, VIIRS S-NPP 2012–2025), y hectáreas MCD64A1 por mes.</p><div class="chart"><canvas id="cHistMes"></canvas></div></div>
+</div>
+
+<h2 id="escenas">8 · Las 30 escenas revisadas</h2>
 <p class="nota">Tile 18LYH, 1 set – 20 oct 2026. % de nubes medido con la capa SCL solo dentro del distrito y dentro del parche 1. En negrita, el par usado.</p>
 <div class="tabla" style="max-height:420px"><table id="tEscenas"></table></div>
 
-<h2 id="metodo">7 · Fuentes y método</h2>
+<h2 id="metodo">9 · Fuentes y método</h2>
 <div class="tabla"><table>
 <thead><tr><th class="l">Dato</th><th class="l">Fuente</th><th class="l">Uso</th></tr></thead>
 <tbody>
 <tr><td>Sentinel-2 L2A (B8A, B12, SCL, TCI)</td><td class="l">ESA Copernicus · COGs públicos en AWS (<code>sentinel-cogs</code>, Element 84)</td><td class="l">NBR, máscara de nubes, color real</td></tr>
 <tr><td>ESA WorldCover 2021 v200</td><td class="l">ESA · bucket público <code>esa-worldcover</code></td><td class="l">¿Qué se quemó?</td></tr>
 <tr><td>Copernicus DEM GLO-30</td><td class="l">ESA · bucket público <code>copernicus-dem-30m</code></td><td class="l">Altitud y relieve</td></tr>
+<tr><td>Focos de calor NRT (VIIRS 375 m, MODIS 1 km)</td><td class="l">NASA FIRMS · archivos públicos de 7 días para Sudamérica (o API de área con <code>FIRMS_MAP_KEY</code>)</td><td class="l">Cuándo y dónde hubo fuego; validación de los parches</td></tr>
+<tr><td>Focos de calor históricos</td><td class="l">NASA FIRMS · archivo anual de Perú, MODIS 2001–2025 y VIIRS S-NPP 2012–2025</td><td class="l">¿Es normal que arda Chichas?</td></tr>
+<tr><td>MOD14A1 / MYD14A1 v061 (FireMask diario, 1 km)</td><td class="l">Microsoft Planetary Computer · STAC <code>modis-14A1-061</code></td><td class="l">Fuego del 1 set al 15 oct, antes de la ventana FIRMS</td></tr>
+<tr><td>MCD64A1 v061 (área quemada mensual, 500 m)</td><td class="l">Microsoft Planetary Computer · STAC <code>modis-64A1-061</code></td><td class="l">Hectáreas quemadas por año y recurrencia</td></tr>
+<tr><td>Landsat 8/9 Collection 2 L2 (30 m)</td><td class="l">USGS · Microsoft Planetary Computer · STAC <code>landsat-c2-l2</code></td><td class="l">NBR con un segundo sensor</td></tr>
 <tr><td>Límite distrital (UBIGEO 040604)</td><td class="l">INEI · <code>peru_distrital_simple.geojson</code> del curso</td><td class="l">Zona de estudio</td></tr>
 </tbody></table></div>
 <div class="grid g2" style="margin-top:12px">
@@ -171,15 +198,19 @@ footer{color:var(--muted);font-size:.8rem;margin-top:40px;border-top:1px solid v
     <li><code>03_control_nieve.py</code>: separa el quemado pegado a nieve y agua.</li>
     <li><code>04_datos_dashboard.py</code>: NBR de las 30 escenas, fecha de caída, parches, altitud, sensibilidad y capas.</li>
     <li><code>05_persistencia.py</code>: dNBR corregido por offset y persistencia 17/18/20 oct.</li>
+    <li><code>07_firms.py</code>: focos FIRMS NRT e históricos, cruce con el dNBR del 17, 18 y 20 oct.</li>
+    <li><code>08_planetary.py</code>: MODIS 14A1, MCD64A1 y Landsat 8/9 desde Planetary Computer.</li>
     <li><code>06_dashboard.py</code>: arma este HTML autocontenido.</li></ol></div>
   <div class="card"><h3>Limitaciones</h3><ul style="margin:6px 0 0;padding-left:18px;font-size:.88rem">
-    <li><b>Sin focos VIIRS:</b> NASA FIRMS no era accesible desde el entorno de trabajo. Un foco de calor no es un incendio, y sin focos no se confirma qué parche es fuego.</li>
+    <li><b>Un foco no es un área:</b> el píxel VIIRS mide 375 m y el de MODIS 1 km; un foco solo dice que algo ardía en ese píxel durante el paso. Las nubes y el humo espeso esconden focos.</li>
+    <li><b>Ventana FIRMS:</b> sin clave, FIRMS publica solo los últimos 7 días (<span id="limVentana"></span>). Antes de esa ventana se usó MODIS 14A1, que es menos sensible a fuegos pequeños.</li>
     <li><b>Fuego activo:</b> si la imagen “después” capta llamas o humo, el dNBR mide eso y no la cicatriz final. La huella cambia entre el 17, 18 y 20 de octubre.</li>
+    <li><b>MCD64A1 (500 m) no ve fuegos chicos</b> y llega con ~2 meses de retraso: aún no incluye octubre de 2026.</li>
     <li><b>Las nubes esconden el fuego:</b> el 20 de octubre tiene 16–18 % de nubes en el distrito.</li>
     <li><b>Umbral genérico:</b> los cortes USGS se calibraron en bosques; en puna, con poca biomasa, pueden subestimar fuegos leves.</li>
     <li>Límite distrital simplificado. WorldCover es de 2021.</li></ul></div>
 </div>
-<footer>Trabajo de curso · Ciencia de Datos con Python · Universidad del Pacífico. Herramienta independiente: no reemplaza los reportes del COEN, INDECI, SERFOR ni SERNANP. Librerías incluidas: Leaflet 1.9.4 (BSD-2) y Chart.js 4.4.1 (MIT).</footer>
+<footer>Trabajo de curso · Ciencia de Datos con Python · Universidad del Pacífico. Herramienta independiente: no reemplaza los reportes del COEN, INDECI, SERFOR ni SERNANP. Focos: NASA FIRMS (LANCE, NRT y archivo). MODIS y Landsat vía Microsoft Planetary Computer. Librerías incluidas: Leaflet 1.9.4 (BSD-2) y Chart.js 4.4.1 (MIT).</footer>
 </main>
 <script>/*__LEAFLET_JS__*/</script>
 <script>/*__CHART_JS__*/</script>
@@ -188,34 +219,53 @@ const D = /*__DATA__*/;
 const fmt = (x, d = 1) => x == null ? "—" : Number(x).toLocaleString("es-PE", {minimumFractionDigits: d, maximumFractionDigits: d});
 const fF = s => `${s.slice(6, 8)}/${s.slice(4, 6)}`;
 const R = D.resumen, P = R.persistencia;
+const F = D.firms, FR = F.resumen, PC = D.pc;
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+// FIRMS da fecha y hora UTC; en Perú es UTC−5
+const tUTC = (f, h) => Date.UTC(+f.slice(0, 4), +f.slice(5, 7) - 1, +f.slice(8, 10), +h.slice(0, 2), +h.slice(2, 4));
+const hPeru = (f, h) => { const d = new Date(tUTC(f, h) - 5 * 3600e3); return `${String(d.getUTCDate()).padStart(2, "0")}/${String(d.getUTCMonth() + 1).padStart(2, "0")} ${String(d.getUTCHours()).padStart(2, "0")}:${String(d.getUTCMinutes()).padStart(2, "0")}`; };
+const hPeruS = s => s ? hPeru(s.slice(0, 10), s.slice(11)) : "—";      // "2026-10-16 1908"
+const fD = s => `${s.slice(8, 10)}/${s.slice(5, 7)}`;                  // "2026-10-16"
+const COL_SENSOR = {"VIIRS S-NPP": "#ea580c", "VIIRS NOAA-20": "#eab308", "VIIRS NOAA-21": "#db2777", "MODIS": "#8b5cf6"};
+const COL_DIA = {"2026-10-16": "#fde047", "2026-10-17": "#f97316", "2026-10-18": "#dc2626"};
+const focosD = F.focos.filter(f => f.dist);
+const porParche = Object.fromEntries(F.por_parche.map(p => [p.id, p]));
+const histParche = Object.fromEntries(PC.mcd64.parches.map(p => [p.id, p.anios]));
 
 // Estado y KPIs ---------------------------------------------------------------
 document.getElementById("estado").innerHTML =
   `<span>Corte <b>${D.corte}</b></span><span>Antes <b>${fF(D.pre.split("_")[2])}/2026</b> · ${D.pre.split("_")[0]}</span>` +
   `<span>Después <b>${fF(D.post.split("_")[2])}/2026</b> · ${D.post.split("_")[0]}</span><span>Nubes en el distrito <b>0,01 % / 0,02 %</b></span>` +
+  `<span>Focos FIRMS <b>${fD(F.ventana[0])}–${fD(F.ventana[1])}</b></span><span>MODIS 14A1 hasta <b>${fD(PC.modis14.ultimo)}</b></span>` +
   `<span>Área analizada <b>${fmt(R.ha_validas, 0)} ha</b></span>`;
 const p1 = D.parches[0];
+const snpp = F.historico.por_anio["VIIRS S-NPP"], maxSnpp = Math.max(...snpp.slice(0, -1));
+const anioMaxSnpp = F.historico.anios[snpp.indexOf(maxSnpp)];
+const snpp26 = F.historico.oct_2026_nrt["VIIRS S-NPP"] || 0, nDias = FR.dias_con_foco.length;
 const kpis = [
-  [`${fmt(R.ha_quemadas_dnbr_027, 0)} ha`, "dNBR ≥ 0,27 entre el 15 set y el 17 oct"],
-  [`${fmt(R.control_nieve.ha_quemadas_robustas, 0)} ha`, "quemado robusto, lejos de nieve y agua"],
-  [`${fmt(P.persistente_18_20, 0)} ha`, "siguen quemadas el 18 y el 20 oct (dNBR corregido)"],
-  [`${fmt(P.persistente_17_18_20, 1)} ha`, "persisten en las tres fechas: la huella se mueve"],
-  ["15 → 17 oct", "el NBR del parche 1 cae de " + fmt(D.serie.find(s => s.fecha === "20261015").nbr_parche, 2) + " a " + fmt(D.serie.find(s => s.fecha === "20261017").nbr_parche, 2)],
-  [`${fmt(D.alt_quemado.media, 0)} m`, "altitud media del quemado robusto: puna y pajonal"],
+  [`≈ ${fmt(FR.ha_confirmadas, 0)} ha`, "quemado robusto el 17, 18 o 20 oct en parches que tocan un foco FIRMS: mejor estimación con imágenes hasta el 20/10"],
+  [`${fmt(R.ha_quemadas_dnbr_027, 0)} ha`, "dNBR ≥ 0,27 en el par principal 15 set → 17 oct (el fuego seguía activo)"],
+  [`${fmt(R.control_nieve.ha_quemadas_robustas, 0)} ha`, "quemado robusto del 17 oct, lejos de nieve y agua"],
+  [`${FR.focos_distrito}`, `focos de calor dentro del distrito (${FR.focos_distrito_viirs} VIIRS), ${FR.dias_con_foco.map(fD).join(", ")}`],
+  [`${fmt(100 * FR.focos_distrito_toca / FR.focos_distrito, 0)} %`, "de esos focos cae sobre quemado robusto de Sentinel-2"],
+  [`${hPeruS(FR.primer_foco).split(" ")[0]} → ${hPeruS(FR.ultimo_foco).split(" ")[0]}`, `primer foco ${hPeruS(FR.primer_foco)} · último ${hPeruS(FR.ultimo_foco)} (hora de Perú)`],
+  ["0", `píxeles de fuego MODIS en el distrito del 01/09 al ${fD(PC.modis14.ultimo)}: el fuego empezó después`],
+  [`${snpp26} vs ${maxSnpp}`, `focos VIIRS S-NPP en ${nDias} días de oct 2026 frente a su peor año completo (${anioMaxSnpp})`],
 ];
-document.getElementById("kpis").innerHTML = kpis.map(([b, s], i) => `<div class="card kpi ${i >= 4 ? "neutral" : ""}"><b>${b}</b><span>${s}</span></div>`).join("");
+document.getElementById("kpis").innerHTML = kpis.map(([b, s], i) => `<div class="card kpi ${i >= 5 ? "neutral" : ""}"><b>${b}</b><span>${s}</span></div>`).join("");
 document.getElementById("alerta").innerHTML =
-  `<b>Lectura honesta.</b> El par 15 set → 17 oct da ${fmt(R.ha_quemadas_dnbr_027, 0)} ha, pero el mismo cálculo con el 18 oct da ${fmt(P["20261018"].ha_corregido, 0)} ha y con el 20 oct ${fmt(P["20261020"].ha_corregido, 0)} ha, y solo ${fmt(P.persistente_17_18_20, 1)} ha coinciden en las tres. ` +
-  `El parche 1 cae fuerte el 17 oct y el 18 oct ya se parece a su entorno: es la firma de llamas o humo, no de una cicatriz estable. El fuego estaba activo entre el 15 y el 20 de octubre; el área final todavía no se puede cerrar con estas imágenes.`;
+  `<b>Lectura honesta.</b> Sentinel-2 del 15 oct (10:07) casi no ve cambio y MODIS no detecta fuego en todo setiembre ni hasta el 15 oct. El primer foco VIIRS aparece el ${hPeruS(FR.primer_foco)} y el último el ${hPeruS(FR.ultimo_foco)}: unas ${Math.round((tUTC(FR.ultimo_foco.slice(0, 10), FR.ultimo_foco.slice(11)) - tUTC(FR.primer_foco.slice(0, 10), FR.primer_foco.slice(11))) / 3.6e6)} horas de fuego activo. ` +
+  `La imagen del 17 oct (10:07) cayó <b>en medio del incendio</b>: ${FR.focos_antes_s2_17} focos son anteriores a ella y ${FR.focos_despues_s2_17} posteriores, y de estos ${FR.focos_despues_s2_17_toca_18_20} caen sobre quemado que solo aparece el 18 o el 20 oct. Por eso el par 15 set → 17 oct (${fmt(R.ha_quemadas_dnbr_027, 0)} ha) se queda corto y la huella “se mueve”. ` +
+  `Uniendo el quemado robusto de las tres fechas y quedándose con los parches que tocan un foco salen <b>≈ ${fmt(FR.ha_confirmadas, 0)} ha</b>. El 20 oct tiene 16–18 % de nubes en el distrito, así que el área final se cierra con la próxima imagen limpia.`;
 
 // Mapa -------------------------------------------------------------------------
 const map = L.map("mapa", {zoomSnap: 0.25, attributionControl: true});
 const B = L.latLngBounds(D.bounds);
 map.fitBounds(B);
-map.attributionControl.setPrefix("Leaflet").addAttribution("Sentinel-2 · ESA WorldCover · Copernicus DEM");
+map.attributionControl.setPrefix("Leaflet").addAttribution("Sentinel-2 · ESA WorldCover · Copernicus DEM · NASA FIRMS · MODIS vía Planetary Computer");
 const bases = {}; for (const k of ["despues", "antes", "relieve"]) bases[k] = L.imageOverlay(D.capas[k], B);
-const capas = {}; for (const k of ["severidad", "dnbr", "fecha", "worldcover"]) capas[k] = L.imageOverlay(D.capas[k], B, {opacity: .85});
+D.capas.mcd64 = PC.mcd64.capa;
+const capas = {}; for (const k of ["severidad", "dnbr", "fecha", "worldcover", "mcd64"]) capas[k] = L.imageOverlay(D.capas[k], B, {opacity: .85});
 let base = bases.despues.addTo(map), capa = capas.severidad.addTo(map);
 const limite = L.geoJSON(D.limite, {style: {color: "#111", weight: 2, fill: false, dashArray: "4 3"}}).addTo(map);
 const capasP = L.layerGroup().addTo(map);
@@ -227,7 +277,9 @@ D.parches.forEach(p => {
   g.bindPopup(`<b>Parche ${p.id}</b><br>${fmt(p.ha)} ha · dNBR medio ${fmt(p.dnbr_medio, 2)} (máx ${fmt(p.dnbr_max, 2)})<br>` +
     `Alta ${fmt(p.ha_sev.Alta)} · mod-alta ${fmt(p.ha_sev["Moderada-alta"])} · mod-baja ${fmt(p.ha_sev["Moderada-baja"])} ha<br>` +
     `Cobertura: ${Object.entries(p.cobertura).map(([k, v]) => `${k} ${fmt(v)}`).join(", ")}<br>` +
-    `Altitud ${fmt(p.alt_min, 0)}–${fmt(p.alt_max, 0)} m · ${p.lat}, ${p.lon}`);
+    `Altitud ${fmt(p.alt_min, 0)}–${fmt(p.alt_max, 0)} m · ${p.lat}, ${p.lon}<br>` +
+    (porParche[p.id].focos ? `<b>${porParche[p.id].focos} focos FIRMS</b>, ${hPeruS(porParche[p.id].primero)} a ${hPeruS(porParche[p.id].ultimo)}` : "Sin focos FIRMS cerca") +
+    (histParche[p.id].length ? `<br>MCD64A1 ya lo marcó quemado en ${histParche[p.id].join(", ")}` : ""));
   g.on("click", () => selParche(p.id, false));
   g.addTo(capasP); polys[p.id] = g;
 });
@@ -236,6 +288,7 @@ const leyendas = {
   dnbr: `<div class="grad" style="margin-top:8px"></div><div class="ley" style="justify-content:space-between"><span>−0,3</span><span>0,2</span><span>0,7</span></div>`,
   fecha: `<div class="grad" style="margin-top:8px;background:linear-gradient(90deg,#0d0887,#7e03a8,#cc4778,#f89540,#f0f921)"></div><div class="ley" style="justify-content:space-between"><span>03 set</span><span>fecha de caída</span><span>20 oct</span></div>`,
   worldcover: `<div class="ley">${Object.entries(D.clases_wc).map(([k, c]) => `<span><i style="background:${c}"></i>${k}</span>`).join("")}</div>`,
+  mcd64: `<div class="ley">${PC.mcd64.colores.map((c, i) => `<span><i style="background:${c}"></i>${i + 1}${i === PC.mcd64.colores.length - 1 ? "+" : ""} ${i ? "años" : "año"}</span>`).join("")}</div><p class="nota" style="margin:4px 0 0">Píxeles de 500 m, ${PC.mcd64.primer_mes} a ${PC.mcd64.ultimo_mes}.</p>`,
   ninguna: ""
 };
 const setLey = k => document.getElementById("leyenda").innerHTML = leyendas[k];
@@ -249,6 +302,19 @@ document.querySelectorAll("input[name=capa]").forEach(r => r.onchange = () => {
 const opac = document.getElementById("opac");
 opac.oninput = () => capa && capa.setOpacity(opac.value / 100);
 document.getElementById("chkParches").onchange = e => e.target.checked ? capasP.addTo(map) : map.removeLayer(capasP);
+// Focos FIRMS: círculo con el tamaño aproximado de la huella, color por día
+const capaFocos = L.layerGroup();
+F.focos.forEach(f => {
+  const viirs = f.sensor.startsWith("VIIRS");
+  L.circle([f.lat, f.lon], {radius: viirs ? 187 : 500, color: "#111", weight: 1, fillColor: COL_DIA[f.fecha] || "#a3a3a3", fillOpacity: viirs ? .75 : .35, dashArray: viirs ? null : "3 3"})
+    .bindPopup(`<b>Foco ${f.sensor}</b> (${f.dn === "D" ? "día" : "noche"})<br>${hPeru(f.fecha, f.hora)} hora de Perú · ${f.fecha} ${f.hora} UTC<br>` +
+      `Confianza ${f.conf} · FRP ${fmt(f.frp)} MW<br>${f.dist ? "Dentro del distrito" : "Fuera del distrito"} · ${f.antes17 ? "antes" : "después"} de la imagen del 17 oct<br>` +
+      `Toca quemado: 17 oct ${f.t17 ? "sí" : "no"} · 18 oct ${f.t18 ? "sí" : "no"} · 20 oct ${f.t20 ? "sí" : "no"}`)
+    .addTo(capaFocos);
+});
+capaFocos.addTo(map);
+document.getElementById("leyFocos").innerHTML = `<h4>Focos FIRMS</h4><div class="ley">${Object.entries(COL_DIA).map(([k, c]) => `<span><i style="background:${c};border-radius:50%"></i>${fD(k)}</span>`).join("")}<span><i style="background:#a3a3a3;border-radius:50%"></i>otro día</span></div><p class="nota" style="margin:4px 0 0">Círculo lleno: VIIRS (375 m). Punteado: MODIS (1 km).</p>`;
+document.getElementById("chkFocos").onchange = e => e.target.checked ? capaFocos.addTo(map) : map.removeLayer(capaFocos);
 document.getElementById("chkLimite").onchange = e => e.target.checked ? limite.addTo(map) : map.removeLayer(limite);
 document.getElementById("verDist").onclick = () => map.fitBounds(B);
 document.getElementById("verP1").onclick = () => selParche(1, true);
@@ -277,8 +343,19 @@ tablaOrdenable(document.getElementById("tParches"), [
   {t: "Cobertura principal", l: 1, v: r => principal(r.cobertura)},
   {t: "Altitud media (m)", v: r => r.alt_media, f: r => fmt(r.alt_media, 0)},
   {t: "Rango (m)", v: r => r.alt_max - r.alt_min, f: r => `${fmt(r.alt_min, 0)}–${fmt(r.alt_max, 0)}`},
+  {t: "Focos FIRMS", v: r => porParche[r.id].focos, f: r => porParche[r.id].focos ? `<b>${porParche[r.id].focos}</b>` : '<span class="chip bad">0</span>'},
+  {t: "Primer foco (Perú)", l: 1, v: r => porParche[r.id].primero || "z", f: r => hPeruS(porParche[r.id].primero)},
+  {t: "Quemado antes (MCD64A1)", l: 1, v: r => histParche[r.id].join(","), f: r => histParche[r.id].join(", ") || "—"},
   {t: "Lat, lon", l: 1, v: r => r.lat, f: r => `${r.lat}, ${r.lon}`},
 ], D.parches, id => selParche(id, true));
+(() => {
+  const sin = D.parches.filter(p => !porParche[p.id].focos), con = D.parches.filter(p => porParche[p.id].focos);
+  if (!sin.length) return document.getElementById("notaParches").remove();
+  const mn = a => Math.min(...a), mx = a => Math.max(...a), sum = a => a.reduce((x, y) => x + y, 0);
+  document.getElementById("notaParches").innerHTML =
+    `<b>Los focos separan fuego de artefactos.</b> Los ${con.length} parches con focos FIRMS (${fmt(sum(con.map(p => p.ha)))} ha) están entre ${fmt(mn(con.map(p => p.alt_min)), 0)} y ${fmt(mx(con.map(p => p.alt_max)), 0)} m, en pastizal y matorral. ` +
+    `Los ${sin.length} sin ningún foco (${sin.map(p => p.id).join(", ")}; ${fmt(sum(sin.map(p => p.ha)))} ha) están todos a ${fmt(mn(sin.map(p => p.alt_media)), 0)} m o más, sobre “${principal(sin[0].cobertura).toLowerCase()}” junto al nevado: lo más probable es que sean deshielo o sombra de nieve y no fuego, aunque pasen el control de 60 m.`;
+})();
 function selParche(id, zoom) {
   document.querySelectorAll("#tParches tbody tr").forEach(tr => tr.classList.toggle("sel", +tr.dataset.id === id));
   Object.entries(polys).forEach(([k, g]) => g.setStyle({color: +k === id ? "#ff00d4" : "#00e5ff", weight: +k === id ? 3.5 : 2}));
@@ -385,6 +462,121 @@ tablaOrdenable(document.getElementById("tCob"), [
   {t: "Quemado (≥ 0,27)", v: r => r.q, f: r => `<b>${fmt(r.q)}</b>`},
   {t: "% de la cobertura", v: r => r.tot ? r.q / r.tot : 0, f: r => r.tot ? fmt(100 * r.q / r.tot, 2) + " %" : "—"},
 ], tc);
+
+// Focos FIRMS ----------------------------------------------------------------------------
+(() => {
+  const fuera = F.focos.length - focosD.length;
+  document.getElementById("notaFocos").innerHTML =
+    `${FR.focos_distrito} focos dentro del distrito y ${fuera} más en un radio de ~15 km (otros fuegos al norte y al este, fuera del polígono). ` +
+    `Ventana NRT ${fD(F.ventana[0])}–${fD(F.ventana[1])}${F.con_api ? " (API FIRMS)" : " (archivos públicos de 7 días; con una clave FIRMS se puede bajar toda la temporada)"}. ` +
+    `${FR.focos_distrito_toca} de ${FR.focos_distrito} focos tocan quemado robusto en alguna de las tres imágenes posteriores, y ${F.por_parche.filter(p => p.focos).length} de ${F.por_parche.length} parches tienen al menos un foco.`;
+  const k = [
+    [`${fmt(FR.ha_union_robusta, 0)} ha`, "quemado robusto en la unión 17 + 18 + 20 oct (dNBR corregido)"],
+    [`${fmt(FR.ha_confirmadas, 0)} ha`, "de esa unión, en parches que tocan un foco FIRMS"],
+    [`${fmt(FR.frp_max, 0)} MW`, "potencia radiativa (FRP) máxima de un foco en el distrito"],
+    [`${FR.focos_antes_s2_17} / ${FR.focos_despues_s2_17}`, "focos antes / después de la imagen Sentinel-2 del 17 oct"],
+  ];
+  document.getElementById("kpisFocos").innerHTML = k.map(([b, t], i) => `<div class="card kpi ${i >= 2 ? "neutral" : ""}"><b>${b}</b><span>${t}</span></div>`).join("");
+
+  // focos cada 3 h, hora de Perú, del inicio de la ventana al final
+  const H = 3 * 3600e3, t0 = tUTC(F.ventana[0], "0500"), t1 = tUTC(F.ventana[1], "0500") + 24 * 3600e3;
+  const nb = Math.ceil((t1 - t0) / H);
+  const etq = [...Array(nb)].map((_, i) => { const d = new Date(t0 + i * H - 5 * 3600e3); return `${String(d.getUTCDate()).padStart(2, "0")}/${String(d.getUTCMonth() + 1).padStart(2, "0")} ${String(d.getUTCHours()).padStart(2, "0")}h`; });
+  const sens = Object.keys(COL_SENSOR);
+  const cuenta = Object.fromEntries(sens.map(x => [x, Array(nb).fill(0)]));
+  focosD.forEach(f => { const i = Math.floor((tUTC(f.fecha, f.hora) - t0) / H); if (i >= 0 && i < nb) cuenta[f.sensor][i]++; });
+  const pasos = Object.entries(F.paso_s2).map(([f, h]) => ({x: (tUTC(`${f.slice(0, 4)}-${f.slice(4, 6)}-${f.slice(6)}`, h) - t0) / H - .5, t: fF(f)})).filter(p => p.x > -.5 && p.x < nb);
+  new Chart(document.getElementById("cFocos"), {
+    type: "bar",
+    data: {labels: etq, datasets: sens.map(x => ({label: x, data: cuenta[x], backgroundColor: COL_SENSOR[x]}))},
+    options: {maintainAspectRatio: false, scales: {x: {stacked: true, ticks: {maxRotation: 70, autoSkip: true, maxTicksLimit: 16}}, y: {stacked: true, title: {display: true, text: "focos"}}},
+      plugins: {legend: {position: "bottom"}}},
+    plugins: [{id: "s2", afterDraw(c) {
+      const g = c.ctx, xs = c.scales.x, w = xs.getPixelForValue(1) - xs.getPixelForValue(0);
+      g.save(); g.strokeStyle = css("--blue"); g.fillStyle = css("--blue"); g.setLineDash([4, 4]); g.font = "11px system-ui";
+      pasos.forEach(p => { const x = xs.getPixelForValue(0) + p.x * w; g.beginPath(); g.moveTo(x, c.chartArea.top); g.lineTo(x, c.chartArea.bottom); g.stroke(); g.fillText("S2 " + p.t, x + 3, c.chartArea.top + 10); });
+      g.restore(); }}]
+  });
+
+  const pct = (a, b) => b ? fmt(100 * a / b, 0) + " %" : "—";
+  const n17 = focosD.filter(f => f.antes17), n17d = focosD.filter(f => !f.antes17);
+  const fila = (t, sub, cols) => `<tr><td class="l">${t}</td><td>${sub.length}</td>${cols.map(c => `<td>${pct(sub.filter(c).length, sub.length)}</td>`).join("")}</tr>`;
+  const cs = [f => f.t17, f => f.t18, f => f.t20, f => f.t17 || f.t18 || f.t20];
+  document.getElementById("tFocos").innerHTML =
+    `<thead><tr><th class="l">Focos en el distrito</th><th>n</th><th>17 oct</th><th>18 oct</th><th>20 oct</th><th>alguna</th></tr></thead><tbody>` +
+    fila("Antes de la imagen del 17 oct", n17, cs) + fila("Después de la imagen del 17 oct", n17d, cs) +
+    fila("VIIRS", focosD.filter(f => f.sensor.startsWith("VIIRS")), cs) + fila("MODIS", focosD.filter(f => f.sensor === "MODIS"), cs) +
+    `<tr><td class="l"><b>Todos</b></td><td><b>${focosD.length}</b></td>${cs.map(c => `<td><b>${pct(focosD.filter(c).length, focosD.length)}</b></td>`).join("")}</tr></tbody>`;
+
+  // diario: MODIS 14A1 (PC) + FIRMS NRT
+  const dias = [];
+  for (let t = Date.UTC(2026, 8, 1); t <= tUTC(F.ventana[1], "0000"); t += 864e5) dias.push(new Date(t).toISOString().slice(0, 10));
+  const m14 = Object.fromEntries(PC.modis14.diario.map(d => [d.fecha, d]));
+  const porDia = s => dias.map(d => (d >= F.ventana[0]) ? focosD.filter(f => f.fecha === d && (s === "VIIRS" ? f.sensor.startsWith("VIIRS") : f.sensor === "MODIS")).length : null);
+  new Chart(document.getElementById("cDiario"), {
+    data: {labels: dias.map(fD), datasets: [
+      {type: "bar", label: "Píxeles de fuego MODIS 14A1 (Terra + Aqua)", data: dias.map(d => m14[d] ? (m14[d].terra || 0) + (m14[d].aqua || 0) : null), backgroundColor: "#8b5cf6", stack: "a"},
+      {type: "bar", label: "Focos FIRMS VIIRS", data: porDia("VIIRS"), backgroundColor: "#ea580c", stack: "b"},
+      {type: "bar", label: "Focos FIRMS MODIS", data: porDia("MODIS"), backgroundColor: "#c4b5fd", stack: "b"},
+      {type: "line", label: "% nubes MODIS (máx. Terra/Aqua)", data: dias.map(d => m14[d] ? Math.max(m14[d].nubes_terra ?? 0, m14[d].nubes_aqua ?? 0) : null), borderColor: "rgba(140,140,140,.8)", pointRadius: 0, borderWidth: 1.5, yAxisID: "y2"}]},
+    options: {maintainAspectRatio: false, interaction: {mode: "index", intersect: false},
+      scales: {x: {stacked: true, ticks: {maxRotation: 70, autoSkip: true, maxTicksLimit: 26}}, y: {stacked: true, title: {display: true, text: "píxeles / focos"}},
+        y2: {position: "right", min: 0, max: 100, grid: {display: false}, title: {display: true, text: "% nubes"}}},
+      plugins: {legend: {position: "bottom"}, tooltip: {callbacks: {label: c => `${c.dataset.label}: ${c.raw == null ? "sin dato" : fmt(c.raw, 0)}`}}}}
+  });
+  document.getElementById("limVentana").textContent = `${fD(F.ventana[0])} a ${fD(F.ventana[1])}`;
+})();
+
+// Landsat (Planetary Computer) -----------------------------------------------------------------
+(() => {
+  const Ls = PC.landsat;
+  document.getElementById("notaLandsat").innerHTML =
+    `NBR medio del parche 1 y de su anillo de control en cada escena Landsat (filas 070 y 071, ruta 004). El dNBR Landsat ${fF(Ls.pre)} → ${fF(Ls.post)} ` +
+    `da ${fmt(Ls.dnbr_parches, 3)} dentro de los parches y ${fmt(Ls.dnbr_resto, 3)} fuera, y solo ${fmt(Ls.ha_027, 1)} ha ≥ 0,27 en todo el distrito: ` +
+    (Ls.posterior_al_fuego ? `<b>esta escena ya es posterior al fuego</b>.` : `<b>el ${fF(Ls.post)} no había cicatriz</b>, coherente con focos que empiezan el ${hPeruS(FR.primer_foco).split(" ")[0]}. La siguiente escena Landsat publicada servirá para medir el área final con un segundo sensor.`);
+  new Chart(document.getElementById("cLandsat"), {
+    type: "line",
+    data: {labels: Ls.serie.map(s => fF(s.fecha) + " " + s.plat.replace("landsat-", "L")), datasets: [
+      {label: "NBR parche 1 (Landsat)", data: Ls.serie.map(s => s.nbr_parche), borderColor: css("--fire"), backgroundColor: css("--fire"), spanGaps: true, pointRadius: 3},
+      {label: "NBR control (Landsat)", data: Ls.serie.map(s => s.nbr_control), borderColor: css("--blue"), backgroundColor: css("--blue"), borderDash: [5, 4], spanGaps: true, pointRadius: 2},
+      {label: "% nubes en el distrito", data: Ls.serie.map(s => s.nubes_distrito), type: "bar", backgroundColor: "rgba(150,150,150,.28)", yAxisID: "y2"}]},
+    options: {maintainAspectRatio: false, interaction: {mode: "index", intersect: false},
+      scales: {y: {title: {display: true, text: "NBR"}}, y2: {position: "right", min: 0, max: 100, grid: {display: false}, title: {display: true, text: "% nubes"}}},
+      plugins: {legend: {position: "bottom"}, tooltip: {callbacks: {label: c => `${c.dataset.label}: ${c.raw == null ? "nubes" : fmt(c.raw, c.datasetIndex === 2 ? 1 : 3)}`}}}}
+  });
+})();
+
+// Historia ------------------------------------------------------------------------------
+(() => {
+  const H = F.historico, M = PC.mcd64;
+  const n26 = Object.values(H.oct_2026_nrt).reduce((a, b) => a + b, 0);
+  const haAnios = Object.entries(M.ha_anio).filter(([, v]) => v > 0);
+  document.getElementById("notaHist").innerHTML =
+    `De 2001 a 2025 hubo ${H.total} focos dentro del distrito, el ${fmt(100 * H.focos_set_nov / H.total, 0)} % entre setiembre y noviembre: la temporada seca de fin de año es la de fuego. ` +
+    `Solo en octubre de 2026 van ${n26} focos (todos los satélites); comparando el mismo satélite, VIIRS S-NPP suma ${snpp26} en ${nDias} días frente a ${maxSnpp} en todo ${anioMaxSnpp}, su peor año. ` +
+    `MCD64A1, que solo ve quemas grandes (500 m), marca área quemada en ${haAnios.map(([a, v]) => `${a} (${fmt(v, 0)} ha)`).join(" y ")}; ${fmt(M.ha_alguna_vez, 0)} ha del distrito se quemaron alguna vez y ${fmt(M.ha_2_o_mas, 0)} ha dos veces. ` +
+    `El parche 1 cae en un píxel quemado en ${histParche[1].join(", ") || "ningún año"}. Octubre de 2026 todavía no está en MCD64A1 (último mes: ${M.ultimo_mes}).`;
+  const a = H.anios;
+  new Chart(document.getElementById("cHistAnio"), {
+    data: {labels: a, datasets: [
+      {type: "bar", label: "MODIS (1 km)", data: H.por_anio.MODIS.map((v, i) => a[i] === 2026 ? H.oct_2026_nrt.MODIS || 0 : v), backgroundColor: COL_SENSOR.MODIS},
+      {type: "bar", label: "VIIRS S-NPP (375 m)", data: H.por_anio["VIIRS S-NPP"].map((v, i) => a[i] === 2026 ? H.oct_2026_nrt["VIIRS S-NPP"] || 0 : (a[i] < 2012 ? null : v)), backgroundColor: COL_SENSOR["VIIRS S-NPP"]},
+      {type: "line", label: "ha quemadas MCD64A1", data: a.map(y => M.ha_anio[y] ?? null), borderColor: css("--fg"), backgroundColor: css("--fg"), pointRadius: a.map(y => (M.ha_anio[y] || 0) > 0 ? 4 : 1), borderWidth: 1.5, yAxisID: "y2"}]},
+    options: {maintainAspectRatio: false, interaction: {mode: "index", intersect: false},
+      scales: {y: {title: {display: true, text: "focos"}}, y2: {position: "right", grid: {display: false}, title: {display: true, text: "ha MCD64A1"}}, x: {ticks: {maxRotation: 70}}},
+      plugins: {legend: {position: "bottom"}, tooltip: {callbacks: {afterTitle: it => it[0].label === "2026" ? "2026: solo focos NRT de octubre; MCD64A1 hasta " + M.ultimo_mes : ""}}}}
+  });
+  const MES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "set", "oct", "nov", "dic"];
+  new Chart(document.getElementById("cHistMes"), {
+    data: {labels: MES, datasets: [
+      {type: "bar", label: "Focos MODIS", data: H.por_mes.MODIS, backgroundColor: COL_SENSOR.MODIS},
+      {type: "bar", label: "Focos VIIRS S-NPP", data: H.por_mes["VIIRS S-NPP"], backgroundColor: COL_SENSOR["VIIRS S-NPP"]},
+      {type: "line", label: "ha MCD64A1", data: M.ha_mes, borderColor: css("--fg"), backgroundColor: css("--fg"), pointRadius: 3, borderWidth: 1.5, yAxisID: "y2"}]},
+    options: {maintainAspectRatio: false, interaction: {mode: "index", intersect: false},
+      scales: {y: {title: {display: true, text: "focos (2001–2025)"}}, y2: {position: "right", grid: {display: false}, title: {display: true, text: "ha MCD64A1"}}},
+      plugins: {legend: {position: "bottom"}}}
+  });
+})();
 
 // Escenas ------------------------------------------------------------------------------
 tablaOrdenable(document.getElementById("tEscenas"), [
