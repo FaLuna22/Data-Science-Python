@@ -39,5 +39,24 @@
   "ha_a_menos_de_60m_de_mascara": 37.0,
   "ha_quemadas_robustas": 80.4,
   "ha_robustas_dnbr_044": 41.9
+ },
+ "persistencia": {
+  "20261017": {
+   "offset": 0.009,
+   "ha_sin_corregir": 117.3,
+   "ha_corregido": 110.8
+  },
+  "20261018": {
+   "offset": 0.003,
+   "ha_sin_corregir": 148.7,
+   "ha_corregido": 142.1
+  },
+  "20261020": {
+   "offset": -0.023,
+   "ha_sin_corregir": 269.0,
+   "ha_corregido": 369.0
+  },
+  "persistente_17_18_20": 7.3,
+  "persistente_18_20": 61.0
  }
 }

@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incendio en Chichas</title>
+<style>/*__LEAFLET_CSS__*/</style>
+<style>
+:root{--bg:#f7f6f2;--fg:#1c1b19;--muted:#66645e;--card:#fff;--line:#e3e0d8;--fire:#c2410c;--fire-soft:#fde7d9;--blue:#2563eb;--ok:#15803d;--warn:#b45309}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141413;--fg:#ecebe6;--muted:#a19f98;--card:#1f1e1c;--line:#353430;--fire:#fb923c;--fire-soft:#3a2418;--blue:#60a5fa;--ok:#4ade80;--warn:#fbbf24}}
+:root[data-theme="dark"]{--bg:#141413;--fg:#ecebe6;--muted:#a19f98;--card:#1f1e1c;--line:#353430;--fire:#fb923c;--fire-soft:#3a2418;--blue:#60a5fa;--ok:#4ade80;--warn:#fbbf24}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:1000;background:var(--card);border-bottom:1px solid var(--line)}
+.bar{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.bar strong{font-size:1.05rem}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.88rem;padding:4px 8px;border-radius:6px}
+nav a:hover{background:var(--fire-soft);color:var(--fg)}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
+.estado{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.85rem;color:var(--muted);margin-bottom:6px}
+.estado b{color:var(--fg)}
+h1{font-size:1.9rem;line-height:1.2;margin:8px 0 6px}
+.lead{color:var(--muted);max-width:820px;margin:0 0 18px}
+h2{font-size:1.3rem;margin:40px 0 4px;scroll-margin-top:70px}
+h2 small{font-weight:400;color:var(--muted);font-size:.85rem;margin-left:6px}
+.nota{color:var(--muted);font-size:.88rem;margin:0 0 12px;max-width:860px}
+.grid{display:grid;gap:12px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g6{grid-template-columns:repeat(auto-fit,minmax(165px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.card h3{margin:0 0 4px;font-size:.98rem}
+.card p{margin:0;font-size:.88rem;color:var(--muted)}
+.kpi b{display:block;font-size:1.8rem;line-height:1.15;color:var(--fire);font-variant-numeric:tabular-nums}
+.kpi span{font-size:.84rem;color:var(--muted)}
+.kpi.neutral b{color:var(--fg)}
+.alerta{border-left:4px solid var(--warn);background:var(--card);padding:12px 16px;border-radius:8px;margin:16px 0;font-size:.92rem}
+#mapa{height:560px;border-radius:12px;border:1px solid var(--line);background:#222}
+.mapwrap{display:grid;grid-template-columns:1fr 280px;gap:12px}
+@media (max-width:820px){.mapwrap{grid-template-columns:1fr}#mapa{height:440px}}
+.ctrl label{display:flex;gap:8px;align-items:center;font-size:.88rem;padding:3px 0;cursor:pointer}
+.ctrl h4{margin:10px 0 4px;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.ley{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:.78rem;color:var(--muted);margin-top:6px}
+.ley i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:4px;vertical-align:-1px;border:1px solid rgba(0,0,0,.15)}
+.grad{height:10px;border-radius:3px;background:linear-gradient(90deg,#006837,#a6d96a,#ffffbf,#fdae61,#a50026)}
+.btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+button{font:inherit;font-size:.85rem;padding:5px 10px;border-radius:7px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--fire)}
+button.on{background:var(--fire);color:#fff;border-color:var(--fire)}
+.tabla{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{position:sticky;top:0;background:var(--card);cursor:pointer;user-select:none;font-weight:600}
+th:first-child,td:first-child,th.l,td.l{text-align:left}
+tbody tr:hover{background:var(--fire-soft)}
+tbody tr.sel{background:var(--fire-soft);outline:2px solid var(--fire)}
+.chart{position:relative;height:300px}
+.tl{display:grid;grid-template-columns:240px 1fr;gap:14px;align-items:start}
+@media (max-width:700px){.tl{grid-template-columns:1fr}}
+.tl img{width:100%;aspect-ratio:1;border-radius:10px;border:1px solid var(--line);image-rendering:auto}
+input[type=range]{width:100%;accent-color:var(--fire)}
+.chip{display:inline-block;font-size:.75rem;padding:1px 7px;border-radius:999px;background:var(--fire-soft);color:var(--fire);font-weight:600}
+.chip.ok{background:transparent;border:1px solid var(--ok);color:var(--ok)}
+.chip.bad{background:transparent;border:1px solid var(--warn);color:var(--warn)}
+ol.h li{margin-bottom:8px}
+.heat td{font-variant-numeric:tabular-nums}
+footer{color:var(--muted);font-size:.8rem;margin-top:40px;border-top:1px solid var(--line);padding-top:14px}
+.leaflet-tooltip{font-size:12px}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <strong>🔥 Incendio en Chichas</strong>
+  <nav>
+    <a href="#resumen">Resumen</a><a href="#mapa-s">Mapa</a><a href="#parches">Parches</a>
+    <a href="#tiempo">Línea de tiempo</a><a href="#decisiones">Decisiones</a>
+    <a href="#cobertura">¿Qué se quemó?</a><a href="#escenas">Escenas</a><a href="#metodo">Fuentes y método</a>
+  </nav>
+</div></header>
+<main>
+<div class="estado" id="estado"></div>
+<h1 id="resumen">¿Cuánto se quemó en Chichas (Condesuyos, Arequipa)?</h1>
+<p class="lead">Área quemada medida desde el espacio con Sentinel-2 (20 m), cruzada con cobertura del suelo y relieve. El número depende de las fechas, las nubes y el umbral elegidos: aquí se muestran todas esas decisiones.</p>
+
+<div class="grid g3">
+  <div class="card"><h3>NBR y dNBR</h3><p>NBR = (NIR − SWIR) / (NIR + SWIR) con las bandas B8A y B12. La vegetación sana da NBR alto; lo quemado, bajo. dNBR = NBR antes − NBR después.</p></div>
+  <div class="card"><h3>Severidad (USGS)</h3><p>Baja 0,10–0,27 · moderada-baja 0,27–0,44 · moderada-alta 0,44–0,66 · alta ≥ 0,66. Aquí “quemado” es dNBR ≥ 0,27.</p></div>
+  <div class="card"><h3>Quemado robusto</h3><p>Quemado a más de 60 m de nieve, agua o nubes enmascaradas, porque el deshielo y las orillas también bajan el NBR. Se usa para no inflar el área.</p></div>
+</div>
+
+<h2>Resumen</h2>
+<div class="grid g6" id="kpis" style="margin-top:10px"></div>
+<div class="alerta" id="alerta"></div>
+
+<h2 id="mapa-s">1 · Mapa <small>arrastre, zoom con rueda o pellizco · clic en un parche para ver su ficha</small></h2>
+<div class="mapwrap">
+  <div id="mapa"></div>
+  <div class="card ctrl">
+    <h4>Fondo</h4>
+    <label><input type="radio" name="base" value="despues" checked> Color real · 17 oct</label>
+    <label><input type="radio" name="base" value="antes"> Color real · 15 set</label>
+    <label><input type="radio" name="base" value="relieve"> Relieve (Copernicus DEM)</label>
+    <h4>Capas</h4>
+    <label><input type="radio" name="capa" value="severidad" checked> Severidad USGS</label>
+    <label><input type="radio" name="capa" value="dnbr"> dNBR continuo</label>
+    <label><input type="radio" name="capa" value="fecha"> Fecha de caída del NBR</label>
+    <label><input type="radio" name="capa" value="worldcover"> Cobertura WorldCover 2021</label>
+    <label><input type="radio" name="capa" value="ninguna"> Ninguna</label>
+    <label><input type="checkbox" id="chkParches" checked> Parches robustos ≥ 1 ha</label>
+    <label><input type="checkbox" id="chkLimite" checked> Límite distrital</label>
+    <h4>Opacidad de la capa</h4>
+    <input type="range" id="opac" min="0" max="100" value="85">
+    <div id="leyenda"></div>
+    <div class="btns"><button id="verDist">Ver todo el distrito</button><button id="verP1">Ir al parche 1</button></div>
+  </div>
+</div>
+
+<h2 id="parches">2 · Parches quemados <small>componentes conectados del quemado robusto · clic para ubicar en el mapa · clic en encabezado para ordenar</small></h2>
+<div class="tabla" style="max-height:420px"><table id="tParches"></table></div>
+
+<h2 id="tiempo">3 · Línea de tiempo del parche 1</h2>
+<p class="nota" id="notaTiempo"></p>
+<div class="tl">
+  <div>
+    <img id="tlImg" alt="Color real del parche 1 en la fecha elegida">
+    <input type="range" id="tlSlider" min="0" value="0">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+      <span id="tlFecha" style="font-weight:600"></span><button id="tlPlay">▶ Reproducir</button>
+    </div>
+    <p class="nota" id="tlInfo" style="margin-top:6px"></p>
+  </div>
+  <div class="card"><div class="chart"><canvas id="cSerie"></canvas></div></div>
+</div>
+<div class="grid g2" style="margin-top:12px">
+  <div class="card"><h3>Hectáreas cuya caída de NBR aparece por primera vez en cada escena</h3><p>Caída ≥ 0,2 frente a la mediana del 3 al 15 de setiembre, solo en píxeles del quemado robusto.</p><div class="chart" style="height:240px"><canvas id="cAcum"></canvas></div></div>
+  <div class="card"><h3>¿La huella persiste?</h3><p>dNBR corregido por el cambio regional (offset = mediana del distrito), siempre frente al 15 de setiembre.</p><div class="tabla" style="margin-top:8px"><table id="tPersist"></table></div></div>
+</div>
+
+<h2 id="decisiones">4 · Las decisiones cambian el número</h2>
+<p class="nota">Lección de Curahuasi: la computadora siempre da un número. Estas dos vistas muestran cuánto cambia el área según el umbral y el par de fechas.</p>
+<div class="grid g2">
+  <div class="card"><h3>Hectáreas según el umbral de dNBR</h3><p>Par 15 set → 17 oct. La línea vertical es el umbral usado (0,27).</p><div class="chart"><canvas id="cUmbral"></canvas></div></div>
+  <div class="card"><h3>Hectáreas robustas según el par de fechas</h3><p>Filas: imagen antes · columnas: imagen después (escenas con &lt; 1 % de nubes). Umbral 0,27.</p><div class="tabla heat" style="margin-top:8px"><table id="tPares"></table></div></div>
+</div>
+
+<h2 id="cobertura">5 · ¿Qué se quemó y dónde?</h2>
+<div class="grid g2">
+  <div class="card"><h3>Hectáreas por severidad y cobertura</h3><p>ESA WorldCover 2021 (10 m, remuestreado a 20 m por moda). Sin “Baja”, que suele ser ruido o sequía.</p><div class="chart"><canvas id="cCob"></canvas></div></div>
+  <div class="card"><h3>Altitud: distrito frente a quemado robusto</h3><p>Copernicus DEM GLO-30, franjas de 100 m. Cada serie en % de su propio total.</p><div class="chart"><canvas id="cAlt"></canvas></div></div>
+</div>
+<div class="tabla" style="margin-top:12px"><table id="tCob"></table></div>
+
+<h2 id="escenas">6 · Las 30 escenas revisadas</h2>
+<p class="nota">Tile 18LYH, 1 set – 20 oct 2026. % de nubes medido con la capa SCL solo dentro del distrito y dentro del parche 1. En negrita, el par usado.</p>
+<div class="tabla" style="max-height:420px"><table id="tEscenas"></table></div>
+
+<h2 id="metodo">7 · Fuentes y método</h2>
+<div class="tabla"><table>
+<thead><tr><th class="l">Dato</th><th class="l">Fuente</th><th class="l">Uso</th></tr></thead>
+<tbody>
+<tr><td>Sentinel-2 L2A (B8A, B12, SCL, TCI)</td><td class="l">ESA Copernicus · COGs públicos en AWS (<code>sentinel-cogs</code>, Element 84)</td><td class="l">NBR, máscara de nubes, color real</td></tr>
+<tr><td>ESA WorldCover 2021 v200</td><td class="l">ESA · bucket público <code>esa-worldcover</code></td><td class="l">¿Qué se quemó?</td></tr>
+<tr><td>Copernicus DEM GLO-30</td><td class="l">ESA · bucket público <code>copernicus-dem-30m</code></td><td class="l">Altitud y relieve</td></tr>
+<tr><td>Límite distrital (UBIGEO 040604)</td><td class="l">INEI · <code>peru_distrital_simple.geojson</code> del curso</td><td class="l">Zona de estudio</td></tr>
+</tbody></table></div>
+<div class="grid g2" style="margin-top:12px">
+  <div class="card"><h3>Pasos</h3><ol class="h" style="margin:6px 0 0;padding-left:18px;font-size:.88rem">
+    <li><code>01_escenas.py</code>: % de nubes de cada escena dentro del distrito.</li>
+    <li><code>02_dnbr.py</code>: NBR, dNBR, severidad USGS y cruce con WorldCover.</li>
+    <li><code>03_control_nieve.py</code>: separa el quemado pegado a nieve y agua.</li>
+    <li><code>04_datos_dashboard.py</code>: NBR de las 30 escenas, fecha de caída, parches, altitud, sensibilidad y capas.</li>
+    <li><code>05_persistencia.py</code>: dNBR corregido por offset y persistencia 17/18/20 oct.</li>
+    <li><code>06_dashboard.py</code>: arma este HTML autocontenido.</li></ol></div>
+  <div class="card"><h3>Limitaciones</h3><ul style="margin:6px 0 0;padding-left:18px;font-size:.88rem">
+    <li><b>Sin focos VIIRS:</b> NASA FIRMS no era accesible desde el entorno de trabajo. Un foco de calor no es un incendio, y sin focos no se confirma qué parche es fuego.</li>
+    <li><b>Fuego activo:</b> si la imagen “después” capta llamas o humo, el dNBR mide eso y no la cicatriz final. La huella cambia entre el 17, 18 y 20 de octubre.</li>
+    <li><b>Las nubes esconden el fuego:</b> el 20 de octubre tiene 16–18 % de nubes en el distrito.</li>
+    <li><b>Umbral genérico:</b> los cortes USGS se calibraron en bosques; en puna, con poca biomasa, pueden subestimar fuegos leves.</li>
+    <li>Límite distrital simplificado. WorldCover es de 2021.</li></ul></div>
+</div>
+<footer>Trabajo de curso · Ciencia de Datos con Python · Universidad del Pacífico. Herramienta independiente: no reemplaza los reportes del COEN, INDECI, SERFOR ni SERNANP. Librerías incluidas: Leaflet 1.9.4 (BSD-2) y Chart.js 4.4.1 (MIT).</footer>
+</main>
+<script>/*__LEAFLET_JS__*/</script>
+<script>/*__CHART_JS__*/</script>
+<script>
+const D = /*__DATA__*/;
+const fmt = (x, d = 1) => x == null ? "—" : Number(x).toLocaleString("es-PE", {minimumFractionDigits: d, maximumFractionDigits: d});
+const fF = s => `${s.slice(6, 8)}/${s.slice(4, 6)}`;
+const R = D.resumen, P = R.persistencia;
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+// Estado y KPIs ---------------------------------------------------------------
+document.getElementById("estado").innerHTML =
+  `<span>Corte <b>${D.corte}</b></span><span>Antes <b>${fF(D.pre.split("_")[2])}/2026</b> · ${D.pre.split("_")[0]}</span>` +
+  `<span>Después <b>${fF(D.post.split("_")[2])}/2026</b> · ${D.post.split("_")[0]}</span><span>Nubes en el distrito <b>0,01 % / 0,02 %</b></span>` +
+  `<span>Área analizada <b>${fmt(R.ha_validas, 0)} ha</b></span>`;
+const p1 = D.parches[0];
+const kpis = [
+  [`${fmt(R.ha_quemadas_dnbr_027, 0)} ha`, "dNBR ≥ 0,27 entre el 15 set y el 17 oct"],
+  [`${fmt(R.control_nieve.ha_quemadas_robustas, 0)} ha`, "quemado robusto, lejos de nieve y agua"],
+  [`${fmt(P.persistente_18_20, 0)} ha`, "siguen quemadas el 18 y el 20 oct (dNBR corregido)"],
+  [`${fmt(P.persistente_17_18_20, 1)} ha`, "persisten en las tres fechas: la huella se mueve"],
+  ["15 → 17 oct", "el NBR del parche 1 cae de " + fmt(D.serie.find(s => s.fecha === "20261015").nbr_parche, 2) + " a " + fmt(D.serie.find(s => s.fecha === "20261017").nbr_parche, 2)],
+  [`${fmt(D.alt_quemado.media, 0)} m`, "altitud media del quemado robusto: puna y pajonal"],
+];
+document.getElementById("kpis").innerHTML = kpis.map(([b, s], i) => `<div class="card kpi ${i >= 4 ? "neutral" : ""}"><b>${b}</b><span>${s}</span></div>`).join("");
+document.getElementById("alerta").innerHTML =
+  `<b>Lectura honesta.</b> El par 15 set → 17 oct da ${fmt(R.ha_quemadas_dnbr_027, 0)} ha, pero el mismo cálculo con el 18 oct da ${fmt(P["20261018"].ha_corregido, 0)} ha y con el 20 oct ${fmt(P["20261020"].ha_corregido, 0)} ha, y solo ${fmt(P.persistente_17_18_20, 1)} ha coinciden en las tres. ` +
+  `El parche 1 cae fuerte el 17 oct y el 18 oct ya se parece a su entorno: es la firma de llamas o humo, no de una cicatriz estable. El fuego estaba activo entre el 15 y el 20 de octubre; el área final todavía no se puede cerrar con estas imágenes.`;
+
+// Mapa -------------------------------------------------------------------------
+const map = L.map("mapa", {zoomSnap: 0.25, attributionControl: true});
+const B = L.latLngBounds(D.bounds);
+map.fitBounds(B);
+map.attributionControl.setPrefix("Leaflet").addAttribution("Sentinel-2 · ESA WorldCover · Copernicus DEM");
+const bases = {}; for (const k of ["despues", "antes", "relieve"]) bases[k] = L.imageOverlay(D.capas[k], B);
+const capas = {}; for (const k of ["severidad", "dnbr", "fecha", "worldcover"]) capas[k] = L.imageOverlay(D.capas[k], B, {opacity: .85});
+let base = bases.despues.addTo(map), capa = capas.severidad.addTo(map);
+const limite = L.geoJSON(D.limite, {style: {color: "#111", weight: 2, fill: false, dashArray: "4 3"}}).addTo(map);
+const capasP = L.layerGroup().addTo(map);
+const polys = {};
+const principal = c => Object.keys(c)[0] || "—";
+D.parches.forEach(p => {
+  const g = L.geoJSON(p.geom, {style: {color: "#00e5ff", weight: 2, fillOpacity: .05}});
+  g.bindTooltip(`Parche ${p.id} · ${fmt(p.ha)} ha`, {sticky: true});
+  g.bindPopup(`<b>Parche ${p.id}</b><br>${fmt(p.ha)} ha · dNBR medio ${fmt(p.dnbr_medio, 2)} (máx ${fmt(p.dnbr_max, 2)})<br>` +
+    `Alta ${fmt(p.ha_sev.Alta)} · mod-alta ${fmt(p.ha_sev["Moderada-alta"])} · mod-baja ${fmt(p.ha_sev["Moderada-baja"])} ha<br>` +
+    `Cobertura: ${Object.entries(p.cobertura).map(([k, v]) => `${k} ${fmt(v)}`).join(", ")}<br>` +
+    `Altitud ${fmt(p.alt_min, 0)}–${fmt(p.alt_max, 0)} m · ${p.lat}, ${p.lon}`);
+  g.on("click", () => selParche(p.id, false));
+  g.addTo(capasP); polys[p.id] = g;
+});
+const leyendas = {
+  severidad: `<div class="ley"><span><i style="background:#fee08b"></i>Baja</span><span><i style="background:#fdae61"></i>Mod-baja</span><span><i style="background:#f46d43"></i>Mod-alta</span><span><i style="background:#a50026"></i>Alta</span></div>`,
+  dnbr: `<div class="grad" style="margin-top:8px"></div><div class="ley" style="justify-content:space-between"><span>−0,3</span><span>0,2</span><span>0,7</span></div>`,
+  fecha: `<div class="grad" style="margin-top:8px;background:linear-gradient(90deg,#0d0887,#7e03a8,#cc4778,#f89540,#f0f921)"></div><div class="ley" style="justify-content:space-between"><span>03 set</span><span>fecha de caída</span><span>20 oct</span></div>`,
+  worldcover: `<div class="ley">${Object.entries(D.clases_wc).map(([k, c]) => `<span><i style="background:${c}"></i>${k}</span>`).join("")}</div>`,
+  ninguna: ""
+};
+const setLey = k => document.getElementById("leyenda").innerHTML = leyendas[k];
+setLey("severidad");
+document.querySelectorAll("input[name=base]").forEach(r => r.onchange = () => { map.removeLayer(base); base = bases[r.value].addTo(map); base.bringToBack(); });
+document.querySelectorAll("input[name=capa]").forEach(r => r.onchange = () => {
+  if (capa) map.removeLayer(capa);
+  capa = r.value === "ninguna" ? null : capas[r.value].setOpacity(opac.value / 100).addTo(map);
+  setLey(r.value);
+});
+const opac = document.getElementById("opac");
+opac.oninput = () => capa && capa.setOpacity(opac.value / 100);
+document.getElementById("chkParches").onchange = e => e.target.checked ? capasP.addTo(map) : map.removeLayer(capasP);
+document.getElementById("chkLimite").onchange = e => e.target.checked ? limite.addTo(map) : map.removeLayer(limite);
+document.getElementById("verDist").onclick = () => map.fitBounds(B);
+document.getElementById("verP1").onclick = () => selParche(1, true);
+
+// Tabla de parches -------------------------------------------------------------
+function tablaOrdenable(el, cols, filas, onRow) {
+  let orden = null, asc = false;
+  const pinta = () => {
+    const f = [...filas];
+    if (orden != null) f.sort((a, b) => { const x = cols[orden].v(a), y = cols[orden].v(b); return (x > y ? 1 : x < y ? -1 : 0) * (asc ? 1 : -1); });
+    el.innerHTML = `<thead><tr>${cols.map((c, i) => `<th class="${c.l ? "l" : ""}" data-i="${i}">${c.t}${orden === i ? (asc ? " ▲" : " ▼") : ""}</th>`).join("")}</tr></thead>` +
+      `<tbody>${f.map(r => `<tr data-id="${r.id ?? ""}" class="${r._cls || ""}">${cols.map(c => `<td class="${c.l ? "l" : ""}">${c.f ? c.f(r) : c.v(r)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+    el.querySelectorAll("th").forEach(th => th.onclick = () => { const i = +th.dataset.i; asc = orden === i ? !asc : false; orden = i; pinta(); });
+    if (onRow) el.querySelectorAll("tbody tr").forEach(tr => tr.onclick = () => onRow(+tr.dataset.id));
+  };
+  pinta();
+}
+tablaOrdenable(document.getElementById("tParches"), [
+  {t: "#", v: r => r.id},
+  {t: "Hectáreas", v: r => r.ha, f: r => fmt(r.ha)},
+  {t: "Alta", v: r => r.ha_sev.Alta, f: r => fmt(r.ha_sev.Alta)},
+  {t: "Mod-alta", v: r => r.ha_sev["Moderada-alta"], f: r => fmt(r.ha_sev["Moderada-alta"])},
+  {t: "Mod-baja", v: r => r.ha_sev["Moderada-baja"], f: r => fmt(r.ha_sev["Moderada-baja"])},
+  {t: "dNBR medio", v: r => r.dnbr_medio, f: r => fmt(r.dnbr_medio, 2)},
+  {t: "dNBR máx", v: r => r.dnbr_max, f: r => fmt(r.dnbr_max, 2)},
+  {t: "Cobertura principal", l: 1, v: r => principal(r.cobertura)},
+  {t: "Altitud media (m)", v: r => r.alt_media, f: r => fmt(r.alt_media, 0)},
+  {t: "Rango (m)", v: r => r.alt_max - r.alt_min, f: r => `${fmt(r.alt_min, 0)}–${fmt(r.alt_max, 0)}`},
+  {t: "Lat, lon", l: 1, v: r => r.lat, f: r => `${r.lat}, ${r.lon}`},
+], D.parches, id => selParche(id, true));
+function selParche(id, zoom) {
+  document.querySelectorAll("#tParches tbody tr").forEach(tr => tr.classList.toggle("sel", +tr.dataset.id === id));
+  Object.entries(polys).forEach(([k, g]) => g.setStyle({color: +k === id ? "#ff00d4" : "#00e5ff", weight: +k === id ? 3.5 : 2}));
+  if (zoom) { document.getElementById("mapa-s").scrollIntoView({behavior: "smooth"}); map.flyToBounds(polys[id].getBounds().pad(1.5), {duration: .8}); polys[id].openPopup(); }
+}
+
+// Línea de tiempo ---------------------------------------------------------------
+Chart.defaults.font.family = "system-ui, sans-serif";
+Chart.defaults.color = css("--muted");
+Chart.defaults.borderColor = css("--line");
+const S = D.serie;
+const etiquetas = S.map((s, i) => fF(s.fecha) + (S.filter(t => t.fecha === s.fecha).length > 1 ? " " + s.escena.split("_")[0] : ""));
+document.getElementById("notaTiempo").innerHTML =
+  `Parche 1 = ${fmt(p1.ha)} ha de ${principal(p1.cobertura).toLowerCase()} a ${fmt(p1.alt_media, 0)} m. ` +
+  `<b>Control</b> = anillo de 160 a 500 m alrededor, sin quemar: si ambas líneas bajan juntas, el cambio es regional (luz, humedad, estación) y no fuego.`;
+const cSerie = new Chart(document.getElementById("cSerie"), {
+  data: {labels: etiquetas, datasets: [
+    {type: "line", label: "NBR parche 1", data: S.map(s => s.nbr_parche), borderColor: css("--fire"), backgroundColor: css("--fire"), spanGaps: true, tension: .2, pointRadius: 3, yAxisID: "y"},
+    {type: "line", label: "NBR control (anillo)", data: S.map(s => s.nbr_control), borderColor: css("--blue"), backgroundColor: css("--blue"), borderDash: [5, 4], spanGaps: true, tension: .2, pointRadius: 2, yAxisID: "y"},
+    {type: "bar", label: "% nubes en el parche", data: S.map(s => s.nubes_parche), backgroundColor: "rgba(150,150,150,.28)", yAxisID: "y2"},
+  ]},
+  options: {maintainAspectRatio: false, interaction: {mode: "index", intersect: false},
+    scales: {y: {title: {display: true, text: "NBR"}}, y2: {position: "right", min: 0, max: 100, grid: {display: false}, title: {display: true, text: "% nubes"}},
+      x: {ticks: {maxRotation: 70, autoSkip: true}}},
+    plugins: {tooltip: {callbacks: {label: c => `${c.dataset.label}: ${c.raw == null ? "nubes" : fmt(c.raw, c.datasetIndex === 2 ? 1 : 3)}`}}},
+    onClick: (e, els) => els.length && setTl(els[0].index)}
+});
+const sl = document.getElementById("tlSlider"); sl.max = S.length - 1;
+function setTl(i) {
+  sl.value = i; const s = S[i];
+  document.getElementById("tlImg").src = s.img;
+  document.getElementById("tlFecha").textContent = `${fF(s.fecha)}/2026 · ${s.escena.split("_")[0]}`;
+  document.getElementById("tlInfo").innerHTML = `NBR parche ${fmt(s.nbr_parche, 3)} · control ${fmt(s.nbr_control, 3)} · nubes parche ${fmt(s.nubes_parche)} % · distrito ${fmt(s.nubes_distrito, 2)} %` +
+    (s.escena === D.pre ? ' <span class="chip ok">imagen antes</span>' : s.escena === D.post ? ' <span class="chip">imagen después</span>' : "");
+  cSerie.setActiveElements([{datasetIndex: 0, index: i}]); cSerie.update("none");
+}
+sl.oninput = () => setTl(+sl.value);
+let timer = null;
+document.getElementById("tlPlay").onclick = e => {
+  if (timer) { clearInterval(timer); timer = null; e.target.textContent = "▶ Reproducir"; e.target.classList.remove("on"); return; }
+  e.target.textContent = "⏸ Pausa"; e.target.classList.add("on");
+  timer = setInterval(() => setTl((+sl.value + 1) % S.length), 700);
+};
+setTl(S.findIndex(s => s.escena === D.post));
+
+new Chart(document.getElementById("cAcum"), {
+  data: {labels: D.acumulado.map((a, i) => etiquetas[i]), datasets: [
+    {type: "bar", label: "ha nuevas", data: D.acumulado.map(a => a.ha_nuevas), backgroundColor: css("--fire")},
+    {type: "line", label: "ha acumuladas", data: D.acumulado.map(a => a.ha_acum), borderColor: css("--fg"), pointRadius: 0, yAxisID: "y"}]},
+  options: {maintainAspectRatio: false, plugins: {legend: {position: "bottom"}}, scales: {x: {ticks: {maxRotation: 70}}, y: {title: {display: true, text: "ha"}}}}
+});
+document.getElementById("tPersist").innerHTML =
+  `<thead><tr><th class="l">Imagen después</th><th>Offset</th><th>ha sin corregir</th><th>ha corregidas</th></tr></thead><tbody>` +
+  ["20261017", "20261018", "20261020"].map(f => `<tr><td class="l">${fF(f)}/2026</td><td>${fmt(P[f].offset, 3)}</td><td>${fmt(P[f].ha_sin_corregir)}</td><td>${fmt(P[f].ha_corregido)}</td></tr>`).join("") +
+  `<tr><td class="l"><b>Persisten 18 y 20 oct</b></td><td></td><td></td><td><b>${fmt(P.persistente_18_20)}</b></td></tr>` +
+  `<tr><td class="l"><b>Persisten 17, 18 y 20 oct</b></td><td></td><td></td><td><b>${fmt(P.persistente_17_18_20)}</b></td></tr></tbody>`;
+
+// Decisiones ---------------------------------------------------------------------
+new Chart(document.getElementById("cUmbral"), {
+  type: "line",
+  data: {labels: D.sens_umbral.map(s => s.u.toFixed(2)), datasets: [
+    {label: "Todo el quemado", data: D.sens_umbral.map(s => s.total), borderColor: css("--fire"), pointRadius: 0},
+    {label: "Robusto (lejos de nieve y agua)", data: D.sens_umbral.map(s => s.robusto), borderColor: css("--blue"), pointRadius: 0}]},
+  options: {maintainAspectRatio: false, interaction: {mode: "index", intersect: false},
+    scales: {y: {type: "logarithmic", title: {display: true, text: "ha (escala log)"}}, x: {title: {display: true, text: "umbral de dNBR"}, ticks: {maxTicksLimit: 14}}},
+    plugins: {legend: {position: "bottom"}}},
+  plugins: [{id: "v", afterDraw(c) { const x = c.scales.x.getPixelForValue(D.sens_umbral.findIndex(s => s.u === 0.27)); const g = c.ctx; g.save(); g.strokeStyle = css("--fg"); g.setLineDash([4, 4]); g.beginPath(); g.moveTo(x, c.chartArea.top); g.lineTo(x, c.chartArea.bottom); g.stroke(); g.restore(); }}]
+});
+(() => {
+  const unicos = (k) => [...new Set(D.pares.map(p => p[k]))];
+  const pres = unicos("pre"), posts = unicos("post");
+  const val = (a, b) => { const v = D.pares.filter(p => p.pre === a && p.post === b).map(p => p.ha_robusto); return v.length ? Math.max(...v) : null; };
+  const mx = Math.max(...D.pares.map(p => p.ha_robusto));
+  const col = v => `rgba(194,65,12,${(0.08 + 0.8 * v / mx).toFixed(2)})`;
+  document.getElementById("tPares").innerHTML = `<thead><tr><th class="l">antes \\ después</th>${posts.map(b => `<th>${fF(b)}</th>`).join("")}</tr></thead><tbody>` +
+    pres.map(a => `<tr><td class="l">${fF(a)}</td>${posts.map(b => { const v = val(a, b); return `<td style="background:${col(v)};${v > mx * .55 ? "color:#fff" : ""}">${fmt(v, 0)}</td>`; }).join("")}</tr>`).join("") + "</tbody>";
+})();
+
+// Cobertura y altitud ---------------------------------------------------------------
+const cobs = Object.keys(D.sev_x_cob).filter(k => ["Moderada-baja", "Moderada-alta", "Alta"].some(s => D.sev_x_cob[k][s] > 0));
+const SEVC = {"Moderada-baja": "#fdae61", "Moderada-alta": "#f46d43", "Alta": "#a50026"};
+new Chart(document.getElementById("cCob"), {
+  type: "bar",
+  data: {labels: cobs, datasets: Object.entries(SEVC).map(([s, c]) => ({label: s, data: cobs.map(k => D.sev_x_cob[k][s]), backgroundColor: c}))},
+  options: {indexAxis: "y", maintainAspectRatio: false, scales: {x: {stacked: true, title: {display: true, text: "ha"}}, y: {stacked: true}}, plugins: {legend: {position: "bottom"}}}
+});
+const A = D.altitud, sd = A.distrito_ha.reduce((a, b) => a + b, 0), sq = A.quemado_ha.reduce((a, b) => a + b, 0);
+new Chart(document.getElementById("cAlt"), {
+  type: "bar",
+  data: {labels: A.bins.map(b => b), datasets: [
+    {label: "Distrito", data: A.distrito_ha.map(v => 100 * v / sd), backgroundColor: "rgba(120,120,120,.45)"},
+    {label: "Quemado robusto", data: A.quemado_ha.map(v => 100 * v / sq), backgroundColor: css("--fire")}]},
+  options: {maintainAspectRatio: false, scales: {x: {title: {display: true, text: "altitud (m s. n. m.)"}, ticks: {maxTicksLimit: 12}}, y: {title: {display: true, text: "% del área"}}},
+    plugins: {legend: {position: "bottom"}, tooltip: {callbacks: {label: c => `${c.dataset.label}: ${fmt(c.raw)} %`}}}}
+});
+const tc = Object.entries(D.sev_x_cob).map(([k, v]) => ({k, ...v, tot: R.ha_cobertura_distrito[k] || 0, q: (v["Moderada-baja"] + v["Moderada-alta"] + v.Alta)}));
+tablaOrdenable(document.getElementById("tCob"), [
+  {t: "Cobertura", l: 1, v: r => r.k},
+  {t: "ha en el distrito", v: r => r.tot, f: r => fmt(r.tot, 0)},
+  {t: "Baja", v: r => r.Baja, f: r => fmt(r.Baja)},
+  {t: "Mod-baja", v: r => r["Moderada-baja"], f: r => fmt(r["Moderada-baja"])},
+  {t: "Mod-alta", v: r => r["Moderada-alta"], f: r => fmt(r["Moderada-alta"])},
+  {t: "Alta", v: r => r.Alta, f: r => fmt(r.Alta)},
+  {t: "Quemado (≥ 0,27)", v: r => r.q, f: r => `<b>${fmt(r.q)}</b>`},
+  {t: "% de la cobertura", v: r => r.tot ? r.q / r.tot : 0, f: r => r.tot ? fmt(100 * r.q / r.tot, 2) + " %" : "—"},
+], tc);
+
+// Escenas ------------------------------------------------------------------------------
+tablaOrdenable(document.getElementById("tEscenas"), [
+  {t: "Fecha", l: 1, v: r => r.escena, f: r => (r.escena === D.pre || r.escena === D.post) ? `<b>${fF(r.fecha)}/2026</b>` : `${fF(r.fecha)}/2026`},
+  {t: "Escena", l: 1, v: r => r.escena},
+  {t: "% nubes distrito", v: r => r.nubes_distrito, f: r => fmt(r.nubes_distrito, 2)},
+  {t: "% nubes parche 1", v: r => r.nubes_parche, f: r => fmt(r.nubes_parche)},
+  {t: "NBR parche 1", v: r => r.nbr_parche ?? -9, f: r => fmt(r.nbr_parche, 3)},
+  {t: "NBR control", v: r => r.nbr_control ?? -9, f: r => fmt(r.nbr_control, 3)},
+  {t: "Uso", l: 1, v: r => r.escena === D.pre ? 2 : r.escena === D.post ? 1 : 0,
+   f: r => r.escena === D.pre ? '<span class="chip ok">antes</span>' : r.escena === D.post ? '<span class="chip">después</span>' : D.base_escenas.includes(r.fecha) && r.nubes_distrito < 5 ? '<span class="chip ok">línea base</span>' : r.nubes_distrito > 50 ? '<span class="chip bad">nublada</span>' : ""},
+], S);
+</script>
+</body>
+</html>
