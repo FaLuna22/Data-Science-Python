@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incendio en Chichas</title>
+<style>
+  :root { --bg:#fafaf7; --fg:#1d1d1b; --muted:#6b6b66; --card:#fff; --line:#e4e2dc; --fire:#c2410c; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#161614; --fg:#eeede8; --muted:#a3a29c; --card:#21211e; --line:#34332f; --fire:#fb923c; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui, sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  .kpis { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:12px; margin-bottom:24px; }
+  .kpi { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
+  .kpi b { display:block; font-size:2rem; color:var(--fire); font-variant-numeric: tabular-nums; }
+  .kpi span { color:var(--muted); font-size:.9rem; }
+  img { width:100%; height:auto; border-radius:10px; border:1px solid var(--line); background:#fff; }
+  h2 { font-size:1.15rem; margin:28px 0 8px; }
+  ol li { margin-bottom:8px; }
+  .lim { color: var(--muted); font-size:.92rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>¿Cuánto se quemó en Chichas?</h1>
+  <p class="sub">Condesuyos, Arequipa · Sentinel-2 L2A (20 m) · antes 15-set-2026 (0,01 % nubes) · después 17-oct-2026 (0,02 % nubes)</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>117 ha</b><span>con dNBR ≥ 0,27 (moderado o más)</span></div>
+    <div class="kpi"><b>80 ha</b><span>quemado robusto, lejos de nieve y agua</span></div>
+    <div class="kpi"><b>53 %</b><span>del quemado es pastizal o matorral</span></div>
+    <div class="kpi"><b>&lt; 2 ha</b><span>de bosque y cultivo afectados</span></div>
+  </div>
+
+  <img src="salidas/mapa_dnbr_chichas.png" alt="Mapa de dNBR y severidad en Chichas">
+
+  <h2>Tres hallazgos</h2>
+  <ol>
+    <li>El área quemada es pequeña: 117 ha con dNBR ≥ 0,27 y solo 80 ha robustas, de 38 492 ha analizadas (0,2–0,3 % del distrito), en un parche al noroeste.</li>
+    <li>Se quemó vegetación altoandina: pastizal 37 ha y matorral 25 ha. Bosque y cultivo suman menos de 2 ha.</li>
+    <li>Un tercio del “quemado” es dudoso: 37 ha están a ≤ 60 m de nieve o lagunas, donde el deshielo imita al fuego. Sin ese control el resultado se infla ~46 %.</li>
+  </ol>
+
+  <h2>¿Qué se quemó?</h2>
+  <img src="salidas/quemado_por_cobertura.png" alt="Hectáreas quemadas por cobertura WorldCover">
+
+  <h2>Limitaciones</h2>
+  <p class="lim">Sin validación con focos VIIRS (FIRMS no era accesible desde el entorno de trabajo). Límite distrital simplificado. Umbral USGS genérico, pensado para bosques: en puna puede subestimar fuegos leves. WorldCover es de 2021.</p>
+</main>
+</body>
+</html>

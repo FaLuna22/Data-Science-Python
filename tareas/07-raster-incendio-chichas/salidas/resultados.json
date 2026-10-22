@@ -1,0 +1,43 @@
+{
+ "pre": "S2C_18LYH_20260915_0_L2A",
+ "post": "S2A_18LYH_20261017_0_L2A",
+ "pix_validos": 962304,
+ "ha_validas": 38492.2,
+ "ha_por_severidad": {
+  "Baja": 740.6,
+  "Moderada-baja": 54.8,
+  "Moderada-alta": 39.9,
+  "Alta": 22.6
+ },
+ "ha_quemadas_dnbr_027": 117.3,
+ "dnbr_p99": 0.149,
+ "ha_quemadas_por_cobertura": {
+  "Bosque": 0.8,
+  "Matorral": 25.1,
+  "Pastizal": 37.2,
+  "Cultivo": 0.8,
+  "Suelo desnudo / escasa veg.": 50.5,
+  "Nieve": 2.7,
+  "Agua": 0.1
+ },
+ "ha_cobertura_distrito": {
+  "Bosque": 133.9,
+  "Matorral": 15315.4,
+  "Pastizal": 8852.4,
+  "Cultivo": 17.5,
+  "Urbano": 9.6,
+  "Suelo desnudo / escasa veg.": 14118.8,
+  "Nieve": 5.7,
+  "Agua": 38.8
+ },
+ "centroide_quemado_lonlat": [
+  -72.9471,
+  -15.4543
+ ],
+ "control_nieve": {
+  "ha_quemadas_total": 117.3,
+  "ha_a_menos_de_60m_de_mascara": 37.0,
+  "ha_quemadas_robustas": 80.4,
+  "ha_robustas_dnbr_044": 41.9
+ }
+}
