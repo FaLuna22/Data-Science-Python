@@ -3,6 +3,7 @@ import json
 
 d = json.load(open("salidas/dashboard_data.json"))
 d["resumen"] = json.load(open("salidas/resultados.json"))
+d["firms"] = json.load(open("salidas/firms.json"))
 html = open("dashboard_plantilla.html", encoding="utf-8").read()
 for marca, archivo in [("/*__LEAFLET_CSS__*/", "vendor/leaflet.css"), ("/*__LEAFLET_JS__*/", "vendor/leaflet.js"),
                        ("/*__CHART_JS__*/", "vendor/chart.umd.js")]:

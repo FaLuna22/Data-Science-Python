@@ -16,8 +16,11 @@ severidad y sobre qué cobertura (bosque, matorral, pastizal o cultivo)?
 |---|---|---|---|
 | Imagen **antes** | Sentinel-2 L2A `S2C_18LYH_20260915_0_L2A` (bucket público `sentinel-cogs` en AWS) | 15 set 2026 | **0,01 %** |
 | Imagen **después** | Sentinel-2 L2A `S2A_18LYH_20261017_0_L2A` | 17 oct 2026 | **0,02 %** |
+| Imagen **después (referencia)** | Sentinel-2 L2A `S2A_18LYH_20261020_1_L2A` | 20 oct 2026 | 16 % (0 % sobre la zona de focos) |
+| Focos de calor | NASA FIRMS, VIIRS 375 m (S-NPP, NOAA-20, NOAA-21), CSV público de 7 días | 17–24 oct 2026 | — |
 | Cobertura del suelo | ESA WorldCover 2021 v200, 10 m (tile `S18W075`) | 2021 | — |
 | Límite distrital | INEI, `peru_distrital_simple.geojson` (sesión 06), UBIGEO 040604 | — | — |
+| Relieve | Copernicus DEM GLO-30 (bucket público en AWS) | — | — |
 
 El % de nubes de **las 30 escenas** de setiembre y octubre está en
 [`salidas/escenas_nubes.json`](salidas/escenas_nubes.json). Se calculó con la capa SCL
@@ -40,7 +43,7 @@ Reproducir (con el entorno del curso: `uv sync --group raster --group geo`):
 ```bash
 cd tareas/07-raster-incendio-chichas
 uv run python 01_escenas.py && uv run python 02_dnbr.py && uv run python 03_control_nieve.py
-uv run python 04_datos_dashboard.py && uv run python 05_persistencia.py && uv run python 06_dashboard.py  # requiere pillow y scipy
+uv run python 04_datos_dashboard.py && uv run python 05_persistencia.py && uv run python 07_firms.py && uv run python 06_dashboard.py  # requiere pillow y scipy
 ```
 
 No hace falta clave: todo se lee por HTTP desde COGs públicos, solo la ventana del distrito.
@@ -64,39 +67,55 @@ No hace falta clave: todo se lee por HTTP desde COGs públicos, solo la ventana 
 [`dashboard.html`](dashboard.html) es un archivo autocontenido (5 MB, funciona sin internet:
 Leaflet y Chart.js van incrustados). Descárgalo y ábrelo en el navegador. Incluye mapa con
 capas (color real antes/después, relieve, dNBR, severidad, fecha de caída del NBR,
-WorldCover, parches), tabla de 17 parches ordenable y enlazada al mapa, línea de tiempo
-de las 30 escenas con reproducción, sensibilidad al umbral y al par de fechas, cruce
-severidad × cobertura, altitud y la tabla de escenas. Se regenera con
-`04_datos_dashboard.py` → `05_persistencia.py` → `06_dashboard.py`.
+WorldCover, focos VIIRS, zona de focos y parches), focos por pasada de satélite, área
+quemada por fecha dentro y fuera de la zona de focos, línea de tiempo de las 31 escenas con
+reproducción, sensibilidad al umbral y al par de fechas, cruce severidad × cobertura,
+altitud, tabla de parches enlazada al mapa y tabla de escenas. Se regenera con
+`04_datos_dashboard.py` → `05_persistencia.py` → `07_firms.py` → `06_dashboard.py`.
+
+## Validación con focos VIIRS (NASA FIRMS)
+
+`07_firms.py` baja los CSV públicos de 7 días de S-NPP, NOAA-20 y NOAA-21 (17 al 24 oct).
+Hay **172 focos en Chichas, todos entre el 17 oct 00:21 y el 18 oct 14:13** (hora de Lima),
+en el noroeste del distrito, justo sobre los parches que marca el dNBR. Después no hay más.
+Con ellos armé una **zona de focos** (buffer de 750 m, 2 454 ha) y medí el dNBR ≥ 0,27 dentro
+y fuera de ella frente al 15 de setiembre:
+
+| Imagen después | Zona visible | Dentro (ha) | Fuera (ha) |
+|---|---:|---:|---:|
+| 17 oct · S2A (fuego activo) | 99 % | 56 | 61 |
+| 18 oct · S2C (fuego activo) | 100 % | 81 | 68 |
+| **20 oct · S2A (ya sin focos)** | **100 %** | **258** | **11** |
+| 20 oct · S2B | 75 % | 124 | 203 |
+| 23 oct · S2B | 56 % | 2 | 24 |
 
 ## 3 hallazgos
 
-1. **El fuego estaba activo entre el 15 y el 20 de octubre, y el área todavía no se puede
-   cerrar.** El par 15 set → 17 oct da 117 ha (dNBR ≥ 0,27), pero con el 18 oct da 142 ha y
-   con el 20 oct 369 ha (dNBR corregido por offset), y **solo 7 ha coinciden en las tres
-   fechas** (61 ha entre el 18 y el 20). El NBR del parche 1 cae de −0,10 (15 oct) a −0,64
-   (17 oct) y el 18 oct ya se parece a su entorno: es la firma de llamas o humo, no de una
-   cicatriz estable. Con el par 15 set → 15 oct casi no hay quemado (~10 ha robustas).
-2. **Lo que arde es vegetación altoandina, no bosque**: en el par principal, pastizal 37 ha
-   y matorral 25 ha (53 % del quemado). Bosque y cultivo suman menos de 2 ha. El quemado
-   robusto está a 4 079 m de altitud media. Las 50 ha de "suelo desnudo / vegetación
-   escasa" en la puna suelen ser pajonal ralo.
-3. **Un tercio del "quemado" del 17 oct es dudoso**: 37 de 117 ha están pegadas a nieve o lagunas
-   (zona del nevado, al norte), donde el cambio de NBR puede ser deshielo y no fuego.
-   Incluso en la severidad "alta" (22,6 ha), 7,1 ha (31 %) están junto a esas máscaras.
-   Sin este control habría inflado el resultado en ~46 % (117 frente a 80 ha).
+1. **Se quemaron entre ~80 y ~260 ha de puna en el noroeste de Chichas el 17 y 18 de
+   octubre.** La primera imagen limpia después del último foco (20 oct, S2A) da 258 ha con
+   dNBR ≥ 0,27 dentro de la zona de focos y solo 11 ha fuera. La otra imagen del mismo día
+   (S2B) confirma 82 de 147 ha comparables, así que el piso es ~80 ha. Casi todo es
+   severidad moderada-baja (3 ha ≥ 0,44): poca biomasa, típico de pajonal.
+2. **La imagen del 17 oct no sirve para medir el área: captó el fuego encendido.** Sentinel-2
+   pasó a las 10:20 h, entre las pasadas VIIRS de la madrugada y del mediodía. El NBR del
+   parche 1 cae de −0,10 a −0,64 y al día siguiente vuelve a parecerse a su entorno. Ese par
+   da 117 ha en todo el distrito, pero solo 56 ha caen en la zona de focos; las otras 61 ha
+   son ruido. Los parches sin foco están a más de 5 000 m, junto al nevado (probable
+   deshielo).
+3. **Lo que arde es vegetación altoandina, no bosque**: pastizal y matorral, a 4 079 m de
+   altitud media. Bosque y cultivo suman menos de 2 ha. Y la cicatriz se borra rápido: el
+   23 oct solo 2 de las 101 ha visibles siguen con dNBR ≥ 0,27 (en el pajonal hay poca
+   biomasa, y el viento o la lluvia se llevan la ceniza).
 
 ## Limitaciones
 
-- **Un foco de calor no es un incendio, y aquí no usé focos**: desde el entorno donde
-  trabajé no se podía acceder a NASA FIRMS ni a Planetary Computer, así que no validé el
-  parche con focos VIIRS. Es el siguiente paso.
-- **El límite distrital está simplificado**: si el incendio "de Chichas" ocurrió en el
-  borde o fuera del polígono, aquí no se cuenta.
-- **Las fechas importan**: si el fuego empezó antes del 15 de setiembre, la imagen "antes"
-  ya está quemada y el dNBR lo subestima. Un incendio de pocos días en pajonal puede
-  rebrotar o ser cubierto por ceniza que el viento se lleva.
+- **FIRMS solo guarda 7 días en su CSV público** (17 al 24 oct): no se sabe si hubo focos
+  antes del 17 oct. Para eso hace falta la API de FIRMS con clave (MAP_KEY).
+- **Un foco de calor no es un incendio:** la zona de 750 m puede incluir algo no quemado y
+  dejar fuera bordes quemados que no se detectaron.
+- **Las nubes esconden el fuego:** el 20 oct (S2B) y el 23 oct tienen nubes sobre la zona;
+  solo se compara lo que se ve en ambas imágenes.
 - **El umbral 0,27 es genérico** (calibrado en bosques de EE. UU.); en puna con poca
-  biomasa los incendios reales dan dNBR bajos, así que parte de las 740 ha "baja" podría
-  ser fuego leve, o sequía estacional.
-- WorldCover es de 2021 y se remuestreó de 10 a 20 m.
+  biomasa los incendios reales dan dNBR bajos.
+- El límite distrital está simplificado (1 km de holgura para los focos). WorldCover es de
+  2021 y se remuestreó de 10 a 20 m.

@@ -178,5 +178,11 @@
   "fecha": "20261020",
   "pix_validos": 977362,
   "nubes_pct": 18.05
+ },
+ {
+  "escena": "S2B_18LYH_20261023_0_L2A",
+  "fecha": "20261023",
+  "pix_validos": 963384,
+  "nubes_pct": 55.71
  }
 ]
