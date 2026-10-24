@@ -1,0 +1,107 @@
+{
+ "ventana": "1 jul – 23 oct",
+ "corte": "2026-10-23",
+ "comparabilidad_2025": {
+  "firms_2025_puna": 1044,
+  "firms_2025_puna_sin_volcanes": 1043,
+  "inpe_2025_puna_NPP-375": 832,
+  "inpe_2025_puna_NPP-375D": 216,
+  "firms_2025_region": 3538,
+  "inpe_2025_region": 3262
+ },
+ "focos_puna_2026": 3032,
+ "media_2012_2025": 1810.4,
+ "veces_la_media": 1.67,
+ "rango_2026": 3,
+ "anio_max_previo": 2022,
+ "distritos_con_focos_2026": 273,
+ "distritos_record": 46,
+ "hectareas": {
+  "ha_mcd64_jul_ago_2026": 12064,
+  "focos_set_corte_2026": 2113,
+  "ha_por_foco_mediana": 8.08,
+  "ha_por_foco_p25_p75": [
+   6.24,
+   11.13
+  ],
+  "ha_puna_2026_central": 29147,
+  "ha_puna_2026_rango": [
+   25259,
+   35583
+  ]
+ },
+ "razon_por_anio": [
+  {
+   "anio": 2012,
+   "focos_set_oct": 580,
+   "ha_mcd64_set_oct": 3735.06,
+   "ha_por_foco": 6.44
+  },
+  {
+   "anio": 2013,
+   "focos_set_oct": 1143,
+   "ha_mcd64_set_oct": 10604.14,
+   "ha_por_foco": 9.28
+  },
+  {
+   "anio": 2014,
+   "focos_set_oct": 153,
+   "ha_mcd64_set_oct": 601.04,
+   "ha_por_foco": 3.93
+  },
+  {
+   "anio": 2015,
+   "focos_set_oct": 709,
+   "ha_mcd64_set_oct": 5495.26,
+   "ha_por_foco": 7.75
+  },
+  {
+   "anio": 2016,
+   "focos_set_oct": 1002,
+   "ha_mcd64_set_oct": 8436.09,
+   "ha_por_foco": 8.42
+  },
+  {
+   "anio": 2017,
+   "focos_set_oct": 397,
+   "ha_mcd64_set_oct": 1974.86,
+   "ha_por_foco": 4.97
+  },
+  {
+   "anio": 2018,
+   "focos_set_oct": 789,
+   "ha_mcd64_set_oct": 4464.9,
+   "ha_por_foco": 5.66
+  },
+  {
+   "anio": 2019,
+   "focos_set_oct": 1118,
+   "ha_mcd64_set_oct": 15970.61,
+   "ha_por_foco": 14.28
+  },
+  {
+   "anio": 2020,
+   "focos_set_oct": 1064,
+   "ha_mcd64_set_oct": 20521.37,
+   "ha_por_foco": 19.29
+  },
+  {
+   "anio": 2021,
+   "focos_set_oct": 553,
+   "ha_mcd64_set_oct": 4207.31,
+   "ha_por_foco": 7.61
+  },
+  {
+   "anio": 2022,
+   "focos_set_oct": 2707,
+   "ha_mcd64_set_oct": 67596.02,
+   "ha_por_foco": 24.97
+  },
+  {
+   "anio": 2024,
+   "focos_set_oct": 1067,
+   "ha_mcd64_set_oct": 10754.4,
+   "ha_por_foco": 10.08
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "pixeles_puna": 551654,
+ "ha_puna": 11841732,
+ "ha_bofedal_en_puna": 12162,
+ "cota_puna_m": 3800,
+ "por_departamento": {
+  "Apurímac": 1211877,
+  "Arequipa": 1588174,
+  "Ayacucho": 1787592,
+  "Cusco": 2432405,
+  "Moquegua": 335554,
+  "Puno": 4259558,
+  "Tacna": 226572
+ }
+}

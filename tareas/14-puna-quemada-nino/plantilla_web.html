@@ -1,0 +1,327 @@
+<title>Puna quemada, año de Niño</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Parte de situación: incendios 2026 en la puna del sur andino y su recuperación si El Niño trae sequía">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Parte de situación: una columna de lectura con bandas de datos; el mapa y su ficha lado a lado */
+:root {
+  --bg: #f2f4f1; --surface: #ffffff; --ink: #1c2320; --muted: #5a6560; --line: #d6dbd6;
+  --ichu: #9c7414; --ember: #b23b23; --ochre: #d8962f; --straw: #eadcae; --none: #e1e5e0;
+  --dry: #9b6427; --wet: #2c7686; --neutral: #9aa49f; --nbr: #b23b23; --ndvi: #3f8a46;
+  --band: rgba(44, 118, 134, .09); --dot: #1c2320;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121614; --surface: #1a201d; --ink: #e5eae6; --muted: #9ea9a3; --line: #2e3733;
+  --ichu: #d7ab4c; --ember: #e2674c; --ochre: #e0a54a; --straw: #6a5c35; --none: #252c28;
+  --dry: #d0904a; --wet: #5bb0c2; --neutral: #6f7a75; --nbr: #e2674c; --ndvi: #73c07a;
+  --band: rgba(91, 176, 194, .12); --dot: #f3f5f3; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121614; --surface: #1a201d; --ink: #e5eae6; --muted: #9ea9a3; --line: #2e3733;
+  --ichu: #d7ab4c; --ember: #e2674c; --ochre: #e0a54a; --straw: #6a5c35; --none: #252c28;
+  --dry: #d0904a; --wet: #5bb0c2; --neutral: #6f7a75; --nbr: #e2674c; --ndvi: #73c07a;
+  --band: rgba(91, 176, 194, .12); --dot: #f3f5f3; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--f-body); }
+.envoltura { max-width: 1120px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 44px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.08; text-wrap: balance; margin: 0 }
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); letter-spacing: -.005em }
+h2 { font-size: clamp(1.6rem, 3vw, 2.15rem) }
+h3 { font-size: 1.25rem }
+p { margin: 0; max-width: 68ch }
+.eyebrow, .tick, .lab, .dato, th, .sub, .chip, .pie { font-family: var(--f-data) }
+.eyebrow { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted) }
+.texto { display: grid; gap: 14px }
+.pregunta { font-size: clamp(1.15rem, 2.1vw, 1.4rem); line-height: 1.45; max-width: 60ch }
+.respuesta { border-left: 3px solid var(--ichu); padding-left: 16px; max-width: 72ch }
+a { color: var(--wet) }
+a:focus-visible, tr:focus-visible, path:focus-visible { outline: 2px solid var(--ichu); outline-offset: 2px }
+.cab { display: grid; gap: 18px }
+.cab .aviso { font-size: .9rem; color: var(--muted); max-width: 80ch }
+
+/* Cifras clave */
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line) }
+.kpi { background: var(--surface); padding: 18px 18px 16px; display: grid; gap: 6px; align-content: start }
+.kpi .v { font-family: var(--f-display); font-weight: 700; font-size: clamp(2rem, 3.6vw, 2.7rem); line-height: 1; font-variant-numeric: tabular-nums }
+.kpi .v small { font-size: .5em; font-weight: 600; color: var(--muted) }
+.kpi .k { font-size: .93rem; line-height: 1.35 }
+.kpi .f { font-family: var(--f-data); font-size: .72rem; color: var(--muted) }
+.kpi.alerta .v { color: var(--ember) }
+
+/* Mapa y ficha */
+.mapa-zona { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: start }
+.mapa-marco { background: var(--surface); border: 1px solid var(--line); padding: 10px; position: relative }
+.mapa { width: 100%; height: auto; display: block }
+.mapa path { stroke: var(--surface); stroke-width: .35; cursor: pointer }
+.mapa .p-alta { fill: var(--ember) } .mapa .p-media { fill: var(--ochre) }
+.mapa .p-baja { fill: var(--straw) } .mapa .p-nada { fill: var(--none) }
+.mapa .distritos path:hover, .mapa path.sel { stroke: var(--ink); stroke-width: 1.4 }
+.mapa .dep { fill: none; stroke: var(--ink); stroke-width: .9; opacity: .55; pointer-events: none }
+.mapa .focos circle { fill: var(--dot); opacity: .55; pointer-events: none }
+.mapa .dep-n { font: 600 11px var(--f-display); letter-spacing: .12em; fill: var(--ink); opacity: .55; pointer-events: none }
+.leyenda { display: flex; flex-wrap: wrap; gap: 6px 16px; font: .78rem var(--f-data); color: var(--muted); padding: 8px 4px 2px }
+.leyenda span { display: inline-flex; align-items: center; gap: 6px }
+.leyenda i { width: 12px; height: 12px; display: inline-block; border: 1px solid var(--line) }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: .78rem/1.35 var(--f-data); padding: 6px 8px; max-width: 240px }
+.ficha { background: var(--surface); border: 1px solid var(--line); padding: 16px; display: grid; gap: 10px; font-size: .95rem }
+.ficha dl { display: grid; grid-template-columns: auto auto; gap: 4px 12px; margin: 0; font-family: var(--f-data); font-size: .82rem }
+.ficha dt { color: var(--muted) } .ficha dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums }
+.pill { font: 600 .78rem var(--f-data); padding: 2px 8px; display: inline-block; width: fit-content; letter-spacing: .04em }
+.pill.Alta { background: var(--ember); color: var(--surface) } .pill.Media { background: var(--ochre); color: #1c2320 }
+.pill.Baja { background: var(--straw); color: var(--ink) } .pill.nada { background: var(--none); color: var(--ink) }
+
+/* Tablas */
+.tabla { overflow-x: auto; border: 1px solid var(--line); background: var(--surface) }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; min-width: 720px }
+th { font-size: .72rem; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); text-align: right; padding: 10px; border-bottom: 1px solid var(--line); vertical-align: bottom }
+th:first-child, td:first-child { text-align: left }
+td { padding: 8px 10px; border-bottom: 1px solid var(--line) }
+td.n { text-align: right; font-family: var(--f-data); font-variant-numeric: tabular-nums; font-size: .85rem; white-space: nowrap }
+tbody tr { cursor: pointer } tbody tr:hover, tbody tr.sel { background: var(--band) }
+.sub { display: block; font-size: .72rem; color: var(--muted) }
+.chip { font-size: .66rem; border: 1px solid var(--ember); color: var(--ember); padding: 0 4px; margin-left: 4px; text-transform: uppercase }
+
+/* Gráficos */
+.figura { display: grid; gap: 10px }
+.figura .marco { background: var(--surface); border: 1px solid var(--line); padding: 10px 6px 4px; overflow-x: auto }
+.graf { width: 100%; min-width: 560px; height: auto; display: block }
+.graf .grid { stroke: var(--line); stroke-width: 1 } .graf .cero { stroke: var(--muted); stroke-width: 1 }
+.graf .tick { font-size: 10.5px; fill: var(--muted) } .graf .lab { font-size: 11px; fill: var(--ink) }
+.graf .b-nf { fill: var(--dry) } .graf .b-n { fill: var(--dry); opacity: .5 } .graf .b-na { fill: var(--wet); opacity: .75 } .graf .b-ne { fill: var(--neutral); opacity: .7 }
+.graf .b-pron { fill: none; stroke: var(--dry); stroke-dasharray: 3 3 }
+.graf .b-hist { fill: var(--neutral) } .graf .b-2026 { fill: var(--ember) }
+.graf .media { stroke: var(--ink); stroke-dasharray: 4 3 }
+.graf .lluvia-band { fill: var(--band) } .graf .marca { stroke: var(--muted); stroke-dasharray: 2 3 }
+.graf .l-nbr, .graf .l-ndvi, .graf .l-seca, .graf .l-normal, .graf .l-humeda { fill: none; stroke-width: 2.4 }
+.graf .l-nbr { stroke: var(--nbr) } .graf .l-ndvi { stroke: var(--ndvi) }
+.graf .l-nbr-t { fill: var(--nbr) } .graf .l-ndvi-t { fill: var(--ndvi) }
+.graf .l-seca { stroke: var(--dry) } .graf .l-normal { stroke: var(--neutral) } .graf .l-humeda { stroke: var(--wet) }
+.graf .l-seca-p { fill: var(--dry) } .graf .l-normal-p { fill: var(--neutral) } .graf .l-humeda-p { fill: var(--wet) }
+.graf .l-seca-t { fill: var(--dry) } .graf .l-normal-t { fill: var(--muted) } .graf .l-humeda-t { fill: var(--wet) }
+.ley { display: flex; flex-wrap: wrap; gap: 4px 14px; font: .76rem var(--f-data); color: var(--muted) }
+.ley i { display: inline-block; width: 10px; height: 10px; margin-right: 5px; vertical-align: -1px }
+.pie { font-size: .74rem; color: var(--muted); max-width: 90ch }
+
+/* Hallazgos, método y límites */
+.hallazgos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px }
+.hallazgo { display: grid; gap: 8px; align-content: start; border-top: 3px solid var(--ichu); padding-top: 12px }
+.hallazgo .num { font-family: var(--f-data); font-size: .74rem; color: var(--muted) }
+.dos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px }
+ol.pasos, ul.limites { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 72ch }
+.criterios { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line) }
+.criterios div { background: var(--surface); padding: 14px; display: grid; gap: 6px; align-content: start }
+.criterios b { font-family: var(--f-display); font-size: 1.15rem; font-weight: 600 }
+.caso { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px; align-items: start }
+.fuentes { font-size: .88rem; color: var(--muted); display: grid; gap: 6px }
+.fuentes p { max-width: 100ch }
+hr { border: 0; border-top: 1px solid var(--line); margin: 0 }
+
+@media (max-width: 900px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .mapa-zona, .caso, .dos { grid-template-columns: minmax(0, 1fr) }
+  .hallazgos, .criterios { grid-template-columns: minmax(0, 1fr) }
+}
+@media (max-width: 480px) { .kpis { grid-template-columns: minmax(0, 1fr) } body { font-size: 16px } }
+@media (prefers-reduced-motion: no-preference) { .mapa path { transition: stroke-width .12s } }
+</style>
+
+<div class="envoltura">
+
+<header class="cab">
+  <div class="eyebrow">Parte de situación · Puna del sur andino · {{FECHA}}</div>
+  <h1>Puna quemada, año de Niño</h1>
+  <p class="pregunta">El sur andino tiene su tercera peor temporada de fuego en la puna desde 2012, y SENAMHI espera lluvias entre normales y escasas para el verano 2027. ¿Se recuperará el pajonal que ardió, y qué distritos llegarán a la temporada de fuego de 2027 con menos pasto?</p>
+  <p class="respuesta" id="respuesta">{{RESPUESTA}}</p>
+  <p class="aviso">Análisis académico independiente con datos satelitales abiertos (NASA, ESA, CHC, NOAA, INPE, WorldPop, INEI). No es un producto oficial de SENAMHI, SERFOR, INDECI ni de los gobiernos regionales. Ámbito: puna (≥ 3 800 m con pajonal, matorral, bofedal o musgo) de Apurímac, Arequipa, Ayacucho, Cusco, Moquegua, Puno y Tacna: {{HA_PUNA}} millones de hectáreas.</p>
+</header>
+
+<section class="kpis" aria-label="Cifras clave">
+  <div class="kpi alerta"><div class="v">{{FOCOS_2026}}</div><div class="k">focos de calor en la puna del 1 de julio al {{VENTANA_FIN}}: <b>{{VECES}} veces</b> la media de 2012-2025, el {{RANGO_2026}} año más alto</div><div class="f">VIIRS S-NPP · FIRMS e INPE</div></div>
+  <div class="kpi"><div class="v">≈ {{HA_2026}} <small>ha</small></div><div class="k">de puna quemada en 2026 (rango {{HA_2026_LO}}–{{HA_2026_HI}})</div><div class="f">MCD64A1 jul–ago + focos set–oct</div></div>
+  <div class="kpi"><div class="v">{{LLUVIA_NF}}</div><div class="k">lluvia de diciembre a marzo en la puna, en promedio, en los 5 Niños fuertes desde 1981</div><div class="f">CHIRPS v3 · ONI de NOAA</div></div>
+  <div class="kpi alerta"><div class="v">≈ {{HA_SIN_REC}} <small>ha</small></div><div class="k">llegarían a julio de 2027 con al menos la mitad de la cicatriz si llueve como en los Niños fuertes (≈ {{HA_SIN_REC_NORMAL}} ha con lluvia normal)</div><div class="f">{{EVENTOS}} quemas 2002-2025 · MOD09A1</div></div>
+</section>
+
+<section class="texto" aria-labelledby="t-mapa">
+  <div class="eyebrow">Dónde actuar primero</div>
+  <h2 id="t-mapa">Distritos por prioridad para la temporada de lluvias</h2>
+  <p>Cada distrito se colorea según cuántos de tres criterios cumple (explicados más abajo): fuego fuera de lo normal en 2026, lluvia escasa en los Niños fuertes y al menos 100 ha de puna quemada. Los puntos son los {{FOCOS_2026}} focos de 2026 en la puna. Toca un distrito para ver su ficha.</p>
+  <div class="mapa-zona">
+    <div class="mapa-marco" id="marco">
+      {{MAPA}}
+      <div class="leyenda">
+        <span><i style="background:var(--ember)"></i>Alta · {{N_ALTA}}</span>
+        <span><i style="background:var(--ochre)"></i>Media · {{N_MEDIA}}</span>
+        <span><i style="background:var(--straw)"></i>Baja · {{N_BAJA}}</span>
+        <span><i style="background:var(--none)"></i>Sin fuego en la puna en 2026</span>
+        <span>• foco VIIRS 2026</span>
+      </div>
+      <div class="tip" id="tip" hidden></div>
+    </div>
+    <aside class="ficha" id="ficha" aria-live="polite">
+      <div class="eyebrow">Ficha del distrito</div>
+      <h3 id="f-nombre">Elige un distrito</h3>
+      <div id="f-cuerpo"><p class="sub">Toca el mapa o una fila de la tabla.</p></div>
+    </aside>
+  </div>
+</section>
+
+<section class="texto" aria-labelledby="t-alta">
+  <h3 id="t-alta">Prioridad alta: cumplen los tres criterios</h3>
+  <p>{{N_ALTA}} distritos suman ≈ {{ALTA_HA}} ha quemadas en 2026; ≈ {{ALTA_SIN_REC}} ha llegarían a julio de 2027 sin recuperarse si el verano es como en los Niños fuertes. En su puna viven unas {{ALTA_POB}} personas según WorldPop, que solo cuenta casas que se ven desde el satélite: las estancias dispersas de los pastores quedan subcontadas.</p>
+  <div class="tabla"><table>
+    <thead><tr><th>Distrito</th><th>Focos 2026</th><th>Frente a su media</th><th>Ha quemadas (est.)</th><th>Lluvia en Niños fuertes</th><th>Ha sin recuperar jul 2027</th><th>Población en la puna</th></tr></thead>
+    <tbody>{{TABLA_ALTA}}</tbody>
+  </table></div>
+  <h3>Prioridad media: cumplen dos criterios</h3>
+  <div class="tabla"><table>
+    <thead><tr><th>Distrito</th><th>Focos 2026</th><th>Frente a su media</th><th>Ha quemadas (est.)</th><th>Lluvia en Niños fuertes</th><th>Ha sin recuperar jul 2027</th><th>Población en la puna</th></tr></thead>
+    <tbody>{{TABLA_MEDIA}}</tbody>
+  </table></div>
+  <p class="pie">"Frente a su media": focos 2026 sobre el promedio del distrito en la misma ventana (1 jul – {{VENTANA_FIN}}) de 2012-2025. "Récord": más focos que en cualquier año desde 2012. La lista completa está en salidas/distritos_prioridad.csv.</p>
+</section>
+
+<section class="criterios" aria-label="Criterios de prioridad">
+  <div><b>A · Fuego fuera de lo normal</b><p>Al menos 10 focos en la puna en 2026 y, además, récord desde 2012 o el doble de su media.</p></div>
+  <div><b>B · Lluvia escasa si el Niño es fuerte</b><p>La puna del distrito recibió, en promedio, al menos 15 % menos lluvia de diciembre a marzo en los Niños fuertes de 1982-83, 1991-92, 1997-98, 2015-16 y 2023-24.</p></div>
+  <div><b>C · Área relevante</b><p>Al menos 100 ha de puna quemada estimadas en 2026. Prioridad alta = A + B + C; media = dos de tres; baja = uno o ninguno, con fuego.</p></div>
+</section>
+
+<hr>
+
+<section class="texto" aria-labelledby="t-hallazgos">
+  <div class="eyebrow">Lo que muestran 25 años de satélite</div>
+  <h2 id="t-hallazgos">Tres hallazgos</h2>
+  <div class="hallazgos">{{HALLAZGOS}}</div>
+</section>
+
+<section class="figura" aria-labelledby="t-lluvia">
+  <div class="eyebrow">1 · El Niño y la lluvia</div>
+  <h2 id="t-lluvia">Los Niños fuertes suelen secar la puna, pero no siempre</h2>
+  <p>{{TXT_LLUVIA}}</p>
+  <div class="marco">{{G_LLUVIA}}</div>
+  <div class="ley"><span><i style="background:var(--dry)"></i>Niño fuerte (ONI ≥ 1,5)</span><span><i style="background:var(--dry);opacity:.5"></i>Niño</span><span><i style="background:var(--neutral);opacity:.7"></i>Neutro</span><span><i style="background:var(--wet);opacity:.75"></i>Niña</span><span><i style="border:1px dashed var(--dry)"></i>2026-27, aún sin dato</span></div>
+</section>
+
+<section class="figura" aria-labelledby="t-indices">
+  <div class="eyebrow">2 · Cómo se ve el fuego desde el satélite</div>
+  <h2 id="t-indices">El pajonal quemado rebrota verde, pero con menos pasto</h2>
+  <p>{{TXT_INDICES}}</p>
+  <div class="marco">{{G_INDICES}}</div>
+  <p class="pie">Promedio de {{EVENTOS_TOTAL}} píxeles quemados (≈ {{HA_EVENTOS}} ha) en {{N_TEMPORADAS}} temporadas, sin reincidencia. Bandas: meses de lluvia (feb–abr). Prueba placebo: el año previo al fuego da ΔNBR = {{PLACEBO}}.</p>
+</section>
+
+<section class="figura" aria-labelledby="t-rec">
+  <div class="eyebrow">3 · La lluvia después del fuego</div>
+  <h2 id="t-rec">{{TIT_REC}}</h2>
+  <p>{{TXT_REC}}</p>
+  <div class="marco">{{G_RECUPERACION}}</div>
+  <p class="pie">{{PIE_REC}}</p>
+</section>
+
+<section class="figura" aria-labelledby="t-focos">
+  <div class="eyebrow">4 · La temporada 2026</div>
+  <h2 id="t-focos">{{FOCOS_2026}} focos en la puna, el {{RANGO_2026}} año más alto desde 2012</h2>
+  <p>{{TXT_FOCOS}}</p>
+  <div class="marco">{{G_FOCOS}}</div>
+  <p class="pie">Focos VIIRS S-NPP (375 m) en la puna del sur andino del 1 de julio al {{VENTANA_FIN}} de cada año. 2012-2025: archivo de NASA FIRMS. 2026: INPE (NPP-375 y NPP-375D). En jul–oct 2025 las dos fuentes dan {{COMP_FIRMS}} y {{COMP_INPE}} focos en la puna.</p>
+</section>
+
+<section class="caso" aria-labelledby="t-caso">
+  <div class="texto">
+    <div class="eyebrow">Caso · Chichas, Condesuyos (Arequipa)</div>
+    <h2 id="t-caso">El distrito de mi tarea anterior, visto en 25 años</h2>
+    <p>{{TXT_CHICHAS}}</p>
+  </div>
+  <div class="tabla"><table style="min-width:0">
+    <thead><tr><th>Quema</th><th>Ha (MODIS)</th><th>Cicatriz</th><th>Feb–abr +1</th><th>Jul–set +1</th><th>Lluvia dic–mar</th></tr></thead>
+    <tbody>
+      <tr><td>2002 · {{CH_2002_ENSO}}</td><td class="n">{{CH_2002_HA}}</td><td class="n">{{CH_2002_CICATRIZ}}</td><td class="n">{{CH_2002_D_LLUVIA1}}</td><td class="n">{{CH_2002_D_SECA1}}</td><td class="n">{{CH_2002_ANOM_LLUVIA1}}</td></tr>
+      <tr><td>2013 · {{CH_2013_ENSO}}</td><td class="n">{{CH_2013_HA}}</td><td class="n">{{CH_2013_CICATRIZ}}</td><td class="n">{{CH_2013_D_LLUVIA1}}</td><td class="n">{{CH_2013_D_SECA1}}</td><td class="n">{{CH_2013_ANOM_LLUVIA1}}</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<hr>
+
+<section class="dos">
+  <div class="texto">
+    <div class="eyebrow">Cómo se hizo</div>
+    <h2>Método en ocho pasos</h2>
+    <ol class="pasos">
+      <li><b>Malla de la puna.</b> Píxeles MODIS de 500 m (21,5 ha) sobre 3 800 m con pajonal, matorral, bofedal o musgo según ESA WorldCover; altitud del Copernicus DEM.</li>
+      <li><b>Quemas 2001-2026.</b> Fecha de quema de cada píxel con MCD64A1.</li>
+      <li><b>Biomasa y verdor.</b> NBR y NDVI mensuales de 2000 a 2026 con MOD09A1 (reflectancia de 8 días, sin nubes ni nieve).</li>
+      <li><b>Lluvia y El Niño.</b> Lluvia de diciembre a marzo con CHIRPS v3 desde 1981; temporadas clasificadas con el ONI de NOAA.</li>
+      <li><b>Focos 2026.</b> VIIRS S-NPP de INPE (2026) y de FIRMS (2012-2025), verificados entre sí con 2025.</li>
+      <li><b>Recuperación.</b> Cada píxel quemado frente a la puna sin quemar de su misma celda de 0,25° y franja de 200 m, y frente a sí mismo en los dos años previos (diferencia en diferencias). Regresión con errores agrupados por temporada.</li>
+      <li><b>Proyección.</b> Probabilidad de no recuperarse según la lluvia, aplicada a lo quemado en 2026 con la lluvia de los Niños fuertes.</li>
+      <li><b>Parte por distrito.</b> Tres criterios explícitos, sin índice compuesto; población de WorldPop 2026.</li>
+    </ol>
+  </div>
+  <div class="texto">
+    <div class="eyebrow">Lo que estos datos no dicen</div>
+    <h2>Límites</h2>
+    <ul class="limites">
+      <li><b>No es un pronóstico.</b> La lluvia "si el Niño es fuerte" es la que hubo en 5 Niños anteriores, y en 2 de ellos (1997-98 y 2023-24) la puna no se secó.</li>
+      <li><b>El NBR no es pasto en kilos.</b> Mide biomasa y humedad del dosel; no distingue pasto palatable de paja.</li>
+      <li><b>MODIS no ve fuegos chicos.</b> A 500 m se pierden quemas de pocas hectáreas, y Planetary Computer no tiene MCD64A1 de 7 meses (set 2023, jul y nov 2024, may y ago–oct 2025).</li>
+      <li><b>Las hectáreas de set–oct 2026 son estimadas</b> con {{HA_POR_FOCO}} ha por foco (mediana 2012-2024) hasta que MODIS publique esos meses.</li>
+      <li><b>WorldPop subcuenta a los pastores</b>, que viven en estancias dispersas. No hay alpacas por distrito en formato abierto: CENAGRO 2012 solo trae tablas en PDF o microdatos.</li>
+      <li><b>La puna de WorldCover subestima los bofedales</b>, que el Mapa Nacional de Ecosistemas del MINAM mapea mejor.</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="fuentes">
+  <div class="eyebrow">Fuentes</div>
+  <p>NASA LP DAAC (MCD64A1, MOD09A1) vía Microsoft Planetary Computer · NASA FIRMS (VIIRS S-NPP, archivo de Perú) · INPE Queimadas (focos mensuales de Sudamérica) · CHC UCSB (CHIRPS v3) · NOAA CPC (ONI) · ESA WorldCover 2021 · Copernicus DEM GLO-90 · WorldPop 2026 R2024B · INEI (límites distritales) · ENFEN (Comunicado Oficial N.º 18-2026) · SENAMHI (pronóstico estacional).</p>
+  <p>Código y datos: repositorio FaLuna22/Data-Science-Python, carpeta tareas/14-puna-quemada-nino. Fabricio Luna Palacios · Ciencia de Datos con Python, Universidad del Pacífico, 2026-II.</p>
+</footer>
+
+</div>
+
+<script>
+const D = {{DATOS}};
+const fmt = (x, d = 0) => x.toLocaleString("es-PE", { minimumFractionDigits: d, maximumFractionDigits: d }).replace(/,/g, " ").replace(/\./g, ",");
+const pct = x => (x > 0 ? "+" : "") + fmt(x).replace("-", "−") + " %";
+const svg = document.querySelector(".mapa"), tip = document.getElementById("tip"), marco = document.getElementById("marco");
+function ficha(u) {
+  const d = D.info[u]; if (!d) return;
+  document.querySelectorAll(".sel").forEach(e => e.classList.remove("sel"));
+  document.querySelectorAll(`[data-u="${u}"]`).forEach(e => e.classList.add("sel"));
+  document.getElementById("f-nombre").textContent = d.n;
+  const pr = d.pr === "Sin fuego 2026" ? "nada" : d.pr;
+  document.getElementById("f-cuerpo").innerHTML =
+    `<p class="sub">${d.p}, ${d.d}</p><span class="pill ${pr}">${d.pr === "Sin fuego 2026" ? "Sin fuego en la puna" : "Prioridad " + d.pr.toLowerCase()}</span>
+     <dl><dt>Focos 2026 en la puna</dt><dd>${fmt(d.fo)}${d.re ? " · récord" : ""}</dd>
+     <dt>Frente a su media</dt><dd>${d.vp === null ? "—" : fmt(d.vp, 1) + "×"}</dd>
+     <dt>Ha quemadas (est.)</dt><dd>${fmt(d.ha)}</dd>
+     <dt>Lluvia en Niños fuertes</dt><dd>${pct(d.ll)}</dd>
+     <dt>Ha sin recuperar jul 2027</dt><dd>${fmt(d.sr)}</dd>
+     <dt>Puna del distrito</dt><dd>${fmt(d.hp)} ha</dd>
+     <dt>Población en la puna</dt><dd>${fmt(d.po)}</dd></dl>`;
+}
+svg.addEventListener("mousemove", e => {
+  const u = e.target.dataset && e.target.dataset.u; if (!u) { tip.hidden = true; return; }
+  const d = D.info[u], r = marco.getBoundingClientRect();
+  tip.innerHTML = `<b>${d.n}</b> · ${d.d}<br>${fmt(d.fo)} focos · ${fmt(d.ha)} ha · ${d.pr}`;
+  tip.hidden = false;
+  tip.style.left = Math.min(e.clientX - r.left + 12, r.width - 250) + "px";
+  tip.style.top = (e.clientY - r.top + 12) + "px";
+});
+svg.addEventListener("mouseleave", () => { tip.hidden = true; });
+svg.addEventListener("click", e => { const u = e.target.dataset && e.target.dataset.u; if (u) ficha(u); });
+document.querySelectorAll("tbody tr[data-u]").forEach(tr => {
+  tr.tabIndex = 0;
+  tr.addEventListener("click", () => { ficha(tr.dataset.u); marco.scrollIntoView({ behavior: "smooth", block: "center" }); });
+  tr.addEventListener("keydown", e => { if (e.key === "Enter") tr.click(); });
+});
+const primero = document.querySelector("tbody tr[data-u]"); if (primero) ficha(primero.dataset.u);
+</script>
