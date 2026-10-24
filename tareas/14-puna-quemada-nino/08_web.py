@@ -138,10 +138,10 @@ def curva_promedio(col):
 def grafico_indices():
     W, H, L, R, T, B = 760, 280, 48, 110, 16, 40
     nbr, ndvi = curva_promedio("nbr"), curva_promedio("ndvi")
-    lo, hi = -0.14, 0.04
+    lo, hi = -0.22, 0.04
     x_de = lambda t: L + (t + 12) / 42 * (W - L - R)
     y_de = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
-    s = eje_y([0.04, 0, -0.04, -0.08, -0.12], y_de, L, W - R, lambda v: num(v, 2).replace("-", "−"))
+    s = eje_y([0.04, 0, -0.05, -0.10, -0.15, -0.20], y_de, L, W - R, lambda v: num(v, 2).replace("-", "−"))
     for t0, t1 in ((7, 9), (19, 21)):
         s += f'<rect x="{x_de(t0 - .5):.1f}" y="{T}" width="{x_de(t1 + .5) - x_de(t0 - .5):.1f}" height="{H - T - B}" class="lluvia-band"></rect>'
     s += f'<line x1="{x_de(0):.1f}" x2="{x_de(0):.1f}" y1="{T}" y2="{H - B}" class="marca"></line>'
@@ -159,18 +159,22 @@ def grafico_indices():
     return f'<svg viewBox="0 0 {W} {H}" class="graf" role="img" aria-label="NDVI y NBR después del fuego">{s}</svg>'
 
 
+LEY_REC = []
+TOKEN = {"l-seca": "dry", "l-normal": "neutral", "l-humeda": "wet"}
+
+
 def grafico_recuperacion():
-    W, H, L, R, T, B = 760, 290, 48, 150, 16, 52
+    W, H, L, R, T, B = 760, 280, 48, 16, 16, 30
     pasos = [("cicatriz", "1–2 meses"), ("d_lluvia1", "feb–abr +1"), ("d_seca1", "jul–set +1"),
              ("d_lluvia2", "feb–abr +2"), ("d_seca2", "jul–set +2")]
     A = eventos[(eventos.cicatriz <= -0.05) & ~eventos.reincide].copy()
     A["lluvia"] = pd.cut(A.anom_lluvia1, [-100, -15, 15, 400], labels=["Seca", "Normal", "Húmeda"])
     g = A.groupby("lluvia", observed=True)[[p for p, _ in pasos]].mean()
     n = A.groupby("lluvia", observed=True).size()
-    lo, hi = -0.16, 0.02
-    x_de = lambda i: L + 20 + i / (len(pasos) - 1) * (W - L - R - 40)
+    lo, hi = -0.22, 0.04
+    x_de = lambda i: L + 30 + i / (len(pasos) - 1) * (W - L - R - 60)
     y_de = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
-    s = eje_y([0, -0.04, -0.08, -0.12, -0.16], y_de, L, W - R, lambda v: num(v, 2).replace("-", "−"))
+    s = eje_y([0.04, 0, -0.05, -0.10, -0.15, -0.20], y_de, L, W - R, lambda v: num(v, 2).replace("-", "−"))
     for i, (_, et) in enumerate(pasos):
         s += f'<text x="{x_de(i):.1f}" y="{H - B + 16}" class="tick" text-anchor="middle">{et}</text>'
     for clase, cl in (("Húmeda", "l-humeda"), ("Normal", "l-normal"), ("Seca", "l-seca")):
@@ -183,9 +187,7 @@ def grafico_recuperacion():
             if not np.isnan(v[c]):
                 s += (f'<circle cx="{x_de(i):.1f}" cy="{y_de(v[c]):.1f}" r="3.5" class="{cl}-p">'
                       f'<title>{clase} · {et}: ΔNBR {num(v[c], 3).replace("-", "−")}</title></circle>')
-        s += (f'<text x="{x_de(len(pasos) - 1) + 10:.1f}" y="{y_de(v["d_seca2"]) + 4:.1f}" class="lab {cl}-t">'
-              f'{clase} · {num(n[clase])} píxeles</text>')
-    s += f'<text x="{L}" y="{H - 10}" class="tick">ΔNBR medio del píxel quemado frente a su vecino sin quemar (0 = recuperado). Lluvia dic–mar tras el fuego: seca &lt; −15 %, húmeda &gt; +15 %.</text>'
+        LEY_REC.append(f'<span><i style="background:var(--{TOKEN[cl]})"></i>{clase} · {num(n[clase])} píxeles</span>')
     return f'<svg viewBox="0 0 {W} {H}" class="graf" role="img" aria-label="Recuperación según la lluvia">{s}</svg>'
 
 
@@ -298,6 +300,7 @@ reemplazos = {
     "{{G_LLUVIA}}": grafico_lluvia(),
     "{{G_INDICES}}": grafico_indices(),
     "{{G_RECUPERACION}}": grafico_recuperacion(),
+    "{{LEY_REC}}": "".join(LEY_REC),
     "{{G_FOCOS}}": grafico_focos(),
     "{{DATOS}}": json.dumps(datos, ensure_ascii=False, separators=(",", ":")),
 }
@@ -314,6 +317,94 @@ reemplazos["{{CH_2026_FOCOS}}"] = num(c26.get("focos_2026", 0))
 reemplazos["{{CH_2026_PRIOR}}"] = c26.get("prioridad", "—")
 reemplazos["{{CH_2026_LLUVIA}}"] = pct(c26.get("anom_nino_fuerte", np.nan))
 reemplazos["{{CH_2026_SINREC}}"] = num(c26.get("ha_sin_recuperar_jul2027", 0))
+
+# ---------------------------------------------------------------------------------------------
+# Textos que dependen de los resultados
+# ---------------------------------------------------------------------------------------------
+sr, sr_sin = rec["sin_recuperar_por_lluvia"], rec["sin_recuperar_por_lluvia_sin_2022"]
+hum = "Húmeda (> +15 %)"
+rho, p_rho = rec["temporadas_spearman"]["d_lluvia1"]
+secas_t = rec["temporadas_secas"]
+seca_ev = {int(t["anio"]): t["anom_lluvia"] for t in secas_t}     # lluvia en los píxeles quemados
+porc = lambda x: pct(100 * x, 1, signo=False)
+cifra = lambda x: num(x, 3).replace("-", "−")
+por_dep = alta.NOMBDEP.str.title().value_counts()
+deps = ", ".join(f"{n} en {d}" for d, n in por_dep.items())
+lluv = {int(r.anio_fuego): r.anomalia_pct for r in lluvia.itertuples()}
+ninas = lluvia[lluvia.enso == "Niña"].anomalia_pct.mean()
+temp2026 = pd.read_csv(SALIDAS / "quemas_por_temporada.csv").set_index("anio")
+rho_ha = rec["temporada_siguiente"]["spearman_lluvia_previa_vs_ha"]
+ch26, chh = proy["chichas"]["2026"], proy["chichas"]["historia"]
+
+reemplazos.update({
+    "{{VENTANA_FIN}}": focos_r["ventana"].split("– ")[1].replace("set", "setiembre").replace("oct", "octubre"),
+    "{{COMP_FIRMS}}": num(focos_r["comparabilidad_2025"]["firms_2025_puna"]),
+    "{{COMP_INPE}}": num(focos_r["comparabilidad_2025"]["inpe_2025_puna_NPP-375"] + focos_r["comparabilidad_2025"]["inpe_2025_puna_NPP-375D"]),
+    "{{RESPUESTA}}": (
+        f"Casi todo, pero más lento si el verano es seco. El pajonal quemado suele recuperarse en dos veranos. "
+        f"Con lluvia escasa, el doble llega a la siguiente temporada de fuego con la cicatriz a medias: "
+        f"{porc(sr[seca])} de lo quemado frente a {porc(sr[normal])} con lluvia normal. Aplicado a las "
+        f"≈ {num(round(ha26['ha_puna_2026_central'], -2))} ha de 2026 y a la lluvia de los Niños fuertes, son "
+        f"≈ {num(round(proy['ha_sin_recuperar_jul2027_total'], -2))} ha con menos pasto en julio de 2027, en vez de "
+        f"≈ {num(round(proy['ha_sin_recuperar_si_normal_total'], -2))}. {num(len(alta))} distritos ({deps}) cumplen los "
+        f"tres criterios de prioridad."),
+    "{{HALLAZGOS}}": "".join(f'<div class="hallazgo"><span class="num">{i}</span><h3>{t}</h3><p>{p}</p></div>' for i, (t, p) in enumerate([
+        ("El NDVI no ve el fuego en la puna; el NBR sí",
+         f"Uno o dos meses después de la quema, el NBR cae {cifra(rec['cicatriz_media'])} frente a la puna vecina. "
+         f"En la lluvia siguiente, el NDVI del parche quemado sube {cifra(rec['ndvi_lluvia1_medio'])}: rebrota verde, "
+         f"que es lo que buscan los pastores al quemar, pero con menos biomasa."),
+        ("Con poca lluvia, el doble queda sin recuperar",
+         f"Si el verano tras el fuego trae menos de 85 % de su lluvia normal, {porc(sr[seca])} de los píxeles llega a "
+         f"julio–setiembre con al menos la mitad de la cicatriz, frente a {porc(sr[normal])} con lluvia normal y "
+         f"{porc(sr[hum])} con lluvia abundante. Sin 2022: {porc(sr_sin[seca])} frente a {porc(sr_sin[normal])}."),
+        ("Lo que importa es la lluvia, no la etiqueta",
+         f"2022 fue año Niña y aun así, donde ardió, el verano fue seco ({pct(seca_ev[2022], 1)}): tuvo de las peores "
+         f"recuperaciones. En 2015-16, Niño fuerte ({pct(seca_ev[2015], 1)}), el pajonal se recuperó bien. En 1997-98 y 2023-24, dos Niños fuertes, la puna no se secó. "
+         f"Hay que seguir la lluvia real de diciembre a marzo, no solo el ONI."),
+    ], start=1)),
+    "{{TXT_LLUVIA}}": (
+        f"En los cinco Niños fuertes desde 1981, la lluvia de diciembre a marzo en la puna del sur fue {pct(nf.anomalia_pct.mean())} "
+        f"en promedio: {pct(lluv[1982])} en 1982-83, {pct(lluv[1991])} en 1991-92 y {pct(lluv[2015])} en 2015-16. Pero en 1997-98 "
+        f"fue {pct(lluv[1997])} y en 2023-24 {pct(lluv[2023])}. En los años Niña llovió {pct(ninas)} en promedio. Para 2026-27, "
+        f"el ENFEN mantiene la alerta con magnitud extraordinaria hasta enero, y SENAMHI espera lluvias entre normales e "
+        f"inferiores a lo normal en la sierra sur."),
+    "{{TXT_INDICES}}": (
+        "En la estación seca el pajonal es paja: quemarlo casi no cambia el NDVI, porque ni la paja ni la ceniza son verdes. "
+        "El NBR usa el infrarrojo de onda corta (2,1 µm), que sí detecta la pérdida de biomasa y humedad. Cuando llegan las "
+        "lluvias, el parche quemado se pone más verde que su vecino: es el rebrote tierno. El NBR muestra que la biomasa "
+        "todavía no se recupera."),
+    "{{TIT_REC}}": "Si el verano es seco, el doble de pajonal llega sin recuperarse a la siguiente temporada de fuego",
+    "{{TXT_REC}}": (
+        f"Seguí {num(rec['eventos_analizados'])} píxeles quemados entre 2002 y 2025 con cicatriz clara y sin volver a arder. "
+        f"Cuando el verano siguiente fue seco, en febrero–abril quedaba un tercio de la cicatriz (mediana), frente a un "
+        f"décimo con lluvia normal. Entre temporadas, cuanto más seco el verano, peor el primer rebrote (Spearman {num(rho, 2)}, "
+        f"p = {num(p_rho, 3)}, n = {rec['temporadas_spearman']['n']}). Al segundo verano la diferencia desaparece: un año "
+        f"con lluvia normal borra el daño."),
+    "{{PIE_REC}}": (
+        f"Robustez: por píxel, +10 % de lluvia suma {cifra(reg['d_lluvia1']['coef_por_10pct_lluvia'])} de NBR en febrero–abril "
+        f"(IC 95 %: {' a '.join(cifra(v) for v in reg['d_lluvia1']['ic95'])}; errores agrupados por temporada). Sin 2022, que "
+        f"aporta un tercio de los eventos, baja a {cifra(rec['regresion_sin_2022']['d_lluvia1']['coef_por_10pct_lluvia'])} "
+        f"(p = {num(rec['regresion_sin_2022']['d_lluvia1']['p'], 2)}); comparando lugares de una misma temporada, "
+        f"{cifra(rec['regresion_efectos_temporada']['coef_por_10pct_lluvia'])} (p = {num(rec['regresion_efectos_temporada']['p'], 2)}). "
+        f"La evidencia está en la diferencia entre años, y con MODIS solo hay {len(secas_t)} veranos secos: "
+        f"{', '.join(str(int(s['anio'])) + '-' + str(int(s['anio']) + 1)[2:] for s in secas_t)}."),
+    "{{TXT_FOCOS}}": (
+        f"Del 1 de julio al {focos_r['corte'][8:10].lstrip('0')} de octubre hubo {num(focos_r['focos_puna_2026'])} focos VIIRS en la "
+        f"puna, frente a una media de {num(focos_r['media_2012_2025'])}. Solo 2022 y 2020 tuvieron más. "
+        f"{num(focos_r['distritos_record'])} de {num(focos_r['distritos_con_focos_2026'])} distritos con focos marcan su récord "
+        f"desde 2012. MODIS ya registra {num(ha26['ha_mcd64_jul_ago_2026'])} ha de puna quemadas solo en julio y agosto, casi lo "
+        f"de toda la temporada 2024 ({num(temp2026.ha_puna.get(2024, 0))} ha). Las temporadas que siguieron a un verano seco "
+        f"tendieron a quemar más área, pero la relación es débil (Spearman {num(rho_ha, 2).replace('-', '−')})."),
+    "{{TXT_CHICHAS}}": (
+        f"En mi tarea anterior medí con Sentinel-2 unas 400 ha quemadas en Chichas entre el 16 y el 18 de octubre. El método "
+        f"regional de esta página, que estima con focos, da {num(ch26.get('ha_est_2026', 0))} ha: se queda corto, así que las cifras "
+        f"de esta página son conservadoras. Chichas sale en prioridad {ch26.get('prioridad', '—').lower()}: {num(ch26.get('focos_2026', 0))} "
+        f"focos S-NPP en la puna, {num(ch26.get('veces_promedio', 0), 1)} veces su media, y en los Niños fuertes su puna recibió "
+        f"{pct(ch26.get('anom_nino_fuerte', 0))} de lluvia en promedio ({pct(ch26.get('anom_1982', 0))} en 1982-83, "
+        f"{pct(ch26.get('anom_1991', 0))} en 1991-92). Su historia muestra el riesgo: lo que ardió en 2002, seguido de un verano con "
+        f"{pct(chh['2002']['anom_lluvia1'])} de lluvia, estaba peor en febrero–abril que justo después del fuego y aún no se "
+        f"recuperaba dos años después."),
+})
 
 pagina = plantilla
 for k_, v in reemplazos.items():

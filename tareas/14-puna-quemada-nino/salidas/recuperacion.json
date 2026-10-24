@@ -1,0 +1,496 @@
+{
+ "indice": "NBR (MOD09A1)",
+ "eventos_total": 21138,
+ "ha_eventos": 453746,
+ "eventos_analizados": 13814,
+ "temporadas": [
+  2002,
+  2003,
+  2004,
+  2005,
+  2006,
+  2007,
+  2008,
+  2009,
+  2010,
+  2011,
+  2012,
+  2013,
+  2014,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "placebo_medio": 0.0033,
+ "cicatriz_media": -0.192,
+ "ndvi_lluvia1_medio": 0.024,
+ "por_lluvia": [
+  {
+   "lluvia": "Seca (< −15 %)",
+   "eventos": 4267,
+   "temporadas": 18,
+   "anom_lluvia": -23.652000427246094,
+   "cicatriz": -0.20000000298023224,
+   "d_lluvia1": -0.06400000303983688,
+   "d_seca1": -0.04600000008940697,
+   "d_lluvia2": 0.028999999165534973,
+   "queda1": 0.3330000042915344,
+   "queda_seca1": 0.2160000056028366,
+   "ndvi_lluvia1": 0.01899999938905239
+  },
+  {
+   "lluvia": "Normal (±15 %)",
+   "eventos": 7870,
+   "temporadas": 23,
+   "anom_lluvia": 0.3230000138282776,
+   "cicatriz": -0.18799999356269836,
+   "d_lluvia1": -0.019999999552965164,
+   "d_seca1": -0.026000000536441803,
+   "d_lluvia2": 0.02199999988079071,
+   "queda1": 0.0949999988079071,
+   "queda_seca1": 0.12999999523162842,
+   "ndvi_lluvia1": 0.026000000536441803
+  },
+  {
+   "lluvia": "Húmeda (> +15 %)",
+   "eventos": 1677,
+   "temporadas": 18,
+   "anom_lluvia": 24.659000396728516,
+   "cicatriz": -0.18799999356269836,
+   "d_lluvia1": -0.0010000000474974513,
+   "d_seca1": -0.017999999225139618,
+   "d_lluvia2": 0.023000000044703484,
+   "queda1": -0.0,
+   "queda_seca1": 0.08500000089406967,
+   "ndvi_lluvia1": 0.03099999949336052
+  }
+ ],
+ "por_enso": [
+  {
+   "enso": "Neutro",
+   "eventos": 3040,
+   "temporadas": 6,
+   "anom_lluvia": 1.625,
+   "cicatriz": -0.18199999630451202,
+   "d_lluvia1": -0.009999999776482582,
+   "d_seca1": -0.01899999938905239,
+   "d_lluvia2": 0.013000000268220901,
+   "queda1": 0.05299999937415123,
+   "queda_seca1": 0.10100000351667404,
+   "ndvi_lluvia1": 0.026000000536441803,
+   "anios": [
+    2003,
+    2012,
+    2013,
+    2016,
+    2024,
+    2025
+   ]
+  },
+  {
+   "enso": "Niña",
+   "eventos": 8824,
+   "temporadas": 9,
+   "anom_lluvia": -8.338000297546387,
+   "cicatriz": -0.1979999989271164,
+   "d_lluvia1": -0.04399999976158142,
+   "d_seca1": -0.03799999877810478,
+   "d_lluvia2": 0.027000000700354576,
+   "queda1": 0.2280000001192093,
+   "queda_seca1": 0.18199999630451202,
+   "ndvi_lluvia1": 0.023000000044703484,
+   "anios": [
+    2005,
+    2007,
+    2008,
+    2010,
+    2011,
+    2017,
+    2020,
+    2021,
+    2022
+   ]
+  },
+  {
+   "enso": "Niño",
+   "eventos": 1597,
+   "temporadas": 7,
+   "anom_lluvia": 9.970000267028809,
+   "cicatriz": -0.1809999942779541,
+   "d_lluvia1": -0.0020000000949949026,
+   "d_seca1": -0.014999999664723873,
+   "d_lluvia2": 0.029999999329447746,
+   "queda1": 0.0,
+   "queda_seca1": 0.061000000685453415,
+   "ndvi_lluvia1": 0.02800000086426735,
+   "anios": [
+    2002,
+    2004,
+    2006,
+    2009,
+    2014,
+    2018,
+    2019
+   ]
+  },
+  {
+   "enso": "Niño fuerte",
+   "eventos": 353,
+   "temporadas": 2,
+   "anom_lluvia": -12.227999687194824,
+   "cicatriz": -0.18199999630451202,
+   "d_lluvia1": -0.017999999225139618,
+   "d_seca1": -0.032999999821186066,
+   "d_lluvia2": 0.03400000184774399,
+   "queda1": 0.07100000232458115,
+   "queda_seca1": 0.14900000393390656,
+   "ndvi_lluvia1": 0.01899999938905239,
+   "anios": [
+    2015,
+    2023
+   ]
+  }
+ ],
+ "regresion": {
+  "d_lluvia1": {
+   "coef_por_10pct_lluvia": 0.0106,
+   "ic95": [
+    0.0055,
+    0.0157
+   ],
+   "p": 0.0,
+   "coef_cicatriz": 0.141,
+   "n": 13814,
+   "temporadas": 24,
+   "r2": 0.131
+  },
+  "d_seca1": {
+   "coef_por_10pct_lluvia": 0.0054,
+   "ic95": [
+    0.0031,
+    0.0076
+   ],
+   "p": 0.0,
+   "coef_cicatriz": 0.179,
+   "n": 13287,
+   "temporadas": 23,
+   "r2": 0.163
+  },
+  "d_lluvia2": {
+   "coef_por_10pct_lluvia": -0.0007,
+   "ic95": [
+    -0.0035,
+    0.0022
+   ],
+   "p": 0.6386,
+   "coef_cicatriz": -0.08,
+   "n": 12366,
+   "temporadas": 23,
+   "r2": 0.02
+  }
+ },
+ "regresion_sin_2022": {
+  "d_lluvia1": {
+   "coef_por_10pct_lluvia": 0.0023,
+   "ic95": [
+    -0.0011,
+    0.0056
+   ],
+   "p": 0.1807,
+   "coef_cicatriz": 0.038,
+   "n": 9296,
+   "temporadas": 23,
+   "r2": 0.055
+  },
+  "d_seca1": {
+   "coef_por_10pct_lluvia": 0.0019,
+   "ic95": [
+    -0.0009,
+    0.0046
+   ],
+   "p": 0.1814,
+   "coef_cicatriz": 0.128,
+   "n": 8769,
+   "temporadas": 22,
+   "r2": 0.108
+  }
+ },
+ "regresion_efectos_temporada": {
+  "coef_por_10pct_lluvia": 0.0009,
+  "ic95": [
+   -0.0026,
+   0.0044
+  ],
+  "p": 0.6168
+ },
+ "temporadas_spearman": {
+  "d_lluvia1": [
+   0.457,
+   0.0246
+  ],
+  "d_seca1": [
+   0.352,
+   0.0997
+  ],
+  "n": 24
+ },
+ "temporadas_secas": [
+  {
+   "anio": 2002,
+   "anom_lluvia": -21.20439910888672,
+   "d_lluvia1": -0.07580000162124634,
+   "d_seca1": -0.0812000036239624,
+   "sin_recuperar": 0.4074,
+   "eventos": 54,
+   "enso": "Niño"
+  },
+  {
+   "anio": 2004,
+   "anom_lluvia": -15.514900207519531,
+   "d_lluvia1": -0.03359999880194664,
+   "d_seca1": -0.016599999740719795,
+   "sin_recuperar": 0.058,
+   "eventos": 69,
+   "enso": "Niño"
+  },
+  {
+   "anio": 2015,
+   "anom_lluvia": -17.789199829101562,
+   "d_lluvia1": -0.011599999852478504,
+   "d_seca1": -0.028599999845027924,
+   "sin_recuperar": 0.0798,
+   "eventos": 213,
+   "enso": "Niño fuerte"
+  },
+  {
+   "anio": 2022,
+   "anom_lluvia": -18.636199951171875,
+   "d_lluvia1": -0.06920000165700912,
+   "d_seca1": -0.04809999838471413,
+   "sin_recuperar": 0.143,
+   "eventos": 4518,
+   "enso": "Niña"
+  }
+ ],
+ "sin_recuperar_por_lluvia": {
+  "Seca (< −15 %)": 0.139,
+  "Normal (±15 %)": 0.065,
+  "Húmeda (> +15 %)": 0.056
+ },
+ "sin_recuperar_por_lluvia_sin_2022": {
+  "Seca (< −15 %)": 0.121,
+  "Normal (±15 %)": 0.054,
+  "Húmeda (> +15 %)": 0.048
+ },
+ "reincidencia_por_lluvia": {
+  "Seca (< −15 %)": 0.009,
+  "Normal (±15 %)": 0.028,
+  "Húmeda (> +15 %)": 0.023
+ },
+ "temporada_siguiente": {
+  "spearman_lluvia_previa_vs_ha": -0.365,
+  "spearman_lluvia_previa_vs_focos": -0.033,
+  "tabla": [
+   {
+    "anio": 2002,
+    "anom_previa": 0.3,
+    "enso_previo": "Neutro",
+    "ha_puna": 1417,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2003,
+    "anom_previa": 5.9,
+    "enso_previo": "Niño",
+    "ha_puna": 25158,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2004,
+    "anom_previa": -0.7,
+    "enso_previo": "Neutro",
+    "ha_puna": 3349,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2005,
+    "anom_previa": -13.1,
+    "enso_previo": "Niño",
+    "ha_puna": 45851,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2006,
+    "anom_previa": 9.2,
+    "enso_previo": "Niña",
+    "ha_puna": 5581,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2007,
+    "anom_previa": 1.2,
+    "enso_previo": "Niño",
+    "ha_puna": 6955,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2008,
+    "anom_previa": -0.9,
+    "enso_previo": "Niña",
+    "ha_puna": 13223,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2009,
+    "anom_previa": -4.0,
+    "enso_previo": "Niña",
+    "ha_puna": 10132,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2010,
+    "anom_previa": -6.4,
+    "enso_previo": "Niño",
+    "ha_puna": 33294,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2011,
+    "anom_previa": 4.9,
+    "enso_previo": "Niña",
+    "ha_puna": 2640,
+    "focos_puna": NaN,
+    "incompleto": false
+   },
+   {
+    "anio": 2012,
+    "anom_previa": -3.0,
+    "enso_previo": "Niña",
+    "ha_puna": 10797,
+    "focos_puna": 1570.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2013,
+    "anom_previa": -2.4,
+    "enso_previo": "Neutro",
+    "ha_puna": 17774,
+    "focos_puna": 1873.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2014,
+    "anom_previa": -8.5,
+    "enso_previo": "Neutro",
+    "ha_puna": 7985,
+    "focos_puna": 954.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2015,
+    "anom_previa": -10.0,
+    "enso_previo": "Niño",
+    "ha_puna": 10153,
+    "focos_puna": 1334.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2016,
+    "anom_previa": -22.6,
+    "enso_previo": "Niño fuerte",
+    "ha_puna": 26060,
+    "focos_puna": 2505.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2017,
+    "anom_previa": 4.0,
+    "enso_previo": "Neutro",
+    "ha_puna": 3198,
+    "focos_puna": 889.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2018,
+    "anom_previa": 7.0,
+    "enso_previo": "Niña",
+    "ha_puna": 6719,
+    "focos_puna": 1119.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2019,
+    "anom_previa": -2.6,
+    "enso_previo": "Niño",
+    "ha_puna": 30911,
+    "focos_puna": 2721.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2020,
+    "anom_previa": 12.2,
+    "enso_previo": "Niño",
+    "ha_puna": 55403,
+    "focos_puna": 3466.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2021,
+    "anom_previa": 5.7,
+    "enso_previo": "Niña",
+    "ha_puna": 11441,
+    "focos_puna": 1432.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2022,
+    "anom_previa": -7.2,
+    "enso_previo": "Niña",
+    "ha_puna": 122141,
+    "focos_puna": 3686.0,
+    "incompleto": false
+   },
+   {
+    "anio": 2023,
+    "anom_previa": -10.6,
+    "enso_previo": "Niña",
+    "ha_puna": 4293,
+    "focos_puna": 936.0,
+    "incompleto": true
+   },
+   {
+    "anio": 2024,
+    "anom_previa": 2.2,
+    "enso_previo": "Niño fuerte",
+    "ha_puna": 15219,
+    "focos_puna": 1816.0,
+    "incompleto": true
+   },
+   {
+    "anio": 2025,
+    "anom_previa": 15.9,
+    "enso_previo": "Neutro",
+    "ha_puna": 4057,
+    "focos_puna": 1044.0,
+    "incompleto": true
+   }
+  ]
+ }
+}

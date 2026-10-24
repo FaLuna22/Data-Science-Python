@@ -13,13 +13,17 @@ el pajonal y la estacionalidad propia de cada sitio se restan; queda lo que agre
 Prueba placebo: con solo el año Y-2 como base, el año Y-1 (sin fuego) debe dar Δ ≈ 0.
 Luego se cruza Δ con la lluvia de diciembre a marzo que siguió al fuego (CHIRPS, en el mismo
 píxel) y con El Niño (ONI). El mismo cálculo con NDVI muestra el "rebrote tierno".
-Escribe salidas/eventos.csv.gz, salidas/curvas.csv y salidas/recuperacion.json
+La prueba principal es entre temporadas (n = 24), porque la lluvia varía sobre todo de un año
+a otro; la regresión por píxel se reporta con y sin 2022, que aporta un tercio de los eventos.
+Escribe salidas/eventos.csv.gz, salidas/curvas.csv, salidas/recuperacion_por_temporada.csv
+y salidas/recuperacion.json
 """
 import warnings
 
 import numpy as np
 import pandas as pd
 import statsmodels.formula.api as smf
+from scipy.stats import spearmanr
 
 from comun import DATOS, DEPARTAMENTOS, HA_PIX, SALIDAS, guardar_json
 
@@ -178,7 +182,28 @@ def regresion(y, datos):
 
 
 reg = {y: regresion(y, A) for y in ("d_lluvia1", "d_seca1", "d_lluvia2")}
-print(reg)
+# Robustez: 2022 aporta un tercio de los eventos; y con efectos fijos de temporada solo queda
+# la variación entre lugares de un mismo año
+reg_sin2022 = {y: regresion(y, A[A.anio != 2022]) for y in ("d_lluvia1", "d_seca1")}
+m_fe = smf.ols("d_lluvia1 ~ lluvia10 + cicatriz + cota100 + C(dpto) + C(anio)", data=A).fit(
+    cov_type="cluster", cov_kwds={"groups": A.anio})
+reg_fe = {"coef_por_10pct_lluvia": round(m_fe.params["lluvia10"], 4),
+          "ic95": [round(v, 4) for v in m_fe.conf_int().loc["lluvia10"]], "p": round(m_fe.pvalues["lluvia10"], 4)}
+print(reg, reg_sin2022, reg_fe)
+
+# Nivel temporada (n = 24): la prueba principal, porque la lluvia varía sobre todo entre años
+A["sin_recuperar"] = A.queda_seca1 >= 0.5                       # ≥ la mitad de la cicatriz en jul–set Y+1
+temp = A.groupby("anio").agg(anom_lluvia=("anom_lluvia1", "mean"), d_lluvia1=("d_lluvia1", "mean"),
+                             d_seca1=("d_seca1", "mean"), sin_recuperar=("sin_recuperar", "mean"),
+                             eventos=("c", "size"), enso=("enso", "first")).round(4)
+temp.to_csv(SALIDAS / "recuperacion_por_temporada.csv")
+rho_t, p_t = spearmanr(temp.anom_lluvia, temp.d_lluvia1)
+rho_s, p_s = spearmanr(temp.dropna().anom_lluvia, temp.dropna().d_seca1)
+print("Temporadas: Spearman lluvia vs Δ feb–abr", round(rho_t, 2), "p", round(p_t, 3),
+      "· vs Δ jul–set", round(rho_s, 2), "p", round(p_s, 3))
+p_sr = A.groupby("lluvia", observed=True).sin_recuperar.mean().round(3)
+p_sr_sin = A[A.anio != 2022].groupby("lluvia", observed=True).sin_recuperar.mean().round(3)
+secas = temp[temp.anom_lluvia <= -15]
 
 # Reincidencia según la lluvia (todos los eventos)
 E["lluvia"] = pd.cut(E.anom_lluvia1, CORTES, labels=ETIQ)
@@ -204,7 +229,13 @@ guardar_json("recuperacion.json", {
     "ndvi_lluvia1_medio": round(float(A.ndvi_lluvia1.mean()), 3),
     "por_lluvia": por_lluvia.reset_index().astype({"lluvia": str}).to_dict("records"),
     "por_enso": por_enso.reset_index().to_dict("records"),
-    "regresion": reg, "reincidencia_por_lluvia": {str(k): v for k, v in reincide.items()},
+    "regresion": reg, "regresion_sin_2022": reg_sin2022, "regresion_efectos_temporada": reg_fe,
+    "temporadas_spearman": {"d_lluvia1": [round(rho_t, 3), round(p_t, 4)], "d_seca1": [round(rho_s, 3), round(p_s, 4)],
+                            "n": int(len(temp))},
+    "temporadas_secas": secas.reset_index().to_dict("records"),
+    "sin_recuperar_por_lluvia": {str(k): v for k, v in p_sr.items()},
+    "sin_recuperar_por_lluvia_sin_2022": {str(k): v for k, v in p_sr_sin.items()},
+    "reincidencia_por_lluvia": {str(k): v for k, v in reincide.items()},
     "temporada_siguiente": {"spearman_lluvia_previa_vs_ha": round(rho_ha, 3),
                             "spearman_lluvia_previa_vs_focos": round(rho_fo, 3),
                             "tabla": sig.reset_index(names="anio").round(1).to_dict("records")},

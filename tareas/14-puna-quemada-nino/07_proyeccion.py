@@ -14,6 +14,7 @@ Para cada distrito del sur andino con puna quemada en 2026:
 Además, el caso Chichas: cómo se recuperó lo que ardió en 2002 y en 2013.
 Escribe salidas/distritos_prioridad.csv, salidas/distritos.geojson, salidas/proyeccion.json
 """
+import json
 import warnings
 
 import geopandas as gpd
@@ -69,9 +70,11 @@ E = pd.read_csv(SALIDAS / "eventos.csv.gz")
 A = E[(E.cicatriz <= -0.05) & ~E.reincide].dropna(subset=["d_seca1", "anom_lluvia1"]).copy()
 A["sin_recuperar"] = A.d_seca1 / A.cicatriz >= 0.5               # ≥ la mitad de la cicatriz en jul–set Y+1
 A["lluvia"] = pd.cut(A.anom_lluvia1, CORTES, labels=ETIQ)
-p_clase = A.groupby("lluvia", observed=True).sin_recuperar.mean()
+# Mismas probabilidades que reporta el paso 6, para que web y tablas coincidan
+rec = json.load(open(SALIDAS / "recuperacion.json", encoding="utf-8"))
+p_clase = pd.Series(rec["sin_recuperar_por_lluvia"])
 n_clase = A.groupby("lluvia", observed=True).size()
-p_normal = float(A[A.lluvia == ETIQ[1]].sin_recuperar.mean())
+p_normal = float(p_clase[ETIQ[1]])
 print("P(sin recuperar en jul–set siguiente):", p_clase.round(3).to_dict(), n_clase.to_dict())
 
 # 4. Tabla por distrito ----------------------------------------------------------------------
@@ -86,7 +89,7 @@ for c in ("focos_2026", "focos_set_oct_2026"):
     t[c] = t[c].fillna(0).astype(int)
 for c in ("promedio_2012_2025", "ha_est_2026", "ha_mcd64_jul_ago_2026"):
     t[c] = t[c].fillna(0)
-t["record"] = t.record.fillna(False).astype(bool)
+t["record"] = t.record.eq(True)
 mezcla = clases_nino.reindex(t.index).fillna(0)
 t["p_sin_recuperar_nino"] = sum(mezcla[c] * p_clase.get(c, np.nan) for c in ETIQ).round(3)
 t["ha_sin_recuperar_jul2027"] = (t.ha_est_2026 * t.p_sin_recuperar_nino).round(1)

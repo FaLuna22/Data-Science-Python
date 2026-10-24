@@ -1,0 +1,92 @@
+{
+ "ninos_fuertes": [
+  1982,
+  1991,
+  1997,
+  2015,
+  2023
+ ],
+ "p_sin_recuperar_por_lluvia": {
+  "Seca (< −15 %)": 0.139,
+  "Normal (±15 %)": 0.065,
+  "Húmeda (> +15 %)": 0.056
+ },
+ "n_por_lluvia": {
+  "Seca (< −15 %)": 4472,
+  "Normal (±15 %)": 9650,
+  "Húmeda (> +15 %)": 2534
+ },
+ "p_sin_recuperar_normal": 0.065,
+ "distritos_por_prioridad": {
+  "Sin fuego 2026": 215,
+  "Baja": 200,
+  "Alta": 44,
+  "Media": 32
+ },
+ "ha_est_2026_total": 29148,
+ "ha_sin_recuperar_jul2027_total": 3374,
+ "ha_sin_recuperar_si_normal_total": 1896,
+ "alta": {
+  "distritos": 44,
+  "ha_est_2026": 15752,
+  "ha_sin_recuperar_jul2027": 1850,
+  "pob_puna": 106825,
+  "focos_2026": 1574
+ },
+ "pob_puna_distritos_con_fuego": 324022,
+ "chichas": {
+  "2026": {
+   "NOMBDIST": "CHICHAS",
+   "NOMBPROV": "CONDESUYOS",
+   "NOMBDEP": "AREQUIPA",
+   "ha_puna": 7019.0,
+   "pob_puna": 6.0,
+   "pob_total": 438.0,
+   "anom_nino_fuerte": -40.5,
+   "anom_nino_min": -91.4000015258789,
+   "anom_nino_max": 12.899999618530273,
+   "anom_1982": -77.80000305175781,
+   "anom_1991": -91.4000015258789,
+   "anom_1997": 0.30000001192092896,
+   "anom_2015": -46.70000076293945,
+   "anom_2023": 12.899999618530273,
+   "focos_2026": 21,
+   "promedio_2012_2025": 2.9,
+   "maximo_2012_2025": 13.0,
+   "record": true,
+   "focos_set_oct_2026": 19,
+   "ha_mcd64_jul_ago_2026": 0.0,
+   "ha_est_2026": 153.6,
+   "p_sin_recuperar_nino": 0.109,
+   "ha_sin_recuperar_jul2027": 16.7,
+   "ha_sin_recuperar_si_normal": 10.0,
+   "veces_promedio": 7.24,
+   "A_fuego_anormal": true,
+   "B_lluvia_nino_seca": true,
+   "C_area_relevante": true,
+   "prioridad": "Alta"
+  },
+  "historia": {
+   "2002": {
+    "pixeles": 14,
+    "ha": 301,
+    "cicatriz": -0.12,
+    "d_lluvia1": -0.14,
+    "d_seca1": -0.108,
+    "d_lluvia2": -0.051,
+    "anom_lluvia1": -47.2,
+    "enso": "Niño"
+   },
+   "2013": {
+    "pixeles": 11,
+    "ha": 236,
+    "cicatriz": -0.154,
+    "d_lluvia1": -0.099,
+    "d_seca1": -0.087,
+    "d_lluvia2": -0.027,
+    "anom_lluvia1": -12.6,
+    "enso": "Neutro"
+   }
+  }
+ }
+}

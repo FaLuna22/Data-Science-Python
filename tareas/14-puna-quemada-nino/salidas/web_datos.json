@@ -1,0 +1,14 @@
+{
+ "kpis": {
+  "focos_2026": 3032,
+  "veces": 1.67,
+  "ha_2026": 29147,
+  "ha_rango": [
+   25259,
+   35583
+  ],
+  "lluvia_nino_fuerte": -24.4,
+  "ha_sin_recuperar": 3374,
+  "ha_sin_recuperar_normal": 1896
+ }
+}

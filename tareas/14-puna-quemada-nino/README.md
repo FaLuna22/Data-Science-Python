@@ -9,7 +9,65 @@ Sigue a mi tarea de Chichas (`tareas/07-raster-incendio-chichas` en la rama
 `tarea-07-raster-chichas`): de un incendio y un distrito paso a toda la puna del sur y a 25
 años de quemas.
 
-<!-- RESULTADOS -->
+**Web (parte de situación):** https://claude.ai/artifact/TpqwJD9JvX5BeWx9DvsrSQ · local: [`web.html`](web.html)
+
+## Respuesta corta
+
+Casi todo se recupera, pero más lento si el verano es seco. El pajonal quemado suele volver a
+su nivel en dos veranos. Con lluvia escasa, **el doble** llega a la siguiente temporada de fuego
+con la cicatriz a medias: 13,9 % de lo quemado frente a 6,5 % con lluvia normal. Aplicado a las
+≈ 29 100 ha de puna quemadas en 2026 y a la lluvia de los Niños fuertes, son **≈ 3 400 ha con
+menos pasto en julio de 2027**, en vez de ≈ 1 900. **44 distritos** (18 en Cusco, 16 en Puno,
+5 en Arequipa, 3 en Apurímac y 2 en Ayacucho) cumplen los tres criterios de prioridad.
+
+## Cifras clave
+
+| Indicador | Valor |
+|---|---:|
+| Puna del sur andino (≥ 3 800 m, pajonal/matorral/bofedal/musgo) | 11,8 millones de ha |
+| Focos VIIRS S-NPP en la puna, 1 jul – 23 oct 2026 | **3 032** (media 2012-2025: 1 810; 3.er año más alto) |
+| Distritos con récord de focos desde 2012 | 46 de 273 |
+| Puna quemada 2026 (MCD64A1 jul–ago + 8,1 ha/foco set–oct) | ≈ 29 100 ha (25 300 – 35 600) |
+| Lluvia dic–mar en los 5 Niños fuertes desde 1981 | −24 % (de −54 % en 1982-83 a +2 % en 2023-24) |
+| Píxeles quemados seguidos (2002-2025) | 21 138 (≈ 454 000 ha); 13 814 con cicatriz clara |
+| Cicatriz NBR 1-2 meses después / placebo del año previo | −0,192 / +0,003 |
+| Llegan a jul–set siguiente con ≥ ½ de la cicatriz: verano seco / normal / húmedo | 13,9 % / 6,5 % / 5,6 % |
+| … sin 2022 | 12,1 % / 5,4 % / 4,8 % |
+| Spearman lluvia del verano vs Δ NBR feb–abr, entre temporadas | 0,46 (p = 0,025, n = 24) |
+| Puna que llegaría sin recuperarse a jul 2027: lluvia de Niño fuerte / normal | ≈ 3 400 ha / ≈ 1 900 ha |
+| Distritos prioridad alta / media / baja | 44 / 32 / 200 |
+
+## Tres hallazgos
+
+1. **El NDVI no ve el fuego en la puna; el NBR sí.** En la estación seca el pajonal es paja, y
+   quemarlo casi no cambia el verdor. El NBR, que usa el infrarrojo de onda corta, cae −0,19.
+   En la lluvia siguiente el parche quemado está *más verde* que su vecino (NDVI +0,024): es el
+   rebrote tierno que buscan los pastores al quemar, pero con menos biomasa. (También probé
+   MOD13A1: su regla de "NDVI máximo de 16 días" esconde el fuego por completo.)
+2. **Con poca lluvia, el doble queda sin recuperar**, y al segundo verano la diferencia
+   desaparece. La evidencia está entre años: con MODIS solo hay 4 veranos secos (2002-03,
+   2004-05, 2015-16 y 2022-23). La regresión por píxel (+0,011 de NBR por cada 10 % más de
+   lluvia) depende de 2022: sin ese año baja a +0,002 (p = 0,18), y comparando lugares de una
+   misma temporada no hay efecto (p = 0,62).
+3. **Importa la lluvia, no la etiqueta ENSO.** 2022 fue año Niña y, donde ardió, el verano fue
+   seco (−18,6 %). En 2015-16, Niño fuerte (−17,8 %), el pajonal se recuperó bien. 1997-98 y
+   2023-24 fueron Niños fuertes sin sequía en la puna. Hay que seguir la lluvia real de
+   diciembre a marzo.
+
+**Validación con mi tarea anterior:** para Chichas, el método por focos estima 154 ha en 2026;
+con Sentinel-2 medí ≈ 400 ha. La estimación regional es conservadora.
+
+## Limitaciones
+
+- **No es un pronóstico**: la lluvia "de Niño fuerte" es la de 5 Niños pasados, y en 2 la puna no se secó.
+- **El NBR no es pasto en kilos**: mide biomasa y humedad del dosel.
+- **MODIS (500 m) no ve fuegos chicos**, y Planetary Computer no tiene MCD64A1 de set 2023,
+  jul y nov 2024, may y ago–oct 2025 (se excluyen de la razón ha/foco; en el experimento, un
+  píxel que ardió esos meses puede quedar como control).
+- **Set–oct 2026 es estimado** con la mediana de ha por foco (2012-2024; rango p25–p75).
+- **WorldPop subcuenta a los pastores** (estancias dispersas). No encontré alpacas por distrito en
+  formato abierto: CENAGRO 2012 solo publica tablas en PDF o microdatos.
+- **WorldCover subestima los bofedales** (12 mil ha); el Mapa Nacional de Ecosistemas del MINAM es mejor.
 
 ## Datos
 
