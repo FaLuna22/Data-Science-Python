@@ -1,0 +1,19 @@
+# Corpus original y salidas pesadas: se recuperan con herramientas/descargar.py (ver datos/fuentes.csv)
+datos/raw/
+
+# Pesos de modelos
+modelos/*.safetensors
+modelos/*.bin
+modelos/*.pt
+modelos/*.onnx
+modelos/checkpoint-*/
+
+# Entorno con PyTorch CUDA (OCR en GPU, ASR alternativos y LLM)
+.venv-gpu/
+
+# Secretos
+.env
+.streamlit/secrets.toml
+
+.ipynb_checkpoints/
+__pycache__/

@@ -1,0 +1,5 @@
+# Solo lo necesario para el dashboard (app.py lee CSV; no corre OCR, ASR ni LLM)
+streamlit==1.66.1
+pandas==3.1.0
+plotly==7.1.0
+numpy==2.3.5
