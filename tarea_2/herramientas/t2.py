@@ -74,7 +74,10 @@ def ordenar_lineas(textos: list[str], cajas: np.ndarray) -> str:
     anchas = [i for i in range(len(textos)) if cajas[i, 2] - cajas[i, 0] > 0.5 * ancho]
     angostas = [i for i in range(len(textos)) if i not in set(anchas)]
     columnas = _columnas(angostas, cajas, ancho)
-    if len(columnas) <= 1:  # una sola columna: renglones normales
+    # solo es un texto a columnas si casi todo son líneas angostas y cada columna tiene varias líneas;
+    # si no (cartas, resoluciones con sangrías), se lee por renglones
+    a_columnas = len(angostas) >= 0.6 * len(textos) and sum(len(c) >= 3 for c in columnas) >= 2
+    if not a_columnas:  # una sola columna: renglones normales
         return "\n".join(" ".join(textos[i] for i in r) for r in _renglones(list(range(len(textos))), cajas))
     inicio_cols = min(cajas[i, 1] for i in angostas)
     bloques = [_renglones([i for i in anchas if cajas[i, 1] < inicio_cols], cajas)]

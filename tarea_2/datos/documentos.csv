@@ -1,0 +1,860 @@
+id,archivo,tipo,fuente,texto_ocr,modelo_ocr,texto_referencia,n_caracteres,n_lineas,confianza_ocr,publicable,titulo_original,fuente_url,imagen_url
+doc_01,datos/raw/documentos/doc_01.png,impreso,Wikimedia Commons (Public domain),"RD deSalud vtinisterio Otficina General
+de Comunicaciones
+COMUNICADO OFICIAL DE PRENSA N°20
+El Ministerio de Salud lamenta informar el sensible fallecimiento del
+primer paciente a causa de infección COVID-19. Se trata de un varón
+de 78 años con antecedentes de hipertensión arterial, que ingresó a
+la unidad de cuidados intensivos del Hospital de la Fuerza Aérea del
+Perú el martes 17 de marzo, por presentar insuficiencia respiratoria
+severa, fallecíendo hoy a las 15.00 horas.
+En nombre de todos los peruanos expresamos nuestras mas sentidas
+condolencías a los familíares en este momento de dolor.
+Lima, 19 de marzo del 2020","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,626,15,0.937,True,Comunicado minsa primer fallecido covid-19 Perú.png,https://commons.wikimedia.org/wiki/File:Comunicado_minsa_primer_fallecido_covid-19_Per%C3%BA.png,https://upload.wikimedia.org/wikipedia/commons/b/ba/Comunicado_minsa_primer_fallecido_covid-19_Per%C3%BA.png
+doc_02,datos/raw/documentos/doc_02.jpg,impreso,Wikimedia Commons (Public domain),"PERÚ Ministerio Oficina General
+de Salud de Comunicaciones
+COMUNICADO OFICIAL DE PRENSA N°21
+El Ministerio de Salud lamenta informar el sensible fallecimiento de
+dos personas por infección por COVID-19.
+Se trata de un varón de 47 años con antecedentes de viaje a España,
+que presentaba asma bronquial y obesidad. Fue internado en la
+unidad de cuidados intensivos del hospital 2 de Mayo, por presentar
+insuficiencia respiratoria y shock séptico. Su evolución fue
+desfavorable produciéndose su deceso a las 18.15 horas.
+El otro caso corresponde a un paciente de 69 años, con antecedente
+de viaje a España que fue atendido en el hospital Edgardo Rebagliati
+por un cuadro respiratorio y falleció en su domicilio.
+En nombre de todos los peruanos expresamos nuestras más sentidas
+condolencias a los familiares en este momento de dolor.
+Lima, 19 de marzo del 2020
+OFICINA DE INFORMACIÓN PÚBLICA
+OFICINA GENERAL DE COMUNICACIONES
+(Teléfono 315-6600 anexo 2948)
+QO卷●","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,957,23,0.964,True,Comunicado oficial N 21 sobre el fallecimiento de 2 personas por covid-19 en Perú.jpg,https://commons.wikimedia.org/wiki/File:Comunicado_oficial_N_21_sobre_el_fallecimiento_de_2_personas_por_covid-19_en_Per%C3%BA.jpg,https://upload.wikimedia.org/wikipedia/commons/1/1f/Comunicado_oficial_N_21_sobre_el_fallecimiento_de_2_personas_por_covid-19_en_Per%C3%BA.jpg
+doc_03,datos/raw/documentos/doc_03.jpg,impreso,Wikimedia Commons (CC0),"General de la Presidencia
+le la República
+Lima, 19 de diciembre de 1956
+Señor
+Segundo Gallardo Gallo,
+Sullana
+N° 4418
+De mi consideración:
+Me es grato acusar recibo de su atenta
+comunicación de 12 de octubre último,dirigida al señor Presi
+dente de la Republica, quien me encarga hacerle llegar su es
+pecial agradecimiento por el envfo del retrato que ha tenido
+la fineza de obsequiarle.
+Aprovno la oportunidad para presentar
+usted el testimonio de mi mal estimación.
+Atentamente","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,478,17,0.99,True,Carta de agradecimiento del secretario de la Presidencia de la República Nazario Chávez Aliaga al pintor Segundo Ciro Gallardo Gallo en nombre del presidente Manuel Prado Ugarteche.jpg,https://commons.wikimedia.org/wiki/File:Carta_de_agradecimiento_del_secretario_de_la_Presidencia_de_la_Rep%C3%BAblica_Nazario_Ch%C3%A1vez_Aliaga_al_pintor_Segundo_Ciro_Gallardo_Gallo_en_nombre_del_presidente_Manuel_Prado_Ugarteche.jpg,https://upload.wikimedia.org/wikipedia/commons/4/44/Carta_de_agradecimiento_del_secretario_de_la_Presidencia_de_la_Rep%C3%BAblica_Nazario_Ch%C3%A1vez_Aliaga_al_pintor_Segundo_Ciro_Gallardo_Gallo_en_nombre_del_presidente_Manuel_Prado_Ugarteche.jpg
+doc_04,datos/raw/documentos/doc_04.png,impreso,Wikimedia Commons (Public domain),"LIGA PROVINCIAL DE
+FUTBOL DE LIMA
+BOLETIN No. 161
+Posición definitiva de los clubs que
+concursan en el Campeonato de pri-
+mera división de 1934, después de cum-
+plidos los partidos correspondientes a
+la novena y última fecha.
+Primeros equipos. Puntos.
+Alianza Lima 21
+Universitario de Deportes 21
+Sucre F.B.C. 19
+Sport Boys Association 19
+Tarapacá Ferrocarril 17
+Sporting Tabaco 16
+Unión Carbone F.B.C. 11
+Ciclista Lima Association 11
+Circolo Sportivo Italiano 4
+Equipos de Reserva:
+Alianza Lima (Campeón) 23
+Universitario de Deportes 22
+Tarapacá Ferrocarril... 17
+Sporting Tabaco... 17
+Sucre F.B.C. 15
+Unión Carbone F.B.C. 13
+Sport Boys Association 12
+Ciclista Lima Association 12
+Circolo Sportivo Italiano 6
+Posición de los clubs:
+19. Alianza Lima (Campeón) 26 3/4
+2?. Universitario de Deportes 26 2/4
+3°. Sucre F.B.C. 22 3:4
+4?. Sport Boys Association 22
+5°. Tarapacá Ferocarril 21 1/4
+6°. Sporting Tabaco 201/4
+72. Unión Carbone F.B.C. 141,4
+8°. Ciclista Lima Asociation 14
+9°. Circolo Sportivo Italiano
+(Desafiliado).......... 5 2/4","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,1037,72,0.985,True,Boletin-N161 de la Liga de Fútbol de Lima.png,https://commons.wikimedia.org/wiki/File:Boletin-N161_de_la_Liga_de_F%C3%BAtbol_de_Lima.png,https://upload.wikimedia.org/wikipedia/commons/6/63/Boletin-N161_de_la_Liga_de_F%C3%BAtbol_de_Lima.png
+doc_05,datos/raw/documentos/doc_05.jpg,impreso,Wikimedia Commons (Public domain),"ras siendo el numero ultimo 183.
+Se está esperando un decreto del Gobierno
+autorizando la plantifieacioo de un bolante para
+anomedar plata menuda aqui
+w
+LIMA.
+PERU Y ECUADOR.
+Parece que un destino fatal tiene condenad
+al Perú à no vivir en paz; unas veces nuestros
+propios errores y otras la amhicion do nuostros
+vecinos, hace que hasta nhora podanos soltar las
+arimas de la mano. Àño no so ha terminado
+la guerra en que esta nos envueltos por el sur
+y nos amenazi otra por el norte. ¿Como sor in-
+diferentes tratandose de intereses tan vitales à los
+que está unido el bienestar de mas de dos millones
+de habitantes? Nuestro deber y el de todos es
+ocuparse de una cuestion de la que depende nues-
+tra futura tranquilidad, discutan-sla con la fria
+razorpara hacer conocer de parte de quien está
+la justicia, para que ante el mundo triunfe y se
+eviten lus estragos funestos de la fuurza, à no ser
+que pueda ser inliferente el que se deguellen ó no
+dos nacionesinocentes.
+El Janeral Piores que tiene la suerte de re-
+jir los destinos del Ecuador cree que es muy
+imitado el pais que gobierna, muy reducido
+teutro para su eminente genio. La idea de en-
+sanchar los linites del Ecuador ha sid, para
+él un pensamiento fijo. y por eso hu mantenido
+un ejército que aniquila aquel pais consuniendo
+inproductivainente sus escasas rentas;inirandolo
+como la base de su engrandeciniento futuro ja-
+mas ha querido licenciarlo como debiera. Nus
+planés estaban calculados de modo que podria
+realizarlos con exito en un lado ó en otro de
+sus fronteras, el prinero de sus vecinos que á su
+uicio le presentara ocasion favorable gebia de ser
+el que diera el continjente para satisfacer su ambi-
+cion: toñóle en suerte prineipiar por la Nueva Gra-
+nada. A mediidos de Junio de 1839, los primeros
+alboroios de Pasto le persuadieron era' llegado cl
+m mento de empezar à realizar sus antiguas es-
+peranzas, y para conseguirlo trató de ganar à
+los dos caudillos Pastusos quo entonces figuras
+ban, Nguera y E-paña, y con aste objeto se
+valiò de Saen, y Ontaneda, que hacia dos años
+estaban en Quito espulsalos porque habian huido
+yergonzosamente en la accion de Galilagua, los
+que unidos al gobernador de Imbabura publica-
+mente trataban de que Pasto se uniese al Ecua-
+dor, Diaz logró entablar relaciones con Noguera
+y por medio del influjo de dos frailes fráncis-
+cano, recibia esfe las coinunicaciones y pertrechos
+del Ecuador. Cuando en Junio de 1840 esta-
+ló la revolucion en Pasto, las cosas se presentaban
+en Quito con etro aspecto mas urjente, y por
+un modo mas drcidido, la revilucion corrió com
+una chispa eléctrica é incendió laa provincias de
+Tunja, Socerro, Veles, Pamplona, Casanare, Car.
+tajeña, Santa Marta, Panamná, y sun parte de
+Pupayan. En este conflict casi universilpara
+la Nueva Granada, no le fué dificil al jefe del
+Ecuudor celebrar un tratado con uno de los je.
+nerales que sostenian la causa del gobierno Grí.
+nadino y entrar a Pasto como pacificador à media.
+dos de Setiembre de 1841, con 800 hombres de
+infanteria y 400 de caballeria, mientras tanto di
+vulgaba que Venezuela queria maa tierras, y que
+para obtenerlas habia acercado 2,000 hombres
+sus fronteras, que el territorio granadino debie di
+vidirse entre el Ecuador y Venezuela por no haber
+en el quien reuniera bastante prestijio para go.
+bernar. El gobierno de la Nueva Granad. repos
+ba, como era justo que reposase, on los tratudus ce.
+lebrados en Pasto en 8 do Diciembre de 1832
+contaba con que el Ecuador obligado a respetarió
+no ocuparia con ningun pretesto ni una pulgada del
+territorio granadino, mucho mas cuando, como
+dijo el Sr. D. Rufino Cuervo, enviado de aquel Go.
+bierno, ""no habia soli-itado, promovido ni mea-
+digad, el auxiio de la fuerza extrarjera para
+terminar las cuestiones d- la Nuava Granada.
+Pero no sulo ocupó á Pasto y Tuquerres sino
+que hizo que estas provincias estando baja sus
+armas, declararan el 4 de Mayo de 1841, que
+querian separurse de la asociacion Granadinay
+pertenecer al Ecuador, acojiendo solemnemente
+este pronunciamiento el 10 del mismo mes el Con-
+sejo de Gobierno Ecuatorian o. Mandó al coman.
+dante Dario Morales con pliegos parn que Borba-
+coas hiciera igual pronuncinmiento, en l. que tra.
+bajé personalmente dicho oficial cuunto pudo,
+segun consta de lis do-umentos que tienelen
+poder el Sr. Cuervo Ministro del Gobierno dela
+Nueva Granada. Bstante feliz el Gbierno
+granadino, ha podido apaciguar las revueltas y
+détener al jeneral Fiorez que iba ya u ocu-
+par a Popayan, haciendole devulver à Pasta.
+Despues de haber hecho el Ecuador inmensos sa-
+crificios t:ene hoy el jeneral Floresel sentuniento de
+ver burladus sus planes de ambicion, y de haber da-
+do a laA nárica y à todo el nund - una prueba cla-
+sica de la politica que estu dispuesto à seguir
+con sus vecinos. Respecto del Peru podrémos
+conocerla recordando la conducta que ha obser-
+vudo en estos últimus uños con los asilados poli-
+ticos que han ll-gado al Ecuador.
+El jeneral Santa Cruz que intervino en 1835
+à mano armada en el Perú para destruir u na-
+cionalidad, y sostituir a la constitucion que se
+habían dado los pueblos los actos de su soberana
+voluntad, fué derrotado y proscripto del Peruy
+Bolivia, refujiado en el Écuador con algunos de
+sus mía udeptos, el Jeneral Fiores miró en ellos
+los combustibles de discordia con que debía incen-","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,5320,121,0.955,True,El Comercio - Lima. Perú y Ecuador. 3-3-1842.jpg,https://commons.wikimedia.org/wiki/File:El_Comercio_-_Lima._Per%C3%BA_y_Ecuador._3-3-1842.jpg,https://upload.wikimedia.org/wikipedia/commons/5/58/El_Comercio_-_Lima._Per%C3%BA_y_Ecuador._3-3-1842.jpg
+doc_06,datos/raw/documentos/doc_06.png,impreso,Wikimedia Commons (Public domain),"ELPERUAN
+PERI A L
+Vale SE PUBLICA MIERCOLES Y SABADO DE CADA SEMANA. Un real
+N. 34. LIMA, MIERCOLES 10 DE ABRIL DE 1844. Tomo xi.
+INTERIOR. Gobierno é Intendencia de Policia de este dis- Prefectura del Departamento de Ancach-—
+trito-Carhuaz, á 1. de Marzo de 1844. Huaraz, á 7 de Marzo de 1844.
+Al Señor Coronel Sub-prefecto de esta Pro-
+Al Señor Coronel Sub-prefecto de esta Pro. vincia.
+HUARAZ. vineia. Contesto con sentimiento la estimable no.
+ta de US. de 5 del corriente, con que me
+El 27 del próximo pasado tuve el sen- ha remitido dos del Gobernador de la villa
+(Del Observador.) timiento de oficiar á US. hablándole de una de Carhuaz, en que da parte de las inunda-
+tempestad horrorosa que sufrió esta villa el ciones y estragos consiguientes que ha expe-
+Sub-prefectura de la Provincia—Huaraz, à 26, y ahora me cabe el de anunciarle, que rimentado ese distrito en los dias 26 y 29 del
+5 de Marzo de 1844. ayer ha experimentado otra que principió á proximo pasado, asegurándole que, solo las
+las cinco de la tarde y concluyó á las cinco circunstancias públicas actuales, me hacen no
+Benemérito Señor Prefecto del Departamento. y media, cuyos estragos habrian sido mas es. pasar personalmente á la mencionada villa á
+pantosos que lo han sido, si no hubiese que- tomar parte en la ejecucion de las medidas
+Incluyo á US. los dos partes que pasa á esta rido la Divina Providencia preservarnos de que su Gobernador ha adoptado, á fin de
+Sub-prefectura el Gobernador de Carhuaz so- ellos en parte, queriendo que las aguas que precaver en adelante estragos como los que
+ore inundaciones acaecidas en la poblacion se precipitaban sobre la poblacion buscasen su han ocasionado las inundaciones indieadas.
+en los dias 26 del próximo pasado y 1? del curso divididas en dos porciones. A conse- Sirvase US. decirlo así al Gobernador men-
+orriente. cuencia de esta catástrofe han quedado por
+Dios guarde á US.—Señor Prefecto—Pe- cionado, previniendole que son de mi apro-
+lro Izquierdo. tierra unas viviendas de la casa del vene- bacion las medidas de que llevo hecha refe-
+ble Párroco de esta doctrina y de D. Lorenzo rencia, y que deseo queden efectuadas cuanto
+OUCE Solis, y los cercos de varias fábricas perte-
+necientes á otras varias personas, y sumamen- antes.
+te deteriorados los puentes de Hualcan, Obra- Dios guarde á US.—José Manuel Salas.
+Gobierno é Intendencia de Policia de este dis- je y Chucchun, siendo este último necesario
+trito—Carhuaz, à 27 de Febrero de 1844. para el transito jeneral, por lo que se está
+refaccionando. Àl norte de la villa han que-
+Al Señor Coronel Sub-prefecto de esta Pro- dado los caminos destrozados-el puente de
+vincia. Tinco colocado sobre el rio de Buin ha de-
+saparecido-y el de Eco que se hallaba colo..
+Ayer á las tres de la tarde ha caido en cado sobre el rio grande, quedó tan desqui-
+sta villa una lluvia tan tempestuosa y formi- siado, que para que no se pierda la maderal
+able, que los octojenarios y personas de mas invertida en su construccion, ha sido necesa--
+dad aseguran no haber tenido ni noticia de rio quitarlo por ahora.
+tra igual. Las casas construidas en los sitios Para precaver iguales desastres en ade-
+as altos de la poblacion han sido inunda- lante, he acordado mandar abrir un tajo en las
+as hasta mas de una vara de alto. Las ca- quebradas de Huatupayoc y Pichiucayan, y
+es que contiene, sin embargo de estar em- dispuesto en consecuencia, que el trabajo prin.
+edradas casi todas, han quedado convertidas cipie el cuatro del corriente, oido el informe
+n fosos bastante profundos á consecuencia que el ciudadano D. Mateo Ruiz y los Sub-
+e haber corrido por todas ellas rios de agua inspectores D. Hermenejildo Arequipeño y
+ue arrastraron vigas gruesas hasta de seis Don Pedro Alva me deben dar, prévio el res-
+aras de lonjitud, y porcion de crias domésticas pectivo reconocimiento, que les tengo ya en.
+del campo. comendado.
+No es explicable la consternacion que es Sirvase US. poner este parte en conoci-
+suceso ha difundido entre mis subordina miento del Señor Prefecto del Departamento,
+os, pues todos han sufrido por él perdidas para que si lo tiene á bien, se digne aprobar
+onsiderables en sus sementeras unos, y otros las medidas que dejo indicadas.
+n sus casas ; habiendo quedado reducidas á Dios guarde á US.—Francisco Vicente de
+scombros en su mayor parte las pertene- Torres.
+entes á Vicente Caballero, Maria Teresa,
+Dorotea Obregon, siteadas en el barrio
+el Triunfo, y en el paraje denominado Ca-
+marquilla.
+Al dar á US. este parte con el senti-
+iento que es de suponerse, me cabe la sa-
+sfaccion de asegurarle, que estoy tomando
+as medidas necesarias para que sean repara-
+os en la parte posible los perjuicios expe.
+mentados.
+Debo agregar á lo expuesto para el co.
+ocimiento de US. que la tempestad de que
+ablo, duró tres cuartos de hora; es decir,
+asta las tres y tres cuartos de la tarde: que
+I agua que descendia de las alturas inme-
+iatas á la villa, no cesó de correr hasta las
+inco, y que los caminos han quedado así
+omo las calles, destrozados é inutilizados.
+Dios guarde á US.--Francisco V. de Tor","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,5085,137,0.987,True,Inundación Carhuaz 1844.png,https://commons.wikimedia.org/wiki/File:Inundaci%C3%B3n_Carhuaz_1844.png,https://upload.wikimedia.org/wikipedia/commons/d/de/Inundaci%C3%B3n_Carhuaz_1844.png
+doc_07,datos/raw/documentos/doc_07.jpg,impreso,Wikimedia Commons (Public domain),"EL
+Este periodico se publicará
+or ahora eventualmente; su
+recio será la gratitud que
+uede recibir de cuantos lo
+ean. Todos los artesanos tie-
+en un derecho a él, y pue-
+len ocurrir á la imprenta del
+NUM. 12]
+Para muchos soy defensa
+Para pocos el azote,
+Y para la desverguenza
+Hago veces de garrote.
+INTERIOR.
+Nueve dias tardó en salir al público
+el bostezo del club criminal, conocido
+por el Cordelario: mas al fin rompió su
+silencio sepulcral en 20 del corriente,
+cuando el Montonero vivacaba por las
+costas con su partida, esperando llenar
+su deber á la ilegal aprocsimacion del
+gefe de la Cordelaria. Es por esto que
+suplica á sus suscritores se desentiendan
+de una demora de quince dias ocasio-
+nada en razon del servicio. Ha llegado
+algo bilioso por no haber logrado su pro-
+pásito, y el furor dirige su pluma al no-
+ar los sendos vejigasos que han sufri-
+do sus compatriotas en el número 29
+y30 del Limeño.
+EL MONTONERO
+ucesos que tuvieron lugar en los pri-
+meros dias de este año feliz, nos lison-
+0
+Telegrafo por un ejemplar to
+das las veces que salga a luz.
+Admite comunicados siempre
+que tiendan a morigerar las
+pasiones,conteniendo a los ene
+migos del orden.
+[GRATIS.
+recojer por fruto de tantos esfuerzos la
+tranquilidad que ancian los pueblos; pa-
+rece como que el genio del mal incesan-
+te en nuestro daño, à cada paso prepa.
+rar quisiese nuevas borrascas, para di.
+sipar las esperanzas de los ciudadanos,
+agoviados con los continuos desastres
+del estado.
+En efecto: el aparecimiento de un re.
+pentino choque en los poderes, y el apa-
+rato de un ominoso desacuerdo entre las
+autoridades, se presentan como presa-
+gios de nuevos é inmensos males; cuan.
+do un vil puñado de convulsos tornan-
+do su quimérico amor patrio, en la prac-
+tica de la mas amagante licencia, á la
+sombra de circunstancias favorables pa-
+ra las facciones, ostentan atizar la divi-
+sion de las clases, y soplar el odio de
+los partidos, por incendiar de hecho al
+esta o, con el voráz fuego del mas en-
+carnizado patricidio.
+Muy envano se procuraria pues en
+un tal caso, reprimir incidencias tan fu-
+nestas, si en veidad poderosos conjura-
+dos contra la tranquilidad pública, di-
+seminados en los poderes mismos, nos
+condujeran al último infortunio. Si! los
+LIMA, SABADO 27 DE SETIEMBRE DE 1834
+Cuando á impulsos de los grandiosos fautores de las calamidades de la nacion,
+armados de influjo, al poner en obra las
+tramas de sus crimimales atentaciones;
+jeábamos con el térnino de la pasada muy á su salvo, y sobre las misimas le-
+anarquia, creyendo llegada la vez de yes prodigarian á la patria desgracias","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,2588,75,0.985,True,"Carátula de El Montonero (n. 12, año 1834).jpg","https://commons.wikimedia.org/wiki/File:Car%C3%A1tula_de_El_Montonero_(n._12,_a%C3%B1o_1834).jpg",https://upload.wikimedia.org/wikipedia/commons/7/73/Car%C3%A1tula_de_El_Montonero_%28n._12%2C_a%C3%B1o_1834%29.jpg
+doc_08,datos/raw/documentos/doc_08.jpg,impreso,Wikimedia Commons (Public domain),"PERIODICO SEMAN AL.
+Tiene Editer Responsoble.
+AÑOI  LIMA JUEVES 27 DEFEBRERO DE 1873 XUMI
+La Honra Nacional Escarnecida la
+Virtud y la Justicia últrajadas, LA SAN
+GRE DE LOS CORONELES DON MARIA-
+NO HERENCIA ZEBALLOS Y DON DO-
+MINGO GAMIO, exijen Venganza, el Pa-
+triotismo lo Decreta y el Pueblo debe cum","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,304,10,0.957,True,La Campana Arequipa 1873.jpg,https://commons.wikimedia.org/wiki/File:La_Campana_Arequipa_1873.jpg,https://upload.wikimedia.org/wikipedia/commons/2/20/La_Campana_Arequipa_1873.jpg
+doc_09,datos/raw/documentos/doc_09.jpg,foto,Wikimedia Commons (CC BY-SA 4.0),"Esta tierra nuestra
+JOSE RAMIREZ EL PASTOR CATAQUENSE
+QUE SE CONVIRTIO EN MUSICO NOTABLE
+trabajó desde que aprendió a hablar y a ca- donde forma la ""Banda Unión""y se dedica a
+minar como pastor de cabras, en el tejido de la docencia teniendo como uno de sus prime-
+esteras de carrizo, de sombreros de paja to- ros discípulos al hoy destacado compositor
+quilla, en el sembrío de la tierra y en las nacional Alberto Mejía.
+minas de yeso. Su prestigio lo lleva, en 1922, a la Filar-
+A los diez años, en 1895, se establece con ménica de Piura, de la que es Director el
+sus padres en Catacaos y asiste a la escuela ciudadano alemán Carlos Lessel Reutter, y,
+que dirigió el famoso maestro Ciro Tito An- más tarde, a organizar conjuntos musicales
+drade. Fue allí donde encontró su destino en Sullana y en Chulucanas.
+Por Carlos Robles Rázuri del que no se apartaría jamás. Su mayor triunfo fue lograr la Medalla de
+Iba el pequeño por una de las polvorien- Oro del Concurso de Bandas organizado por
+tas calles cuando vio una casa en la que un la Confederación Obrera de Piura, en 1934,
+""señor"" dirigía a un grupo de jóvenes que con motivo del centenario del-nacimiento
+tocaban diversos ""aparatos"" que producían del héroe de Angamos Contralmirante Mi-
+A música piurana registra en las páginas hermosos sonidos. Quedó encantado y domi- guel Grau.
+de su historia nombres que han dado y nado por el ritmo y se propuso ser músico. Ramírez Rivas cultivó la música clásica y
+siguen dando prestigio a la tierra que Porfió tanto a los padres y habló tanto de la criolla, de la primera se conservan Misas de
+os vio nacer. música que, con la anuencia de éstos y con el Gloria, de Requiem, Vigilias, Responsos,
+Como fanales luminosos del pasado que- apoyo económico del Maestro de Capilla En- Marchas Fúnebres. Pero su recuerdo imperecedero se debe a
+lan los inolvidables Héctor Rojas Goyone- rique Taboada Rivas, ingresó como alumno la música criolla de la que nos ha dejado
+chea (Patorro Rojas), tal vez el más notable del Maestro Acosta que dirigía la ""Banda Bo-
+el más conocido, Juan Requena y otro livar No. 2"". composiciones que todavía se tocan, entre
+nás; en el presente Gladys Bisayachi de Viz- Para comenzar y sin contar con su habili- ellas los valses ""Viaje al Sol"", ""Sangre Incai-
+arra (Gladys Prats), Otero, Miguel Correa, dad se le proporcionó un bajo viejo y aguje- ca"", ""Los pobrecitos""; los tonderos: ""Tu
+Miguel Arrese y otros ya consagrados o en reado pero fue tal el progreso que logró a tienes la culpa zamba"", ""Amor mal pagado"",
+amino del éxito. poco del ingreso que el Profesor Acosta le ""Gemelito de Oro"", ""Cholito Ingrato""; las
+La vida de estos inspirados cultores de entregó un nuevo bajo y lo puso de ejemplo marineras: ""Quiero solo a ti"", ""La Borrachi-
+uestra música es interesante y sugestiva, a sus compañeros. ta"", ""China linda"", ""La china y el cholo"",
+ero, ninguna, tal vez, lo es tanto como la A partir de 1900, José Ramírez, se impo- ""Punta y Punta"", ""Mi palomita"".
+del pastorcito José Emilio Ramírez Rivas ne por su talento, no sólo domina la teoría Tiene registrada, además polkas, pasillos,
+que desde su humilde oficio, después de 68 sino que se convierte en sobresaliente ejecu- huaynitos, marchas militares.
+ños de vida y lucha, se convirtió en uno de tante y auxiliar de su maestro. Impresionante y de calidad es, pues, la
+os mejores exponentes del espíritu creador Luego vienen las giras y concursos por producción del inolvidable cataquense José
+de la armonía regional y experto en el mane- Piura, Sullana y demás pueblo del departa- Ramírez quien debe ocupar el lugar que me-
+o de todo tipo de instrumentos. mento hasta que en 1905 pasa con su maes- rece en la historia musical del Perú y de
+El pueblecito de Casagrande, del distrito tro a Guayaquil donde se incorpora a la Piura.
+le Catacaos, en la Provincia de Piura, vio ""Banda del Guayas"", primero, y, luego, juz- La vida terrena de tan prestigioso artista
+acer, un 29 de setiembre de 1885 a José gándose capaz de actuar independientemente piurano se extinguió el 25 de abril de 1953
+Emilio Ramírez Rivas, hijo de José del Car- forma su propia banda y cosecha éxito tras pero sus discípulos y los músicos piuranos
+nen Ramírez y de Baltazara Rivas, ambos de éxito. contemporáneos lo tienen como ejemplo.a
+ondición humilde. El amor a la tierra nativa lo atrae tanto, imitar y como gloria que es necesario mante-
+El chiquillo, como todos los lugareños. que, en 1909, vuelve a Piura, a Catacaos, ner y exaltar.
+“EL PALACIO DEL MURANO""
+DE
+JUSTO LEZAMA RAMIREZ
+Saluda a su distinguida clientela, de los Departamen-
+tos de Piura y Tumbes con ocasión de celebrarse un
+Aniversario más de nuestra Independencia Nacional.
+CARRETERA PANAMERICANA
+AGUAS VERDES-TUMBES-SUCURSAL No.11","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,4744,101,0.994,True,"Publicación de la Revista Epoca, julio 1984 ..JPG","https://commons.wikimedia.org/wiki/File:Publicaci%C3%B3n_de_la_Revista_Epoca,_julio_1984_..JPG",https://upload.wikimedia.org/wikipedia/commons/c/c9/Publicaci%C3%B3n_de_la_Revista_Epoca%2C_julio_1984_..JPG
+doc_10,datos/raw/documentos/doc_10.jpg,foto,Wikimedia Commons (CC BY-SA 4.0),"JOSE RAMIREZ, EL PASTOR CATAQUENSE
+QUE SE CONVIRTIO EN MUSIO NOTABLE
+por CARLOS ROBLES RAZURI
+La música piurana re- de cabras, en el tejido de tante y auxiliar de su
+maestro.
+historia nombres que han breros de paja toquilla, en Luego vienen las giras
+dado y siguen dando pres- el sembrio de la tierra y v·concursos por Piura, Su-
+tigio a la tierra que los en las minas de yeso. llana v demás nueblos del
+vio nacer. A los diez años, en 1895, departamento Jtasta que
+Como fanales luminosos se establece con sus·pa- en 1905 pasa con su maes-
+dres en Catacaos y asiste tro a Guayaouil donde se
+olvidables Héctor Rojas a-la escuela que dirigió el incorpora a la ""Banda del
+famoso maestro Ciro Tito Guavas"". primero, y, lue-
+Andrade. Fue allá, en la Vi go, juzgándose capaz de ac
+ble y el más conocido, lla Heroica, donde encon- tuarindenendientemente,
+Juan Requena y otro más; tró su destino del que no forma su propia banda y
+en el presente Gladys Bl- se apartaría jamás. cosecha éxito tras éxito.
+sayachi de Vizcarra (Gla- El amor a la tierra nati-
+dys Prats), Iba el pequeño en 1900, va lo atrae tanto, que, en
+Otero, Miguel Correa, Mi- por una de las polvorientas 1908, vuelve a Piura, a Ca-
+guel Arrese y otros ya con calles cuando vio una ca- tacaos, donde forma la
+sagrados o en camino del. sa en la que un ""señor"" ""Banda Unión"" y se dedica
+éxito. dirigía a un grupo de jó- a la docencia teniendo co-
+La vida de estos inspira- venes que tocaban diversos mo uno de sus primeros
+dos cultores de nuestra ""aparatos"" que producian discipulos al hoy destaca-
+música es interesante y hermosos sonidos. Quedó do compositor nacional Al-
+sugestiva, pero, ninguna, encantado y dominado por berto Mejía.
+tal vez, lo es tanto como la el ritmo y se propuso ser Su prestigio lo lleva,
+del pastorcito José Emilio músico. Porfió tanto a los en 1922, a la Filarmónica
+Ramirez Rivas, que desde padres y habló tanto de de Piura, de la que es Di-
+su humilde oficio, desnués música que, con la anuen- rector el ciudadano ale-
+de 68 años de vida y lu- cia de éstos y con el ano- mán Carlos Lessel Reutter,
+cha, se convirtió en uno yo económico del' Maestro y, más tarde, a organizar
+de los mejores exponentes de Capilla Enrique Taboa- conjuntos musicales en Su
+del espíritu creador de la da Rivas, ingresó como a- llana y en Chulucanas.
+armonía regional y exper- Jumno del Maestro ecuato Su mayor triunfo fue
+to en el manejo de todo riano Crisanto Acosta, que lograr la Medalla de Oro
+tipo de instrumentos. dirigía la ""Banda Bolivar del Concurso de Bandas
+Nº 2"". organizado por la Confe-
+El pueblito de Casagran Para comenzar y sin con deración Obrera de Piura,
+de, del distrito de Cata- tar con su habilidad se le en 1934, con motivo del
+caos, en la provincia de proporcionó un bajo viejo centenario del nacimiento
+Piura, vio nacer. un 29 de y aguiereado pero fue tal del héroe de Angamos Con
+setiembre e 1885, a José el progreso que logró a po tralmirante Miguel Grau.
+Emilio Ramirez Rivas. hi- co del ingreso que el pro- Ramirez Rivas cultivó
+jo de José del Carmen Ra fesor Acosta le entregó un la música clásica y la crio
+mirez y de-Baltazara Ri- nuevo baio y lo puso de lla, de la primera se con-
+vas, ambos de condición ejemplo a sus compañeros. servan Misas, de Gloria, de
+humilde. A partir de 1900, José Ra Requiem, Vigilias, Respon-
+El chiquillo, como todos mírez, se impone por su sos, Marchas Fúnebres.
+los lugareños, trabajó des- talento. no sólo domina la Pero su recuerdo impe-
+de que aprendió a hablar teoría sino que se convier- recedero se debe a la mú-
+y a caminar como pastor te en sobresaliente ejecu- sica criolla de la que nos
+ha dejado composiciones
+03-06-73 que todavía se tocan, en-
+tre ellas los valses: ""Viaje
+HACE FRIO al Sol"", ""Sangre Incaica"",
+""Los robrecitos""; los ton-
+deros: ""Tu tienes la culpa
+zamba"", ""Amor mal paga-
+do"", ""Gemelito de Oro"",
+ANY GRAU ""Cholito Ingrato""; las ma
+rineras: ""Quiero solo a ti"",
+tiempos y más tiempo; ""La Borrachita"", ""China
+¿Estamos consagrados por linda"", ""La China y el Cho
+el Amor y vivimos en el Es la oración de Cristo.
+odio? Es modelo de oración y·mo lo"". ""Punta y Punta"". ""Mi
+Dios nos llamé para siem- delo de fe para seguir siem palomita"".
+pre para ser digno de uni- pre en línea con El, en el Tiene registradas, ade-
+dad en El. ¿Y viviremos Padre v su Espíritu San- más, polkas, pasillos, huay
+siempre cada uno por su to. nitos, marchas militares.
+lado? XXX Impresionante v de ca-
+""Yo les he dado tu Pala- Ojalá que los hombres no lidad es, pues, la produc-
+bra"", dice Jesús..... y no- nos vean leerlo. pero pue- clón del inolvidable cata-
+sotros la hemos guardado dan decir al ver cómo ac- quense José Ramírez qulen
+en Biblla de lujo en sagra- tuamos. debe ocupar el lugar que
+rios bellos y en templos Por fin hay algunos cris merece en la historia mu-
+grandes.. ..todo ha que- tlanos que viven como si sical del Perú y de Piura.
+dado frío porque no le da hubleran leido el Evange- La vida terrena de tan
+vidanuestro corazón y lio... prestigioso artista piurano
+nuestro amor. Necesitamos los cristianos se extinguió el 25 de abril
+Y junto al Amor hace menos ""faroles"". menos pa de 1953 pero sus discípu-
+frio. labrería, menos propagan- los y los músicos piuranos
+El capítulo 17 de S. Juan al da y más amor en nuestra contemporáneos lo tlenen
+que pertenece el Evangelio vida. Cuan olgamos: ""!Mi- como ejemplo a imitar 
+de hoy, es para rezarlo de rad cómo se aman!"". Todo como glorla que es nece-
+rodillas, para meditarlo irá en camino... sario mantener y exaltar.","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,5513,242,0.99,True,"Publicación del Diario ""El Tiempo"" año 1973..JPG",https://commons.wikimedia.org/wiki/File:Publicaci%C3%B3n_del_Diario_%22El_Tiempo%22_a%C3%B1o_1973..JPG,https://upload.wikimedia.org/wikipedia/commons/b/b0/Publicaci%C3%B3n_del_Diario_%22El_Tiempo%22_a%C3%B1o_1973..JPG
+doc_11,datos/raw/documentos/doc_11.jpg,foto,Wikimedia Commons (CC BY 4.0),"""MI AMBICION MAS FERVIENTE FUE UN PERU GRANDE Y RESPETADO"".
+""HE FUNDADO EL PARTIDO UNION REVOLUCIONARIA, NO PARA SATISFACER LA VÁNIDAD
+DE UN GRUPO DE HOMBRES, SINO PARA ORGANIZAR EL ANHELO DE REDENCION DE LAS
+MASAS"".
+Luis M. SANCHEZ CERRO
+Este periódico tiene por nombre ""ACClON"". Por que
+acción de ella y de la noble energía bien encaminada es po-
+sible despertar de su letargo a las masas ciudadanas.
+C. A. MEZA
+Es tribuna de los ideales democráticos del Manifiesto de Arequipa
+Director Propietario C. A. MEZA Editorial ""INCA
+Año VII Lima, Sábado 15 de Julio de 1939 No. 170
+El caudillo
+auténtico
+Sobre el aplanamiento que im
+puso el régimen leguísta al pueblo
+peruano, se levantó la egregia figu
+ra de Luis M. Sánchez Cerro. Quizo
+acabar con la corrupción y el envi-
+lecimiento que enseñoreaban sobre
+hombres e instituciones.Y cumplió
+gallardamente su propósito.
+Audaz, enérgico, patriota y aus-
+tero, Sánchez Cerro se levantó en
+armas el 22 de agosto de 1930, en
+la histórica ciudad del Misti. Reno
+vó, así, en un vigoroso y formida-
+ble esfuerzo, sus tentativas de res-
+tauración de la constitucionalidad, el
+orden y el respeto a los derechos hu-
+manos.
+Le sonrió el triunfo. Su grande-
+za heróica se sobrepuso a todos los
+obstáculos y el Perú fué libre por
+segunda vez. La pesada loza de on-
+ce años de desgobierno que el ré-
+gimen leguista colocó sobre la con-
+ciencia del pueblo, fué rota.
+Sánchez Cerro redimió al Perú:
+como todo gran renovador fué ca-
+lumniado y blanco de las hostilida-
+des de los descontentos y de los
+hombres inferiores. La serpiente, co
+mo en la leyenda, mató al águila.
+El asesinato fué el único recurso al
+cual pudieron apelar sus adversarios,
+porque no fueron aptos para vencer-
+le en la batalla libre y en el debate
+politico.
+Sánchez Cerro fundó, con am-
+plia visión del porvenir, un gran
+partido popular: la UNION REVO-
+LUCIONARIA.
+La UNION REVOLUCIONA
+RIA, con enonne contenido de ma
+, pariio ereivo de Sánchez
+Cerro, por lo que tiene en sí de can-
+tidad y de emoción cívica, de nú-
+mero y de síntesis popular, es la
+General LUIS M. SANCHEZ CERRO fue:za de mayor empuje constructi-
+vo con qué cuenta la polít'ca na- cional.
+Jefe y fundador de la U. R.","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,2188,68,0.987,True,Periódico Acción de la UR.jpg,https://commons.wikimedia.org/wiki/File:Peri%C3%B3dico_Acci%C3%B3n_de_la_UR.jpg,https://upload.wikimedia.org/wikipedia/commons/1/1d/Peri%C3%B3dico_Acci%C3%B3n_de_la_UR.jpg
+doc_12,datos/raw/documentos/doc_12.jpg,foto,Wikimedia Commons (CC0),"MUNICIPALIDAD PROVINCIAL DE
+MOYOBAMBA
+CAPITAL DEL DEPARTAMENTO DE SAN MARTÍN
+“Año de la Diversificación Productiva y del Fortalecimiento de la Educación”
+RESOLUCION DE ALCALDIA N° 560-2015-MPM
+Moyobamba, 24 de julio de 2015.
+VISTO Y CONSIDERANDO
+Que, de conformidad a lo dispuesto por el artículo
+194° de la Constitución Política del Estado en armonía con el artículo II del Título Preliminar de la Ley N°
+27972 -“Ley Orgánica de Municipalidades”, los gobiernos locales gozan de autonomía politica, económica y
+administrativa en los asuntos de su competencia, radicando esta autonomía en la facultad de ejercer actos de
+gobierno, administrativos y de administración;
+ma
+Que, con motivo de conmemorarse los 475 años de
+Fundación Española de Moyobamba, “Ciudad de las Orquídeas”, Antigua Capital de Maynas y Cuna de la
+Cultura del Oriente Peruano, la Municipalidad Provincial, desea expresar y otorgar el reconocimiento y
+agradecimiento público a personalidades y autoridades representativas de esta Provincia, que por su amplia
+trayectoria y desempeño profesional, contribuyen a la identificación cultural de nuestros pueblos;
+Que, en este sentido, la Municipalidad Provincial de
+Moyobamba, considera conveniente conceder el título de “HIJO PREDILECTO"", al señor PERSONA_10, por su avocada labor en la promoción y difusión de la gastronomía moyobambina, tanto
+nacional como internacional;
+Por lo expuesto, con la atribución que confiere, el
+artículo 6° de la Ley N° 27972 - Ley Orgánica de Municipalidades, concordante con el artículo 43° del mismo
+cuerpo legal; y con las visaciones de los órganos competentes;
+SE RESUELVE:
+ARTICULO PRIMERO.- DECLARAR “HIJO
+PREDILECTO"" al señor PERSONA_10, por su incontrastable aporte como promotor
+gastronómico y difusor de los valores culturales y turísticos de la ciudad Moyobamba.
+ARTICULO SEGUNDO.- ENCARGAR a la
+Oficina General de Secretaría General, la notificación y difusión de la presente Resolución, sin perjuicio de su
+publicación en el Portal Institucional.
+Regístrese, cúmplase y archívese.
+MUNICIPALIDAD PROVMOYOBAMBA REGION SAN MARTIN
+ALCALDIA
+. OSWALDO AMENEZ SALAS
+ALCAUDE","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,2143,38,0.983,False,Otorgamiento Municipal.jpg,https://commons.wikimedia.org/wiki/File:Otorgamiento_Municipal.jpg,https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Otorgamiento_Municipal.jpg/1920px-Otorgamiento_Municipal.jpg
+doc_13,datos/raw/documentos/doc_13.jpg,foto,Wikimedia Commons (CC0),"MUNICIPALIDAD PROVINCIAL DE MOYOBAMBA
+El Alcalde Provincial de Moyobamba
+Ing. Oswaldo Jiménez Salas
+en representación de la
+Municipalidad Provincial de Moyobamba
+concede a don:
+PERSONA_10
+el Título de:
+Hijo Predilecto
+de la ciudad de Moyobamba, conforme a lo dispuesto
+en la Resolución de Alcaldia N° 560-2015-MPM
+de fecha 24 de julio del 2015.
+Moyobamba, 25 de julio del 2015.
+MUNICIPALIDAD PROV MOYOBAMBA REGION SAN MARTIN
+ALCALDIA
+D. OSWALDO AMENEZ SALAS
+ALCAUDE","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,474,19,0.987,False,Nombramiento municipal de Moyobamba 2015.jpg,https://commons.wikimedia.org/wiki/File:Nombramiento_municipal_de_Moyobamba_2015.jpg,https://upload.wikimedia.org/wikipedia/commons/3/3b/Nombramiento_municipal_de_Moyobamba_2015.jpg
+doc_14,datos/raw/documentos/doc_14.jpg,foto,Wikimedia Commons (CC BY-SA 4.0),"bun-mn/ mim/
+L.dl.femyen.S qétile d 1g
+    oron.
+  n e a  n
+r o  
+m
+   
+pese p ot put ps ot o rotn ser
+pet sy in sé ot s è sett seret 
+ert os ste cot s sore eoar sein c eeprere et
+e m    t y o e a
+ty e sestut ps eprrm es eep ae pst epeee eemeté
+ se se    pe ot eeent e rétutees ts ons vrs ese yee epeeeetgene ot ey estare
+-havte alou ot ay sog I asteo ensragt ent (do apeddeeet u
+É v    ee    te  wo an po ws e  woyt ate   ntnd
+ a e  p   e
+                   
+éron ę b
+       ee
+  d    re ot
+        e
+oe o  ne   o gne  z
+       d
+wę wpewyedas wa 'ep nyey ayeeme eet t d    e   w w","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,581,37,0.486,True,Canciller inaugura exposición del centenario del retorno de Tarata al Perú.jpg,https://commons.wikimedia.org/wiki/File:Canciller_inaugura_exposici%C3%B3n_del_centenario_del_retorno_de_Tarata_al_Per%C3%BA.jpg,https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Canciller_inaugura_exposici%C3%B3n_del_centenario_del_retorno_de_Tarata_al_Per%C3%BA.jpg/1920px-Canciller_inaugura_exposici%C3%B3n_del_centenario_del_retorno_de_Tarata_al_Per%C3%BA.jpg
+doc_15,datos/raw/documentos/doc_15.png,foto,Wikimedia Commons (CC BY-SA 4.0),"La Iadustria Trujillo Perú diciembre 30 de 1923
+4
+INDUSTRIASLOCALES
+LA FABRICA DE CERVEZA
+e no podía resistir la compare
+El nuevo impulso que ha tomado esta cióo coo ecs similares de foeme.
+sino que basts era nóciro.
+Aáo drep-ds de ees primers
+industría en Trojillo. ceotatiga de-dicbada ae elaboré
+cerveís de nuero con el ezreden
+le de lus materialea que queda
+Una visita a la fábrica. ucedié lu go fué lo inevitable
+murtoy más foerte despreets
+El moferial y los elemeates qve se emplean garantizaa la caraclartiule.
+boadad del produzto. propis dr estos experimentos po Su calided se
+ca qor esta srndu dutical de deeot deli
+Mace algunos atos Saliemos tambido que una de  i ar, aáo cundlas condicio Bade que buatad
+Bace aigveoe adon qer er ia lan casens del periódo crítico q jor caiodad qela
+pleatd en le ciaded la ladastria babía atravenado esta iodovtrís
+eereeoere, mootáodose oos fira Ércal bobo de eer la poca bre Tan luego se integró las ma tralda del es
+ca en las afonran, y deede cnton ded del articulo qur ella cÉvcía. quinarise y ec comensó a truer gur como Mas
+ere m mcbae les vcatadie Fuimos a la fábrica dc Acsla mriea pr ma is agie, comow
+Para compper de crron fuimoe a mejor-be,y pud, el crrreorre tamrete pona
+scto r c n todio los elmentos
+etxtancie y de gér ercizatemro reque áls, el pr ducto meor la verdad de
+len ciiere pomudas se hatian dor Junn Dalmeo G, que ee egán nue releren,hasts eleztre
+eito fepirabirmeate pare la quire ba tomado el negocio pir mo depoder competir ventajo- trarla mala
+se coenta deade el 1º de nocira Vista exferior de la tábrica eet eon sus simlaree de é perienrias
+pocer de ceren los may Callso. en el páblies
+preialiata Sr Jubo R Janke. Eo su crmpatia rrcorrimos la cimiento, el lavado de la mmay
+fábricay con eu syuda nos ente y la pastrurizacióa el embotella
+ramos de moche coses qur de mient=fof precian atend r con
+otra murera babrisn pasidode meguinaiesadcoadas
+sapercibdas Al msmo tirmpose dis uns
+Mejora y aumento de las ma moy r capscidad protoc ora s
+quinarias Is fibrics.
+De la fáb ica antizes queda may Se enasochó los depósssos yee
+poro co mat-ria de miquin rias cren nuetus errvicios que, aus-
+Sti'es. quriodipeoesbies, mo (xistian
+Cusndo el p gocio eetur-a wutrs
+pento deiquidarelaño panado La materia prima
+y ee controtò do Limn un cerre Yase h comprubdo que leu
+cero especolata, al veir éate a frecas a rrpecidoe dr esta iodue-
+entgró dr que ina migaiosa eran tria baove debido a la cusi uala
+lebrirntea lo misme que la fuer bondsd dela ce wcew y éta mo
+tri be riconocida otro orie a que
+Propuso la adqoisicióa de to- ln materia prima msia y la deá
+do lo necrssrio y asi er hizo, pu cieote dirección técuica.
+dicodo sergorarse que sborn ee Segán tenrmos entendido se
+cornta con todas las maquina principió a claborar cereeza con
+rías y elemeaton mecinicos con ápulo y malta de calidsd labma
+duccotee a la rlaboracióo de la y bosts en malae coodicionee, al
+cerreza.","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,2928,111,0.746,True,"Noticia diario la Industria, Trujillo 1923.png","https://commons.wikimedia.org/wiki/File:Noticia_diario_la_Industria,_Trujillo_1923.png",https://upload.wikimedia.org/wikipedia/commons/6/6c/Noticia_diario_la_Industria%2C_Trujillo_1923.png
+doc_16,datos/raw/documentos/doc_16.jpg,foto,Wikimedia Commons (Attribution),"HOYRECLAMEGRATISCONESTAEDICIÓN
+SUPERPÓSTER DEL BICENTENARIO
+AFRMA PAREDES TERRY
+Expreso REUNIA- CERRÓNSE
+2021
+Guia del BICENTENARIO
+TRICSAN
+大 cepea D
+uca Paga 5y6","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,162,13,0.877,True,Un Acto Solemne Viene Realizando Actividades por el Bicentenario 01.jpg,https://commons.wikimedia.org/wiki/File:Un_Acto_Solemne_Viene_Realizando_Actividades_por_el_Bicentenario_01.jpg,https://upload.wikimedia.org/wikipedia/commons/f/fc/Un_Acto_Solemne_Viene_Realizando_Actividades_por_el_Bicentenario_01.jpg
+doc_17,datos/raw/documentos/doc_17.jpg,manuscrito,Wikimedia Commons (Public domain),"69
+n on e Ent tegomae hoy  gle aompone a  b D geobie de
+Rr Gnel o ee Del Oi b  a  2 agon cupo tring
+Jan-Jalsin
+M Consia Regadelhing
+Toi Meine Ring So
+Riauxetagran Tailin Bi Roo?k Luva Hram ha
+Anan.Cachi Ano-s Foigh tituns
+DnphnlAitiaco En  ii 6
+C Tron. Sa
+Iranttrarcana
+Rolaagicasastivinay Ricola Erba
+VomarKonte yla Chica DiAtrwteg
+a
+mnn
+Cowaes Joage de da inses
+C
+Mar ouia Jomy D. 8ally
+Sela Fors evatrah Aa
+Semile Pergar
+Gawin Rdmarh
+Nisenre Barnice 2
+'frml Se
+ComnOxliade
+Man.eandaeuC
+y Ealsciantes","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,502,42,0.589,True,Acta de Independencia Peru.jpg,https://commons.wikimedia.org/wiki/File:Acta_de_Independencia_Peru.jpg,https://upload.wikimedia.org/wikipedia/commons/0/05/Acta_de_Independencia_Peru.jpg
+doc_18,datos/raw/documentos/doc_18.jpg,manuscrito,Wikimedia Commons (CC BY-SA 3.0),"69
+d
+ncome;
+P ,
+in it en il one e en 
+  è pi L comme Mi aLa Vony de Cos 
+n paristie g baian ara papiol red i laopemin guenl e
+l baviy Dea Qapel Siaon e laolad gel ena dead
+79.E.9 a  
+ClloeceeSmjia2s Jina Aagy
+Joan Jallis Cran.Danctie f-Co Gunn 
+chag
+ Comve eln Wya ril den
+Aadedaad Tnanbio  Aoo?'de Luma Piarro L
+Pra. Coctes
+Toraph nth Ridgna And. Sarpkan Toieth & itavs
+Eagn De la ol","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,384,27,0.634,True,Acta de la Indepencia del Perù.jpg,https://commons.wikimedia.org/wiki/File:Acta_de_la_Indepencia_del_Per%C3%B9.jpg,https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Acta_de_la_Indepencia_del_Per%C3%B9.jpg/1920px-Acta_de_la_Indepencia_del_Per%C3%B9.jpg
+doc_19,datos/raw/documentos/doc_19.jpg,manuscrito,Wikimedia Commons (Public domain),"UN Eneto santa Yobera anguat o San blemonte d Pisee
+caputis ta lo prrimcs e Chinelia d, la Republica del Poni,a
+«an wenle cuatr de Situmbred ml rcheeontes nrentagzute
+al/r cain propu lauto rtimorment a puan Reut themacice
+Porras. lvoin'tss tecn mensote ost co Luje lopitirno olel onive
+Gillerne Porasde lu Vne fuane Baneigasa foras,
+pacc . Meon s usprentat Ir En
+m. lnzepmosino re Tirgoix. Cds Porras, aeproonTadeda
+pa lu Esite Ginroren Suecshsa De li euas ig fi
+El suscrito ccrtifica la
+ERQU autunticidad do la firma de Joreg bengl
+ln prusento fotostutica do
+Sautiamo.
+risco,31 de enoro do 992
+Alfone ","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,602,19,0.664,False,Asiento de la partida de bautismo de Raúl Porras Barrenechea.jpg,https://commons.wikimedia.org/wiki/File:Asiento_de_la_partida_de_bautismo_de_Ra%C3%BAl_Porras_Barrenechea.jpg,https://upload.wikimedia.org/wikipedia/commons/8/86/Asiento_de_la_partida_de_bautismo_de_Ra%C3%BAl_Porras_Barrenechea.jpg
+doc_20,datos/raw/documentos/sup_manuscrito_1.jpg,manuscrito,Wikimedia Commons (CC BY-SA 3.0),"PRESIDENTE CONSTITUCIONAL del PERÚ
+á la Medalla del Centenaric, creada por decreto supremo de 23 de Abril del
+corriente ano, con el fin de conmemorar el primer Centenario de la proclamación
+de la Independencia Nacional, le otorga el presente diploma; debiendo refiendarlo
+el Ministro de Estado en el Despacho de Relaciones Extericres.
+Dado en la casa de Gobierno en Lima, a los veintiocho dias del mes de Julio
+delano de mil novecientos veintiuno.
+A.o
+[Edd,ddd,.","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,462,9,0.849,False,Perucent.jpg,https://commons.wikimedia.org/wiki/File:Perucent.jpg,https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Perucent.jpg/1920px-Perucent.jpg
+doc_21,datos/raw/documentos/doc_21.jpg,manuscrito,Wikimedia Commons (CC BY-SA 4.0),"Conla cuedae dehor Pheyes en vinco de Tebnexo de recesiendos Noves
+tary dos. Lo ef Liz. D Sebastran Sexreno, exlinencia Larogues
+Exrorsire puse abeo, y Chsima, a ilbexie Zrelic, de edad 
+Seas meres quince dias a quuen en caso da nesesidad le Echo e
+tyna el A a Cusebis hamires heligioso verond. de lasmexced.
+ufp derime de Tose Olalla ynelchoza Baladxa, feve ve
+Padnino S Tuan Dionicio Foledo, Festigos Cixraco Obredo Y
+SeoeFen, Stbastran Tunrcro","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,446,9,0.81,False,Joseolaya partida nacimiento chica.jpg,https://commons.wikimedia.org/wiki/File:Joseolaya_partida_nacimiento_chica.jpg,https://upload.wikimedia.org/wikipedia/commons/c/ce/Joseolaya_partida_nacimiento_chica.jpg
+doc_22,datos/raw/documentos/doc_22.jpg,manuscrito,Wikimedia Commons (CC0),"Fed da de odisn
+Ata
+we
+w/s
+Santor
+lolto
+cpomay
+p m coa go fa THhooriovet
+Masia
+cpo.men
+Tthan Phoier
+Ana
+onm te wfirmo
+D
+lhe
+e
+2
+/7m
+Fr
+Yon
+Ja
+del
+C
+17 Shoe
+Fzn
+1$32,anos: me he echo Caigo deut
+doctrina de CSoantiago de Aamp
+De d de Gna tro. deella
+D!.JP J Hortnah.
+Yie Goron del Sioo
+yo de mil ocht trinta y  y.   cna Jon
+pri Cuna proy dik Fot S d. Pad Jie Mort!
+. Comacho, Bepulte de wba pelly, y Cauz bap el eicer
+po maynde antor Iniipe Bitea, de cdad dediery e
+ve ano, nifo I. de Padas Iuipe,y dt Nanuula Iin-
+Ray, nig. dr IrulUoguillo. Murio eibie
+Enladilla dc Santingo & Lomga, en nite day d med Mae
+de mil ac trinta y oor amor: Y l ana tenteat ea dor
+Sepulte d rotre peltey, y Caws bafa in el Pant con, elepo.
+menox dn Maria de cdad de un ano, hifa Natural 2 Cate
+lina Compor, Mrtira del Pue? Y contlo fram
+Inatillar Santiaede damp,n muvediay  ","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,850,45,0.654,False,Libro de Bautismos en la Gran Villa de Lampa 1832.jpg,https://commons.wikimedia.org/wiki/File:Libro_de_Bautismos_en_la_Gran_Villa_de_Lampa_1832.jpg,https://upload.wikimedia.org/wikipedia/commons/e/e1/Libro_de_Bautismos_en_la_Gran_Villa_de_Lampa_1832.jpg
+doc_23,datos/raw/documentos/doc_23.jpg,manuscrito,Wikimedia Commons (CC0),"Libro de Saulismos
+que comiéžan.
+En la Sián Villa de
+Lampa-
+Dih Apuslil Santinge
+Desde el 28 de Fel
+mil ochocientos selir
+yuna hasta
+Siendo Fura Yuter Dr.
+D. Manuel Castilla. Y su teni
+ente. B.s. Sablo Balma.
+And, de 199s.","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,222,13,0.846,False,Libro de Bautismos en la Gran Villa de Lampa 1871.jpg,https://commons.wikimedia.org/wiki/File:Libro_de_Bautismos_en_la_Gran_Villa_de_Lampa_1871.jpg,https://upload.wikimedia.org/wikipedia/commons/6/6b/Libro_de_Bautismos_en_la_Gran_Villa_de_Lampa_1871.jpg
+doc_24,datos/raw/documentos/doc_24.jpg,manuscrito,Wikimedia Commons (Public domain),"N 8219
+Contrata No. J0F,
+en 15 deJoleo 189
+45
+45.-
+Teléfono No.3
+Soles Plata
+peeews de faeta de dervicis
+PERUVIAN TELEPHONE COMPANY.
+Lima, Dehe 2Dde 1895
+la suma de Dov onda a
+por Sat  ammalidat adelantada que comienza","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,218,12,0.869,False,Peruvian Telephone Company receipt Lima 1895.JPG,https://commons.wikimedia.org/wiki/File:Peruvian_Telephone_Company_receipt_Lima_1895.JPG,https://upload.wikimedia.org/wikipedia/commons/8/81/Peruvian_Telephone_Company_receipt_Lima_1895.JPG
+doc_25,datos/raw/documentos/doc_25.jpg,manuscrito,Wikimedia Commons (CC BY-SA 3.0),"PERÚ
+1888
+La Susdad Seografia
+de
+Lima
+cuyo Consejo Direntivo
+ha elegido mimbo dela Inston
+Lr. Capitan de Navio Ernesto Burzagli,
+ere l preete Diploma
+de Socio Corresponsal
+Lima, 15 de agosto de 1921
+M. Meliton Carrapal
+Presidente
+Aceptado en sesion del Seifien to. Aong
+Inscrito a hojas32del 13 del presente mes.
+libro de socios Lecretario","PaddleOCR 3.7 PP-OCRv6 medium (lang=es, PyTorch GPU, preproceso por defecto)",,339,20,0.897,False,Socgeolima.jpg,https://commons.wikimedia.org/wiki/File:Socgeolima.jpg,https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Socgeolima.jpg/1920px-Socgeolima.jpg

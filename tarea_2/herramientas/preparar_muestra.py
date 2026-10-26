@@ -22,10 +22,10 @@ DATOS = RAIZ / "datos"
 MUESTRA_DOCS = {
     "doc_02": (0.10, 0.27, 0.92, 0.60),   # impreso: comunicado MINSA N° 21
     "doc_04": (0.00, 0.03, 1.00, 0.36),   # impreso: boletín de la Liga de Fútbol (1934)
-    "doc_06": (0.00, 0.28, 0.34, 0.45),   # impreso: El Peruano (1844), primera columna
+    "doc_06": (0.00, 0.28, 0.34, 0.444),   # impreso: El Peruano (1844), primera columna
     "doc_09": (0.02, 0.74, 0.98, 0.99),   # foto: aviso en revista Época (1984), luz tenue
-    "doc_12": (0.10, 0.19, 0.82, 0.36),   # foto: resolución municipal, hoja inclinada
-    "doc_15": (0.00, 0.00, 1.00, 0.26),   # foto: La Industria (1923), página curvada
+    "doc_12": (0.10, 0.19, 0.92, 0.339),   # foto: resolución municipal, hoja inclinada
+    "doc_15": (0.00, 0.215, 0.36, 0.42),   # foto: La Industria (1923), página curvada, subtítulos
     "doc_17": (0.00, 0.00, 1.00, 0.17),   # manuscrito: Acta de la Independencia (1821)
     "doc_20": (0.03, 0.50, 0.97, 0.80),   # manuscrito: diploma de la Medalla del Centenario (1921)
     "doc_21": (0.00, 0.00, 1.00, 1.00),   # manuscrito: partida de nacimiento
@@ -35,7 +35,7 @@ MUESTRA_DOCS = {
 # (audio de origen, parte): condición de grabación
 MUESTRA_AUDIO = {
     ("medio_tiempo", 1): "calle con multitud y bocinas",
-    ("agustino_2", 1): "calle, entrevista multihablante",
+    ("agustino_2", 2): "calle, entrevista multihablante",
     ("magdalena_2", 1): "feria al aire libre",
     ("que_es_peru", 1): "plaza, entrevista breve",
     ("fenmucarinap_2", 2): "conferencia de prensa con eco",

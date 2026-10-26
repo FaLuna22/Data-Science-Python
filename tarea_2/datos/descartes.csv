@@ -1,0 +1,2 @@
+id,tipo,archivo_descartado,caracteres_ocr,motivo,reemplazado_por,modalidad,duracion_seg,voz_seg,proporcion_voz
+doc_20,manuscrito,Capitulacón de Ayacucho2.jpg,0.0,"ilegible: imagen de muy baja resolución, el OCR no detecta texto",Perucent.jpg,documento,,,
