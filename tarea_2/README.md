@@ -2,7 +2,7 @@
 
 **Pregunta:** ¿podemos convertir documentos escaneados y entrevistas en audio en un archivo de texto estructurado y buscable?
 
-**Dashboard público:** _(pendiente: enlace de Streamlit Community Cloud)_
+**Dashboard público:** https://voces-documentos-faluna22.streamlit.app/
 
 Pipeline con modelos abiertos y locales: OCR con PaddleOCR, transcripción con faster-whisper (VAD + diarización),
 seudonimización, extracción de campos con un LLM local (Qwen2.5-3B-Instruct) y evaluación contra transcripciones
