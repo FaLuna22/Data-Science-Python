@@ -1,0 +1,21 @@
+id,modalidad,tipo,archivo_eval,recorte,fuente,publicable,duracion_seg,origen,texto_oficial
+doc_02,documento,impreso,datos/raw/recortes/doc_02.png,"0.1,0.27,0.92,0.6",Wikimedia Commons (Public domain),True,,,
+doc_04,documento,impreso,datos/raw/recortes/doc_04.png,"0.0,0.03,1.0,0.36",Wikimedia Commons (Public domain),True,,,
+doc_06,documento,impreso,datos/raw/recortes/doc_06.png,"0.0,0.28,0.34,0.444",Wikimedia Commons (Public domain),True,,,
+doc_09,documento,foto,datos/raw/recortes/doc_09.png,"0.02,0.74,0.98,0.99",Wikimedia Commons (CC BY-SA 4.0),True,,,
+doc_12,documento,foto,datos/raw/recortes/doc_12.png,"0.1,0.19,0.92,0.339",Wikimedia Commons (CC0),False,,,
+doc_15,documento,foto,datos/raw/recortes/doc_15.png,"0.0,0.215,0.36,0.42",Wikimedia Commons (CC BY-SA 4.0),True,,,
+doc_17,documento,manuscrito,datos/raw/recortes/doc_17.png,"0.0,0.0,1.0,0.17",Wikimedia Commons (Public domain),True,,,
+doc_20,documento,manuscrito,datos/raw/recortes/doc_20.png,"0.03,0.5,0.97,0.8",Wikimedia Commons (CC BY-SA 3.0),False,,,
+doc_21,documento,manuscrito,datos/raw/recortes/doc_21.png,"0.0,0.0,1.0,1.0",Wikimedia Commons (CC BY-SA 4.0),False,,,
+doc_24,documento,manuscrito,datos/raw/recortes/doc_24.png,"0.0,0.27,1.0,0.75",Wikimedia Commons (Public domain),False,,,
+clip_53,audio,lectura en estudio (OpenSLR 73),datos/raw/audio/clips/clip_53.wav,,OpenSLR 73 (CC BY-SA 4.0),,5.6,openslr_pef_02484_00640124552,"Tengo una junta de negocios con la firma de abogados, ¿se acuerda?"
+clip_54,audio,lectura en estudio (OpenSLR 73),datos/raw/audio/clips/clip_54.wav,,OpenSLR 73 (CC BY-SA 4.0),,8.7,openslr_pef_01523_00880599786,¿Me puedes ayudar a buscar una receta que sea práctica y que sea rica?
+clip_57,audio,lectura en estudio (OpenSLR 73),datos/raw/audio/clips/clip_57.wav,,OpenSLR 73 (CC BY-SA 4.0),,6.7,openslr_pem_01208_00899753204,Estoy teniendo problemas con mi coche y un amigo me recomendo un Ferrari
+clip_58,audio,lectura en estudio (OpenSLR 73),datos/raw/audio/clips/clip_58.wav,,OpenSLR 73 (CC BY-SA 4.0),,8.0,openslr_pem_00295_01058929077,En lugar de decirme el numero de teléfono para que lo anote ¿me lo podrías mandar por mail?
+clip_22,audio,calle con multitud y bocinas,datos/raw/audio/clips/clip_22.wav,,Wikimedia Commons (CC BY-SA 4.0),,29.9,medio_tiempo,
+clip_04,audio,"calle, entrevista multihablante",datos/raw/audio/clips/clip_04.wav,,Wikimedia Commons (CC BY-SA 4.0),,61.1,agustino_2,
+clip_26,audio,feria al aire libre,datos/raw/audio/clips/clip_26.wav,,Wikimedia Commons (CC BY-SA 4.0),,59.9,magdalena_2,
+clip_23,audio,"plaza, entrevista breve",datos/raw/audio/clips/clip_23.wav,,Wikimedia Commons (CC BY-SA 4.0),,43.6,que_es_peru,
+clip_11,audio,conferencia de prensa con eco,datos/raw/audio/clips/clip_11.wav,,Wikimedia Commons (CC BY-SA 4.0),,62.8,fenmucarinap_2,
+clip_41,audio,testimonio en interior,datos/raw/audio/clips/clip_41.wav,,Wikimedia Commons (CC BY 4.0),,61.3,salas_5,

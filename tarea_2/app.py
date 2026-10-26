@@ -84,11 +84,12 @@ with tab_res:
         resumen = docs.groupby("tipo").agg(documentos=("id", "size"), caracteres=("n_caracteres", "median")).reindex(orden).reset_index()
         fig = px.bar(resumen, x="tipo", y="caracteres", text="documentos", color="tipo",
                      color_discrete_sequence=["#2a6f97", "#f4a261", "#8d5a97"],
-                     title="Texto que el OCR recupera por tipo (mediana de caracteres; etiqueta = nº de documentos)")
+                     title="Caracteres OCR por documento (mediana) · etiqueta = nº de documentos")
         fig.update_layout(showlegend=False, xaxis_title="", yaxis_title="caracteres (mediana)")
         st.plotly_chart(fig, use_container_width=True)
     with b:
-        dur = auds.assign(fuente_corta=auds["origen"].str.replace(r"_\d+$", "", regex=True))
+        dur = auds.assign(fuente_corta=auds["origen"].str.replace(r"^openslr_.*", "openslr73", regex=True)
+                          .str.replace(r"_\d+$", "", regex=True))
         fig = px.histogram(dur, x="duracion_seg", color="fuente_corta", nbins=15,
                            title="Duración de los clips de audio (segundos), por fuente")
         fig.update_layout(xaxis_title="segundos", yaxis_title="clips", legend_title="fuente")

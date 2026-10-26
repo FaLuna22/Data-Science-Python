@@ -6,7 +6,10 @@ Corre en el entorno aparte .venv-gpu (PyTorch con CUDA) porque el entorno del cu
 Lee datos/documentos.csv y datos/transcripciones.csv y escribe datos/extraccion_llm.csv con
 id, modalidad, campos_json, modelo_llm, fecha (+ segundos y si el JSON fue válido).
 
+El modelo se carga cuantizado a 4 bits (NF4, cómputo en bf16, ~2,2 GB de VRAM) para que quepa en la GPU de 8 GB
+de la laptop junto a otros procesos; en bf16 (6,2 GB) desbordaba a memoria compartida y tardaba ~2,5 min por texto.
 Decodificación greedy (sin muestreo): la misma entrada da siempre la misma salida.
+El avance se guarda en datos/raw/extraccion_llm_parcial.jsonl: si se interrumpe, retoma donde quedó.
 """
 from __future__ import annotations
 
@@ -19,7 +22,7 @@ from pathlib import Path
 
 import pandas as pd
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 RAIZ = Path(__file__).resolve().parents[1]
 DATOS = RAIZ / "datos"
@@ -56,7 +59,8 @@ ESQUEMA_AUDIO = """Devuelve este JSON:
 
 def cargar():
     tok = AutoTokenizer.from_pretrained(MODELO)
-    modelo = AutoModelForCausalLM.from_pretrained(MODELO, dtype=torch.bfloat16, device_map="cuda")
+    cuant = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_compute_dtype=torch.bfloat16)
+    modelo = AutoModelForCausalLM.from_pretrained(MODELO, quantization_config=cuant, device_map="cuda")
     return tok, modelo
 
 
@@ -87,10 +91,14 @@ def main():
     auds = pd.read_csv(DATOS / "transcripciones.csv")
     tareas = [(r.id, "documento", r.texto_ocr, ESQUEMA_DOC) for r in docs.itertuples()]
     tareas += [(r.id, "audio", r.texto_asr, ESQUEMA_AUDIO) for r in auds.itertuples()]
+    parcial = DATOS / "raw" / "extraccion_llm_parcial.jsonl"
+    filas = [json.loads(l) for l in parcial.read_text(encoding="utf-8").splitlines()] if parcial.exists() else []
+    hechos = {f["id"] for f in filas}
     tok, modelo = cargar()
-    print(f"{MODELO} en {torch.cuda.get_device_name(0)} · {len(tareas)} textos", flush=True)
-    filas = []
+    print(f"{MODELO} en {torch.cuda.get_device_name(0)} · {len(tareas)} textos ({len(hechos)} ya hechos)", flush=True)
     for id_, modalidad, texto, esquema in tareas:
+        if id_ in hechos:
+            continue
         texto = texto if isinstance(texto, str) else ""
         respuesta, seg = preguntar(tok, modelo, texto, esquema)
         campos, valido = a_json(respuesta)
@@ -98,8 +106,10 @@ def main():
             campos = {"modalidad": modalidad, "error": "respuesta sin JSON válido", "respuesta_cruda": respuesta[:500]}
         campos["modalidad"] = modalidad
         filas.append({"id": id_, "modalidad": modalidad, "campos_json": json.dumps(campos, ensure_ascii=False),
-                      "modelo_llm": f"{MODELO} (bf16, GPU, greedy)", "fecha": date.today().isoformat(),
+                      "modelo_llm": f"{MODELO} (4-bit NF4, GPU, greedy)", "fecha": date.today().isoformat(),
                       "segundos": round(seg, 2), "json_valido": valido})
+        with parcial.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(filas[-1], ensure_ascii=False) + "\n")
         print(f"{id_:10s} {seg:5.1f} s  {'ok' if valido else 'JSON INVÁLIDO'}  {campos.get('tema')}", flush=True)
     salida = pd.DataFrame(filas)
     salida.to_csv(DATOS / "extraccion_llm.csv", index=False)
