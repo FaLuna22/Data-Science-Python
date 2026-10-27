@@ -54,12 +54,16 @@ c1, c2, c3, c4, c5 = st.columns(5)
 c1.metric("Documentos procesados", len(docs))
 c2.metric("Minutos de audio transcritos", f"{auds['duracion_seg'].sum() / 60:.1f}" if len(auds) else "—",
           help=f"{len(auds)} clips")
-cer_b = metrica("PaddleOCR", "documentos")
-wer_b = metrica("small", "audio")
-c3.metric("CER PaddleOCR (10 docs)", f"{cer_b:.2f}" if cer_b is not None else "pendiente",
-          help="Tasa de error por carácter frente a transcripciones manuales. Menos es mejor.")
-c4.metric("WER faster-whisper small (10 clips)", f"{wer_b:.2f}" if wer_b is not None else "pendiente",
-          help="Tasa de error por palabra frente a transcripciones manuales. Menos es mejor.")
+cer_e, cer_p = metrica("EasyOCR", "documentos"), metrica("PaddleOCR", "documentos")
+wer_s, wer_t, wer_q = metrica("small", "audio"), metrica("turbo", "audio"), metrica("Qwen3", "audio")
+if cer_e is not None:
+    c3.metric("CER EasyOCR (10 docs)", f"{cer_e:.2f}", delta=f"PaddleOCR {cer_p:.2f}", delta_color="off",
+              help="Tasa de error por carácter frente a transcripciones manuales. Menos es mejor.")
+    c4.metric("WER faster-whisper small (10 clips)", f"{wer_s:.2f}", delta=f"turbo {wer_t:.2f} · Qwen3 {wer_q:.2f}",
+              delta_color="off", help="Tasa de error por palabra frente a transcripciones manuales. Menos es mejor.")
+else:
+    c3.metric("CER (10 docs)", "pendiente")
+    c4.metric("WER (10 clips)", "pendiente")
 if len(auditoria):
     ok = int(auditoria["completamente_correcta"].sum())
     c5.metric("Acuerdo LLM vs. auditoría humana", f"{ok / len(auditoria):.0%}", help=f"{ok}/{len(auditoria)} extracciones completamente correctas")

@@ -45,17 +45,50 @@ del proyecto *Salas, pantallas y archivos* (WikiAcción Perú). Más 6 frases le
 El detalle por archivo (URL, autor, licencia) está en `datos/fuentes.csv`. Los originales no se versionan; se recuperan con
 `herramientas/descargar.py`.
 
+**Corpus final:** 25 documentos (8/8/9; un manuscrito ilegible por baja resolución se reemplazó por un suplente) y
+58 clips con 48,2 minutos de audio (25 clips con 2 o más hablantes detectados). Ningún duplicado por hash ni audio sin voz.
+
 ## Resultados
 
-_(pendiente)_
+Muestra de evaluación: 10 recortes de documentos (3 impresos, 3 fotos, 4 manuscritos) y 10 clips (4 leídos de OpenSLR 73 y
+6 de entrevistas en distintas condiciones), con referencias transcritas a mano. Todos los modelos se midieron sobre la misma muestra.
+
+| Modalidad | Modelo | Rol | CER / WER | Latencia |
+|---|---|---|---|---|
+| Documentos | PaddleOCR 3.7 (PP-OCRv6, GPU) | base | CER 0,402 | ~0,4 s por recorte |
+| Documentos | **EasyOCR 1.7.2 (GPU)** | **elegido** | **CER 0,355** | ~0,8 s por recorte |
+| Audio | **faster-whisper `small` (CPU)** | **base y elegido** | **WER 0,258** | RTF ~0,25 |
+| Audio | Qwen3-ASR 0.6B (GPU) | alternativo | WER 0,250 | RTF ~0,3 (GPU) |
+| Audio | Whisper large-v3-turbo (CPU) | alternativo | WER 0,244 | RTF ~0,5 |
+
+**Extracción con LLM** (Qwen2.5-3B-Instruct local, 4 bits): 82 de 83 respuestas con JSON válido. **Acuerdo LLM-humano:
+13/20** extracciones completamente correctas (7/10 audios, 6/10 documentos).
+
+```
+Resultados Test: WER: 0.26 | CER: 0.36 | Acuerdo LLM-Humano: 13/20
+```
 
 ## Hallazgos
 
-_(pendiente)_
+1. **El soporte pesa más que el modelo.** En documentos, el CER va de 0,05 en impresos y 0,10 en fotos (EasyOCR) a 0,61–0,71
+   en manuscritos con cualquier modelo: en el Acta de la Independencia de 1821, PaddleOCR no detecta ni una línea. En audio,
+   las frases leídas en estudio tienen WER ≤ 0,05 y la entrevista breve en una plaza, con siete voces en 44 segundos, llega a
+   0,55–0,69. Cambiar de modelo mueve el error unas centésimas; cambiar de condición lo multiplica por diez.
+2. **Los modelos grandes no compraron precisión.** Whisper large-v3-turbo y Qwen3-ASR quedaron prácticamente empatados con
+   Whisper `small` (diferencia ≈ 11 palabras de 803), mientras que turbo cuesta casi el doble de cómputo en CPU. La única mejora real fue
+   Qwen3-ASR en la calle con multitud (WER 0,32 frente a 0,47). El error del LLM también sigue a la entrada: con OCR ilegible
+   de manuscritos inventa emisores y lugares; con texto limpio, fechas y montos salen siempre bien.
 
 ## Limitaciones técnicas
 
-_(pendiente)_
+1. **Muestra chica y recortes.** 10 documentos y 10 clips dan una idea del orden de magnitud, no diferencias finas entre
+   modelos. Los periódicos se evaluaron en recortes de 6 a 15 líneas, así que el CER no mide el orden de lectura en páginas a
+   varias columnas, que en el texto completo a veces mezcla columnas.
+2. **Preprocesamiento y hardware.** El "planchado" de página por defecto de PaddleOCR (UVDoc) deformó un recorte plano
+   (`doc_02`, CER 0,46 en un impreso limpio). No se desactivó para no ajustar después de ver las métricas. En Windows,
+   PaddlePaddle en CPU falla con oneDNN y sin él tardaba hasta 27 minutos por página, por lo que el OCR corrió con el motor
+   PyTorch en GPU. El LLM se cuantizó a 4 bits para caber en 8 GB de VRAM, y algunas mediciones de tiempo se vieron afectadas
+   por otros procesos que compartían la GPU (se reporta la mediana).
 
 ## Ética y datos personales
 
@@ -63,7 +96,8 @@ _(pendiente)_
 - Seudonimización: lista de personas particulares revisada a mano (no versionada) + reemplazo difuso de nombres y borrado
   de DNI, teléfonos y correos (`t2.seudonimizar`). Se conservan los nombres de figuras históricas o públicas en su rol público.
 - Las imágenes que nombran a personas particulares no se muestran en el dashboard; su texto se publica seudonimizado.
-- Los audios se reproducen desde su URL pública de Wikimedia Commons; no se suben audios al repositorio.
+- Las entrevistas se reproducen desde su URL pública de Wikimedia Commons; en el repositorio solo hay 6 frases cortas de
+  OpenSLR 73 (CC BY-SA 4.0, ~1,5 MB en total) en `datos/ejemplos/audio/`.
 
 ## Cómo ejecutar
 
