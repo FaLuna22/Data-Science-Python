@@ -1,0 +1,21 @@
+id,modalidad,fecha,ok_tipo_documento,ok_tema,ok_resumen,ok_emisor,ok_fecha,ok_lugar,ok_monto,completamente_correcta,errores,ok_tipo_audio,ok_citas_clave,ok_numero_hablantes
+doc_04,documento,2026-10-27,True,True,True,True,True,True,True,True,,,,
+doc_16,documento,2026-10-27,True,True,False,True,True,False,True,False,En la primera frase toda la oración esta junta,,,
+doc_19,documento,2026-10-27,True,True,True,False,True,False,True,False,,,,
+doc_17,documento,2026-10-27,True,True,True,False,True,True,True,False,,,,
+doc_15,documento,2026-10-27,True,True,True,True,True,True,,True,,,,
+doc_25,documento,2026-10-27,True,True,True,True,True,True,True,True,"Nos es susad seografia de Lima, pero el contexto es correcto",,,
+doc_05,documento,2026-10-27,True,True,True,True,True,True,True,True,,,,
+doc_09,documento,2026-10-27,True,True,True,True,True,True,True,True,,,,
+doc_11,documento,2026-10-27,True,True,True,True,True,True,True,True,,,,
+doc_18,documento,2026-10-27,True,False,False,True,True,True,True,False,,,,
+clip_47,audio,2026-10-27,,True,True,,,True,,True,,True,True,True
+clip_15,audio,2026-10-27,,True,True,,,True,,True,,True,True,True
+clip_20,audio,2026-10-27,,True,True,,,True,,True,,True,True,True
+clip_32,audio,2026-10-27,,True,True,,,True,,True,,True,True,True
+clip_50,audio,2026-10-27,,True,True,,,True,,True,,True,True,True
+clip_12,audio,2026-10-27,,True,True,,,True,,False,,False,True,True
+clip_11,audio,2026-10-27,,True,True,,,True,,True,,True,True,True
+clip_17,audio,2026-10-27,,True,True,,,True,,True,,True,True,True
+clip_19,audio,2026-10-27,,False,False,,,True,,False,,True,True,False
+clip_24,audio,2026-10-27,,True,True,,,True,,False,,False,True,False

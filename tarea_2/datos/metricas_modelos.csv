@@ -1,0 +1,6 @@
+modalidad,modelo,rol,métrica,valor,CER/WER peor caso,latencia
+documentos,EasyOCR,alternativo,CER,0.35525260625501204,0.7125748502994012,0.52 s por recorte (GPU)
+documentos,PaddleOCR (base),base,CER,0.40176423416198875,0.6137724550898204,0.32 s por recorte (GPU)
+audio,Qwen3-ASR 0.6B,alternativo,WER,0.2503113325031133,0.6875,RTF 0.36 (GPU)
+audio,Whisper large-v3-turbo,alternativo,WER,0.24408468244084683,0.5625,RTF 0.48 (CPU)
+audio,faster-whisper small (base),base,WER,0.2577833125778331,0.546875,RTF 0.23 (CPU)

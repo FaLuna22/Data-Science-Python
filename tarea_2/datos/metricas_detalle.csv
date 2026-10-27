@@ -1,0 +1,182 @@
+modalidad,modelo,id,condicion,metrica,error,segundos,hipotesis
+documento,PaddleOCR (base),doc_02,impreso,CER,0.46354883081155435,0.3638144999858923,"   d
+o9
+e  a
+que a
+nit
+ns f fue
+desfavorable produciéndose su deceso a las 18.15 horas.
+El otro caso corresponde a un paciente de 69 años, con antecedente
+de viaje a España que fue atendido en el hospital Edgardo Rebagliat
+por un cuadro respiratorio y falleció en su domicilio.
+En nombre de todos los peruanos expresamos nuestras más sentidas
+condolencias a los familiares en este momento de dolor."
+documento,PaddleOCR (base),doc_04,impreso,CER,0.003289473684210526,0.4856489999801852,"LIGA PROVINCIAL DE
+FUTBOL DE LIMA
+BOLETIN No. 161
+Posición definitiva de los clubs que
+concursan en el Campeonato de pri-
+mera división de 1934, después de cum-
+plidos los partidos correspondientes a
+la novena y última fecha.
+Primeros equipos. Puntos.
+Alianza Lima 2
+Universitario de Deportes 21
+Sucre F.B.C 19"
+documento,PaddleOCR (base),doc_06,impreso,CER,0.035830618892508145,0.2780701000010595,"HUARAZ.
+(Del Observador.)
+Sub-prefectura de la Provincia—Huaraz, 
+5 de Marzo de 1844.
+Benemérito Señor Prefecto del Departamento.
+Incluyo á US. los dos partes que pasa á esta
+Sub-prefectura el Gobernador de Carhuaz so-
+bre inundaciones aeaecidas en la poblacion
+en los dias 26 del próximo pasado y 1del rorriente"
+documento,PaddleOCR (base),doc_09,foto,CER,0.0078125,0.4593279999680817,"“EL PALACIO DEL MURANO""
+7
+JUSTO LEZAMA RAMIREZ
+Saluda a su distinguida clientela, de los Departamen-
+tos de Piura y Tumbes con ocasión de celebrarse un
+Aniversario más de nuestra Independencia Nacional.
+CARRETERA PANAMERICANA
+AGUAS VERDES-TUMBES-SUCURSAL No.11"
+documento,PaddleOCR (base),doc_12,foto,CER,0.34796238244514105,0.3367887000204064,"“Año de la Diversificación Productiva y del Fortalecimiento de la Educación""
+RESOLUCION DE ALCALDIA N° 560-2015-MPM
+Moyobamba,24 dejulio de 2015.
+VISTOYCONSIDERANDO
+Que, de conformidad a lo dispuesto por el artículo"
+documento,PaddleOCR (base),doc_15,foto,CER,0.10126582278481013,0.16110440000193194,"El nuevo impulso que ha tomado
+industria en Trujillo.
+Una visita a la fábrica.
+Él moterial y los elrmrates que se emplean garantizaa
+bondad del produ-te."
+documento,PaddleOCR (base),doc_17,manuscrito,CER,1.0,0.1488392999744974,
+documento,PaddleOCR (base),doc_20,manuscrito,CER,0.2,0.32404729997506365,"á la Medalla del Centenario, creada por decreto supremo de 23 de Abril del
+corriente ano, con el fin de conmemorar el primer Centenario de la proclamación
+de la Independencia Nacional le otorga el presente diploma; debiendo refrendarlo
+el Ministro de Estado en el Despacho de Relaciones Exteriores
+Dado en la casa de Gobierno en Lima, á los veintiocho dias del mes de Julio"
+documento,PaddleOCR (base),doc_21,manuscrito,CER,0.5393586005830904,0.3340502000064589,"Conla cuedae dehor Pheyes en vinco de Tebnexo de recesiendos Noves
+tary dos. Lo ef Liz. D Sebastran Sexreno, exlinencia Larogues
+Exrorsire puse abeo, y Chsima, a ilbexie Zrelic, de edad 
+Seas meres quince dias a quuen en caso da nesesidad le Echo e
+tyna el A a Cusebis hamires heligioso verond. de lasmexced.
+ufp derime de Tose Olalla ynelchoza Baladxa, feve ve
+Padnino S Tuan Dionicio Foledo, Festigos Cixraco Obredo Y
+SeoeFen, Stbastran Tunrcro"
+documento,PaddleOCR (base),doc_24,manuscrito,CER,0.23225806451612904,0.282471299986355,"Contrala No..f. Lima, Le 23de 1895
+RECB1 da da ante Ri
+la suma de Nor enda a Soles Plata
+por Sar amalidatadelantada que comienza
+en 13 de Jaile0 189 5."
+documento,EasyOCR,doc_02,impreso,CER,0.0041265474552957355,0.7165458000381477,"El Ministerio de Salud Iamenta informar el sensible fallecimiento de
+dos personas por  infección por COVID-19
+Se trata de un varón de 47 años con antecedentes de viaje a España,
+que presentaba asma bronquial y obesidad. Fue internado en la
+unidad de cuidados intensivos del hospital 2 de Mayo; por presentar
+insuficiencia respiratoria shock séptico. Su evolución fue
+desfavorable produciéndose su deceso a las 18.15 horas .
+El otro caso corresponde a un paciente de 69 años con antecedente
+de viaje a España que fue atendido en el hospital Edgardo Rebagliati
+por un cuadro respiratorio y falleció en su domicilio_
+En nombre de todos los peruanos expresamos nuestras más sentidas
+condolencias a los familiares en este momento de dolor"
+documento,EasyOCR,doc_04,impreso,CER,0.10197368421052631,0.48144160001538694,"LIGA PROVINCIAL DE
+FUTBOL DE LIMA
+BOLETIN Yo 161
+Posición definitiva de   los clubs que
+concUrsan Campeonato pri -
+mera división de 1934, después de cum -
+plidos dos partidos correspondientes
+novena últina fecha.
+Primeros equipos Puntos.
+Alianza  Lima 21
+Universitario de Deportes
+Sucre"
+documento,EasyOCR,doc_06,impreso,CER,0.09771986970684039,0.37695390003500506,"HUARAZ.
+Dsl Observador .
+Sub-prefectura de la Provincia_Huuraz,
+5 de Marzo de 1844.
+Benemérito Señor Prefecto del Departamento .
+Incluyo US. Iøs dos partes que pasa esla
+Sub-prefec tura Gobernador de Carhuaz 80-
+bre inunaciones acaecnlas en poblacion
+en   los dias 26 del próximo pasado y 1 ? del
+corricnte."
+documento,EasyOCR,doc_09,foto,CER,0.03515625,0.5557783999829553,"""EL PALACIO DEL MURANO""
+DE
+JUSTO LEZAMA RAMIREZ
+Saluda a su distinguida clientela, de los Departamen-
+de . Piura y Tumbes con ocasión de celebrarse un
+tos
+Aniversario más de nuestra Independencia Nacional.
+CARRETERA PANAMERICANA
+AGUAS VERDES TUMBES SUCURSAL No 1/"
+documento,EasyOCR,doc_12,foto,CER,0.01567398119122257,0.4462715999688953,"""Año de la Divcrsificación Productiva y del Fortalecimiento de la Educación""
+RESOLUCION DE ALCALDIA N"" 560-2015-MPM
+Moyobamba; 24 de julio de 2015.
+VISTO Y CONSIDERANDO
+Que; de conformidad lo dispuesto por el artículo
+194 de la Constitución Política del Estado en armonía con el artículo II del Título Preliminar de la Lev N'"
+documento,EasyOCR,doc_15,foto,CER,0.3860759493670886,0.18231489998288453,"EI uueyo Irpukso que ha  tomado
+iudustrta   eu Trujillo.
+Una visita la fábrica.
+Dnleil $ bs #rurares roplezd curzdluzan
+bad dcl produ-e"
+documento,EasyOCR,doc_17,manuscrito,CER,0.952247191011236,0.27290219999849796,"8aor45 Qew 4 Gu 98
+""an4 497 42
+9 2929232> 5E229
+24689 Rac6 29 02
+Frb;eie"
+documento,EasyOCR,doc_20,manuscrito,CER,0.35434782608695653,0.7879185999627225,"gezCuanto: don 'Cnal dunsog; Gioandanb dslBaenaita bamaz""Eka"" 60 ha echo aobeedon
+6 da %edalla del Centenazio; ocada Faor dooeelo sufeemo de 83 do_clhibdel
+covviontoañc; cor el fin s conmemovav 722 Apimesf benlenatic' do Ja Jhoclamvación
+de , la Ondependemcia  taciovalh1 otosqa 2 pesente spboma ; debiencho hfenchsto
+chitnisbo de @stad em 22 Oesfacho de_ DBlaccazvca_@ctoeiaces
+Oiado  O fa casa de Gotienoen Simasc %os weintiocho dias del Pes dIaulio"
+documento,EasyOCR,doc_21,manuscrito,CER,0.7463556851311953,0.9714846999850124,"132
+ijenco  9la Cunda? delr Jnees 6,9 Vinco 2 Jêbxexo ce
+&27 do; % &2 aô4 8? Sebasezan Vecosesasribves
+Csrovuzz puste Dloo , fxaeao,@xlvienea Daxogles
+~ chauor 4 iillexi 3c2co , de edla .a
+Jax mese quònce &à3 09i<e,1 enrasp 4neesidaa /e €a el
+2me el Ypz Cusesn$ hasuxe belyuze edzoleZamsexce)
+Huj acpuao 2~Sre blala 7vneb{oza 3amara, {ce VlL
+fdnmne 3iZaox Bezzco Jolecte, Rstrjm Cexiaco O&cecco
+febze Sechun~,
+J6asczan &2u*%c207"
+documento,EasyOCR,doc_24,manuscrito,CER,0.6,0.38485160004347563,"Contiatu Ofa. Zeš Sima , 21 d /598
+RECIBI d 742 152 722a
+8uM7 €l de 7h av en Q4 8la @Lta
+a2 4 2ez< 22449 ndelamtada Juc 60m6e""3""
+{47 4)z22> 489 2"
+audio,faster-whisper small (base),clip_53,lectura en estudio (OpenSLR 73),WER,0.0,2.190284700016491,Tengo una junta de negocios con la firma de abogados. ¿Se acuerda?
+audio,faster-whisper small (base),clip_54,lectura en estudio (OpenSLR 73),WER,0.0,1.5003938000299968,¿Me puedes ayudar a buscar una receta que sea práctica y que sea rica?
+audio,faster-whisper small (base),clip_57,lectura en estudio (OpenSLR 73),WER,0.07692307692307693,1.5152421000530012,Estoy teniendo problemas con mi coche y un amigo me recomiendo un Ferrari.
+audio,faster-whisper small (base),clip_58,lectura en estudio (OpenSLR 73),WER,0.1111111111111111,1.828601900022477,"En lugar de decirme el número de teléfono para que lo note, ¿me lo podrías mandar por mail?"
+audio,faster-whisper small (base),clip_22,calle con multitud y bocinas,WER,0.47435897435897434,5.120003600022756,"Normal, pero no lo esperamos Pero como lo ves? Como ves a Perú ahorita? Como ves a Perú No se entiende No se están entendiendo Hay como 4 jugadores que están por las puras Y ahora El técnico tiene que hacer Justo los cambios Supongo esos 4 jugadores Carrillo, Canchita Trauco Y ahora lo haces"
+audio,faster-whisper small (base),clip_04,"calle, entrevista multihablante",WER,0.2868217054263566,15.498369099979755,"La Padula. ¿Por qué? Porque ha demostrado su fuerza y su barra para jugar y ha metido unos cuantos goles. ¿Ha metido goles? Muy bien, sigo con la siguiente señora. PERSONA_3. Para mí sería la Padula con Cueva, porque los dos han hecho un duo. Un duo y la Padula para que demuestre que tiene el corazón más peruano que italiano. Muchas gracias. Sigo con la pregunta. Y antes de empezar con ella, puedo decir que han destacado la Padula más. Y la siguiente pregunta es ¿Cuál es el resultado de hoy? ¿Cuál piensa que va a ser el resultado de hoy? Mi nombre. PERSONA_2, 2-0. Sigo con la siguiente señorita. PERSONA_3. También 2-0, para la que sea 2-0."
+audio,faster-whisper small (base),clip_26,feria al aire libre,WER,0.3355263157894737,14.75989970000228,"¿Qué es el Perú para Esquerda? El Perú para mí es un país que en desarrollo, pero como ves la política no ayuda a eso. Y la gente es lo que hacemos a los políticos, no nos dan cuenta, pero es un país muy rico en gastronomía, en cultura, eso es lo que nos falta potenciar ese lado. ¿Hay algunas características principales positivas en el país? Claro, la gastronomía es una de ellas, la cultura es muy buena y va a ser los lugares donde sean las culturas, también es muy buena, la gente también es muy cálida, nos arriesgamos en lo que es minería, también somos muy buenas en ese lado. ¿Y ahora unos aspectos negativos? En el lado político, en el lado de la corrupción, como en todo lugar, vienen algo..."
+audio,faster-whisper small (base),clip_23,"plaza, entrevista breve",WER,0.546875,7.206859699974302,"Más enrique, más enrique, más hermosa que pueda haber. Perfecto. Dentro de las características positivas que destacarían en el país, controlamos las comidas, las cosas negativas. Mucha delincuencia, mucha agradecimiento. Másicamente. ¿Me tuvieras que dar un mensaje final para los que van? Cuidado del cobi. ¿Sabes más que venir? Listo. Listo. Muchas gracias por tu tiempo."
+audio,faster-whisper small (base),clip_11,conferencia de prensa con eco,WER,0.12578616352201258,16.557919099985156,"a nuestros gobernadores Y una pregunta, ¿Usted en qué momento ha sentido, por primera vez, en qué momento descubrió que usted era peruana? Yo, desde muy pequeña, mi padre ha sido un gran político, siempre nos ha hablado bastante de nuestro período, de sentirnos, de amarnos y creer, incluso él decía ¡Hay que estudiar! ¿Para qué? Para servir a nuestra patria Mi padre era un hombre que le gustaba compartir, era peruano porque se sentía peruano y todas las riquezas eran para todos, no ha sido un hombre egoísta, ha sido un hombre de bien o cuando se ha inculcado desde muy niños, amar y a querer y a compartir, gracias ¿Qué aspectos positivos diría que tiene el Perú? ¿Cómo? ¿Qué aspectos positivos diría que tiene el Perú? Uy, el Perú tiene muchos aspectos positivos, ¿no? Y otras cosas que a veces nuestras autoridades no lo ven por ese lado, ¿no? Pues es positivamente, tenemos nosotros mucho"
+audio,faster-whisper small (base),clip_41,testimonio en interior,WER,0.14634146341463414,14.68922359996941,"Una anécdota que todos nos acordamos de la gente de mi generación, yo soy categoría 82 Y todos nos acordamos del cine de mi barrio, el cine Perú se llamaba en la avenida Perú El cine Junín que diga, en la avenida Perú, había un cine que se llamaba el cine Junín Y había otro cine que se llamaba el cine Perú, el cine Perú estaba en la 430 de la avenida Perú Y el cine Junín estaba en la cuadra 23, creo de la avenida Perú, si no me equivoco 23, 22 Y lo que nos acordamos siempre de los cines del barrio en esa época, es que ponían muchos comerciales Comenzaban los comerciales antes de la película, y a mí la película la cortaban y ponían comerciales Después acabaron la película y más comerciales Y lo que siempre nos acordamos es que la gente que se sentaba en la butaca al segundo piso tiraban pichu"
+audio,Qwen3-ASR 0.6B,clip_53,lectura en estudio (OpenSLR 73),WER,0.0,1.694007900019642,"Tengo una junta de negocios con la firma de abogados, se acuerda."
+audio,Qwen3-ASR 0.6B,clip_54,lectura en estudio (OpenSLR 73),WER,0.0,2.3770362000213936,Me puedes ayudar a buscar una receta que sea práctica y que sea rica.
+audio,Qwen3-ASR 0.6B,clip_57,lectura en estudio (OpenSLR 73),WER,0.07692307692307693,2.252743199991528,Estoy teniendo problemas con mi coche y un amigo me recomienda un Ferrari.
+audio,Qwen3-ASR 0.6B,clip_58,lectura en estudio (OpenSLR 73),WER,0.05555555555555555,2.7981095000286587,"En lugar de decirme el número de teléfono para que lo anote, me lo podrías mandar por mail."
+audio,Qwen3-ASR 0.6B,clip_22,calle con multitud y bocinas,WER,0.32051282051282054,11.600388000020757,normal prefiero no resaltar más pero cómo lo ves cómo ves a Perú ahorita que está cómo lo ves Perú Perú lo ves hasta las está no se no se entiende ven no se están entendiendo no no hay como cuatro jugadores que están por las puras y ya ve ahora el técnico tiene que hacer justo los cambios supongo esos cuatro jugadores carrillo canchita este trauco y y a la lota sino
+audio,Qwen3-ASR 0.6B,clip_04,"calle, entrevista multihablante",WER,0.23255813953488372,22.95535820000805,La padura. porque porque ha demostrado su fuerza y su garra para para jugar ya metido unos cuantos goles ha metido goles muy bien sigo con la siguiente señora PERSONA_3 para mí sería la la padula con cueva no porque los dos han hecho un dúo un dúo y la padula más que para que demuestre que tiene el corazón más peruano que italiano muchas gracias sigo con la siguiente sigo con la pregunta y antes de empezar con ella puedo puedo decir que han destacado la padula más no y la siguiente pregunta es Cuál es el resultado de hoy. Cuál piensa que va a ser el resultado de hoy. PERSONA_2 dos cero sigo con la con la siguiente señorita señora PERSONA_3 dos cero para que sea dos cero
+audio,Qwen3-ASR 0.6B,clip_26,feria al aire libre,WER,0.32894736842105265,21.75404070003424,Sí. okay digamos qué es el perro para usted El Perú para mí es un país en desarrollo pero como ves la política no ayuda eso y la gente mismo es lo que somos los que le hicimos a los políticos no nos damos cuenta pero es un país muy rico en gastronomía en cultura es lo que nos falta potenciar ese lado entiendo ah y algunas características principales positivas en el gobierno de su país claro este la gastronomía es uno de ellas la cultura es muy buena y base los lugares donde son las culturas también es muy buena la gente también es muy cálida en ese tema nuestra riqueza en lo que es minería también somos muy buenos no sé y ahora los aspectos negativos . político en el lado de la corrupción como en todo en todo lugar el enano
+audio,Qwen3-ASR 0.6B,clip_23,"plaza, entrevista breve",WER,0.6875,12.820850000018254,. masí disfrutamos el paisaje vivo es más hermosa que puede ver perfecto dentro de las características positivas tiene esta característica de paisaje natural entonces y como yo cada uno de ellos y las cosas negativas mucha influencia mucha generación másivamente intentar generar un mensaje final para lo que va Paco. cuidando del covid sabemos más que deliciosos y listo listo muchas grandes oportunidades
+audio,Qwen3-ASR 0.6B,clip_11,conferencia de prensa con eco,WER,0.15723270440251572,24.28451369999675,a nuestros gobernadores y una pregunta usted en qué momento sintió por primera vez en qué momento descubrió que usted era peruana yo desde muy pequeña mi padre ha sido un gran político siempre nos ha hablado bastante de nuestro período de sentirnos de amarnos y creer incluso él decía Hay que estudiar. Para qué para servir a nuestra patria y padre era un hombre que le gustaba compartir era peruano porque se sentía peruano y toda la riqueza eran para todos no ha sido un hombre egoista ha sido un hombre de bien por cuando se ha inculcado desde muy niños Maria querer y a compartir. gracias Y qué aspectos positivos diría que tiene el Peru Cómo qué aspectos positivos diría que tiene el Perú uy el Perú tiene muchos aspectos positivos no es otras cosas que a veces nuestras autoridades no lo ven por ese lado. no pues positivamente tenemos nosotros mucho
+audio,Qwen3-ASR 0.6B,clip_41,testimonio en interior,WER,0.1524390243902439,27.439054700022098,Una anécdota que todos nos acordamos de. La gente de mi generación. Yo soy categoría ochenta y dos. Y todos nos acordamos del cine de mi barrio. El cine. Perú se llama la venía Perú. El cine Junín que digas en la avenida Perú. allí había un cine que se llamaba el cine Junín Y había otro cine que se llamaba el cine Perú. El cine Perú estaba en la cuadra treinta de la Avenida Peru. y el cine Junín estaba en la cuadra veintitrés creo de la vena peru si no me equivoco Veintitrés veintidós. y lo que nos acordamos siempre del de los cines del barrio en esa época es que ponían muchos comerciales Comenzaron comerciales antes de la película. Y a mí la película la cortaban y ponían comerciales después acabara la película y más comerciales Y lo que siempre nos acordamos que la gente que se sentaba en la butaca del segundo piso tiraban pichipo.
+audio,Whisper large-v3-turbo,clip_53,lectura en estudio (OpenSLR 73),WER,0.0,7.07033479999518,Tengo una junta de negocios con la firma de abogados ¿se acuerda?
+audio,Whisper large-v3-turbo,clip_54,lectura en estudio (OpenSLR 73),WER,0.0,6.984639800037257,¿Me puedes ayudar a buscar una receta que sea práctica y que sea rica?
+audio,Whisper large-v3-turbo,clip_57,lectura en estudio (OpenSLR 73),WER,0.07692307692307693,7.012760600016918,Estoy teniendo problemas con mi coche y un amigo me recomendó un Ferrari
+audio,Whisper large-v3-turbo,clip_58,lectura en estudio (OpenSLR 73),WER,0.05555555555555555,7.225140199996531,"En lugar de decirme el número de teléfono para que lo anote, ¿me lo podrías mandar por mail?"
+audio,Whisper large-v3-turbo,clip_22,calle con multitud y bocinas,WER,0.44871794871794873,15.440446999971755,normal esperando resultados pero como lo ves como ves a perú ahorita que está no se entiende no se están entendiendo hay como cuatro jugadores que están por las puras y ahora el técnico tiene que hacer justo los cambios pero supongo esos cuatro jugadores que es carrillo canchita este trauco y y ahora lo que sí no
+audio,Whisper large-v3-turbo,clip_04,"calle, entrevista multihablante",WER,0.23255813953488372,26.629991200054064,"La padula. ¿Por qué? Porque ha demostrado su fuerza y su garra para jugar y ha metido unos cuantos goles. Ha metido goles. Muy bien, sigo con la siguiente señora. PERSONA_3. Para mí sería la padula con Cueva, ¿no? Porque los dos han hecho un dúo. Un dúo y la padula más que... Para que demuestre que tiene el corazón más peruano que italiano. Muchas gracias. Sigo con la siguiente... Sigo con la pregunta. Y antes de empezar con ella, puedo decir que han destacado a la padula más, ¿no? Y la siguiente pregunta es... ¿Cuál es el resultado de hoy? ¿Cuál piensas que va a ser el resultado de hoy? PERSONA_2, 2-0. Sigo con la siguiente señorita. ¿Señora? PERSONA_3. También 2-0. Ojalá que sea 2-0."
+audio,Whisper large-v3-turbo,clip_26,feria al aire libre,WER,0.2631578947368421,25.506211399973836,"¿Qué es el Perú para ustedes? El Perú para mí es un país en desarrollo, pero como ves la política no ayuda a eso. Y la gente es lo que somos los que le hicimos a los políticos y no nos damos cuenta. Pero es un país muy rico en gastronomía, en cultura, solo que nos falta aportar ese lado. Entiendo. ¿Hay algunas características principales positivas en nuestro país? Claro, la gastronomía es una de ellas, la cultura es muy buena y vas a los lugares donde están las culturas también es muy buena. La gente también es muy cálida en el sistema. Nuestra riqueza es en lo que es minería también, somos muy buenos en ese lado. ¿Y ahora unos aspectos negativos? En el lado político, en el lado de la corrupción, como en todo lugar."
+audio,Whisper large-v3-turbo,clip_23,"plaza, entrevista breve",WER,0.5625,16.74022869998589,"Hola, ¿qué es el país donde vivo? El más hermoso que pueda haber. Perfecto. ¿Dentro de las características positivas que hay en esta carrera del país? Cultura, sus comunidades, las caras turísticas. ¿Y las cosas negativas? Mucha delincuencia, mucha agresión. Básicamente eso. Si tuvieras que dar un mensaje final a los que van, ¿cuál es? Sí, vamos a cuidar del COVID. Estábamos más pequeñitos. Listo, muchas gracias por tu tiempo."
+audio,Whisper large-v3-turbo,clip_11,conferencia de prensa con eco,WER,0.1949685534591195,25.33740650000982,a nuestros gobernadores y usted en qué momento ha sentido por primera vez en momento descubrió que usted era peruana yo desde muy pequeña mi padre ha sido un gran político siempre no se ha hablado bastante de nuestro periodo de sentirnos de amarnos y creer incluso él decía hay que estudiar para que para servir a nuestra patria mi padre era un hombre que le gustaba compartir que era peruano porque se sentía peruano y todas las riquezas eran para todos no ha sido un hombre egoísta es un hombre de bien o cuando se ha inculcado desde muy niños maria querer y a compartir gracias y qué aspectos positivos diría que tiene el perú como aspectos positivos diría que tiene el perú y el perú tiene muchos aspectos positivos no es otras cosas que a veces nuestras autoridades no lo ven por ese lado no pues es positivamente tenemos nosotros mucho
+audio,Whisper large-v3-turbo,clip_41,testimonio en interior,WER,0.13414634146341464,26.233268299954943,"Una anécdota que todos nos acordamos de la gente de mi generación. Yo soy categoría 82 y todos nos acordamos del cine de mi barrio. El cine Perú se llamaba, en la avenida Perú. El cine Junín, que diga, en la avenida Perú. Ahí había un cine que se llamaba el cine Junín. Y había otro cine que se llamaba el cine Perú. El cine Perú estaba en la cuadra 30 de la avenida Perú. Y el cine Junín estaba en la cuadra 23, creo, de la avenida Perú, si no me equivoco. 23, 22. Y lo que nos acordamos siempre de los cines del barrio en esa época es que ponían muchos comerciales. Comenzaban los comerciales antes de la película. Y a medida de la película la cortaban y ponían comerciales. Después acababa la película y más comerciales. Y lo que siempre nos acordamos es que la gente que se sentaba en la butaca del segundo piso tiraban pichis."

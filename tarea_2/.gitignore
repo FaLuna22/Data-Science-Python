@@ -17,3 +17,6 @@ modelos/checkpoint-*/
 
 .ipynb_checkpoints/
 __pycache__/
+
+# Referencias manuales sin seudonimizar (las publicadas están en documentos.csv y transcripciones.csv)
+datos/referencias_manuales.csv
