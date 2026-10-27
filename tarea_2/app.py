@@ -19,9 +19,15 @@ st.set_page_config(page_title="Voces y documentos peruanos", page_icon="🎙️"
 
 
 @st.cache_data
-def leer(nombre: str) -> pd.DataFrame:
+def _leer(nombre: str, version: float) -> pd.DataFrame:
     ruta = DATOS / nombre
     return pd.read_csv(ruta) if ruta.exists() else pd.DataFrame()
+
+
+def leer(nombre: str) -> pd.DataFrame:
+    """La fecha de modificación entra en la clave de la caché: si el CSV cambia o aparece, se vuelve a leer."""
+    ruta = DATOS / nombre
+    return _leer(nombre, ruta.stat().st_mtime if ruta.exists() else 0.0)
 
 
 docs = leer("documentos.csv")
